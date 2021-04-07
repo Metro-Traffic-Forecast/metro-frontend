@@ -15,6 +15,9 @@ export default {
   mounted() {
     this.draw();
   },
+  updated() {
+    this.draw();
+  },
   methods:{
     draw(){
       let chartDom = document.getElementById('OD');
@@ -40,6 +43,7 @@ export default {
             config: { dimension: 'score', order: 'desc' }
           }
         }],
+        darkMode: true,
         color:[
           "#0079bd",
           "#005d84",

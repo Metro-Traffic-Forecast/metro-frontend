@@ -42,7 +42,6 @@
             </div>
           </div>
         </Widget>
-
       </b-col>
     </b-row>
     <b-row>
@@ -53,11 +52,10 @@
       </b-col>
       <b-col xl="4" xs="12">
         <Widget title="年龄结构">
-          <AgeStructure></AgeStructure>
+          <AgeStructure :show-data = "option" :id="VisitAge"></AgeStructure>
         </Widget>
       </b-col>
     </b-row>
-    <AgeStructure></AgeStructure>
   </div>
 </template>
 
@@ -75,6 +73,7 @@ export default {
   },
   data() {
     return {
+      VisitAge:"VisitAge",
       animateNumberOptions: {
         duration: 2000,
         easing: 'easeInQuad',
@@ -84,6 +83,13 @@ export default {
       },
       checkedArr: [false, false, false],
       dataCollection: null,
+      option:[
+        {value: 1048, name: '搜索引擎'},
+        {value: 735, name: '直接访问'},
+        {value: 580, name: '邮件营销'},
+        {value: 484, name: '联盟广告'},
+        {value: 222, name: 'ssss'},
+      ]
     };
   },
   methods: {

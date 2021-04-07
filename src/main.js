@@ -5,9 +5,11 @@ import Toasted from 'vue-toasted';
 import VCalendar from 'v-calendar';
 import VueApexCharts from 'vue-apexcharts';
 import * as echarts from 'echarts';
+import 'element-ui/lib/theme-chalk/index.css';
 
 import store from './store';
 Vue.prototype.$echart = echarts;
+import ElementUI from 'element-ui';
 import router from './Routes';
 import App from './App';
 import layoutMixin from './mixins/layout';
@@ -16,6 +18,7 @@ Vue.use(BootstrapVue);
 Vue.use(VCalendar, {
   firstDayOfWeek: 2
 });
+Vue.use(ElementUI);
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'AIzaSyB7OXmzfQYua_1LEhRdqsoYzyJOPh9hGLg',

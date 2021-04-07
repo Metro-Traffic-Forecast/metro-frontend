@@ -8,7 +8,7 @@
     </transition>
   </div>
   <footer class="contentFooter">
-    Light Blue Vue Admin Dashboard Template - Made by <a href="https://flatlogic.com" target="_blank">Flatlogic</a>
+    流量预测依靠2021年份的伪造数据
   </footer>
 </div>
 </template>

@@ -9,6 +9,16 @@ export default {
   components:{
 
   },
+  provide () {
+    return {
+      reload: this.reload
+    }
+  },
+  data() {
+    return{
+      isRouterAlive: true
+    }
+  },
   created() {
     const currentPath = this.$router.history.current.path;
 
@@ -19,6 +29,14 @@ export default {
     if (currentPath === '/' || currentPath === '/app') {
       this.$router.push('/app/dashboard');
     }
+  },
+  methods:{
+    reload () {
+      this.isRouterAlive = false;
+      this.$nextTick(function () {
+        this.isRouterAlive = true;
+      })
+    },
   }
 };
 </script>

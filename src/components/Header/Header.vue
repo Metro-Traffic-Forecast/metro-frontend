@@ -1,6 +1,13 @@
 <template>
   <b-navbar toggleable="md" class="app-header d-print-none">
     <b-navbar-nav class="navbar-nav-mobile ml-auto">
+
+      <b-nav-text class="mr-3">
+        <b-alert class="header-alert animate__animated animate__bounceIn animate__delay-2s" dismissible v-model="showNavbarAlert">
+          <i class="fa fa-info-circle mr-1"></i> 欢迎来到轨道交通预测站点
+        </b-alert>
+      </b-nav-text>
+
         <b-nav-item-dropdown right class="avatar-toggle" menu-class="py-0">
           <template slot="button-content">
             <span class="avatar rounded-circle thumb-sm-1 float-left mr-2">
@@ -9,7 +16,6 @@
             <span class="text-white">Metro - Team</span>
           </template>
         </b-nav-item-dropdown>
-
         <b-nav-item class="divider d-md-down-none"></b-nav-item>
         <b-nav-item-dropdown no-caret right class="mr-2" menu-class="dropdown-menu-settings">
           <template slot="button-content">

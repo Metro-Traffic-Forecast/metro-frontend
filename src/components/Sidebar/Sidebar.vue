@@ -8,52 +8,60 @@
     </header>
     <ul class="nav">
       <h5 class="navTitle">Map</h5>
-      <NavLink
-        :activeItem="activeItem"
+      <NavLink :activeItem="activeItem"
         header="首页"
         link="/app/Dashboard"
         iconName="flaticon-home-3"
         index="dashboard"
         isHeader
       />
-      <h5 class="navTitle">Data Analyse</h5>
+      <h5 class="navTitle">Data Statistics</h5>
       <NavLink
           :activeItem="activeItem"
           header="月份"
-          link="/app/components"
+          link="/app/months"
           iconName="flaticon-list-3"
-          index="components"
+          index="months"
           :childrenLinks="[
-          { header: 'Jan', link: '/app/month/Jan',},
-          { header: 'Feb', link: '/app/month/Feb' },
-          { header: 'Mar', link: '/app/month/Mar' },
-          { header: 'Apr', link: '/app/month/Apr' },
-          { header: 'May', link: '/app/month/May' },
-          { header: 'Jun', link: '/app/month/Jun' },
-          { header: 'Jul', link: '/app/month/Jul' },
-          { header: 'Aug', link: '/app/month/Aug' },
-          { header: 'Sep', link: '/app/month/Sep' },
-          { header: 'Oct', link: '/app/month/Oct' },
-          { header: 'Nov', link: '/app/month/Nov' },
-          { header: 'Dec', link: '/app/month/Dec' },
+          { header: 'Jan', link: '/app/month/1',},
+          { header: 'Feb', link: '/app/month/2' },
+          { header: 'Mar', link: '/app/month/3' },
+          { header: 'Apr', link: '/app/month/4' },
+          { header: 'May', link: '/app/month/5' },
+          { header: 'Jun', link: '/app/month/6' },
+          { header: 'Jul', link: '/app/month/7' },
+          { header: 'Aug', link: '/app/month/8' },
+          { header: 'Sep', link: '/app/month/9' },
+          { header: 'Oct', link: '/app/month/10' },
+          { header: 'Nov', link: '/app/month/11' },
+          { header: 'Dec', link: '/app/month/12' },
         ]"
       />
       <NavLink
           :activeItem="activeItem"
           header="地铁线路"
-          link="/app/components"
+          link="/app/lines"
           iconName="flaticon-equal-3"
-          index="components"
+          index="lines"
           :childrenLinks="[
           { header: 'Line-1', link: '/app/Metro/1'},
           { header: 'Line-2', link: '/app/Metro/2' },
           { header: 'Line-3', link: '/app/Metro/3' },
           { header: 'Line-4', link: '/app/Metro/4'},
           { header: 'Line-5', link: '/app/Metro/5' },
-          { header: 'Line-10', link: '/app/Metro/6' },
-          { header: 'Line-11', link: '/app/Metro/7'},
-          { header: 'Line-12', link: '/app/Metro/8' },
+          { header: 'Line-10', link: '/app/Metro/10' },
+          { header: 'Line-11', link: '/app/Metro/11'},
+          { header: 'Line-12', link: '/app/Metro/12' },
         ]"
+      />
+      <h5 class="navTitle">Data Analysis</h5>
+      <NavLink
+          :activeItem="activeItem"
+          header="断面分析"
+          link="/app/section"
+          iconName="flaticon-equal-3"
+          index="lines"
+          is-header
       />
     </ul>
   </nav>

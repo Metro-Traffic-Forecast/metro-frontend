@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="ageStructure" style="width:400px; height:400px"></div>
+    <div :id="id" :s="showData" style="width:400px; height:400px"></div>
   </div>
 </template>
 
@@ -12,23 +12,36 @@ require('echarts/lib/chart/pie');
 
 export default {
   name: "AgeStructure",
-  props: [{
-    showData: {
-      type: Array, default: null
+  props: {
+    showData:{
+      type:Array,default:null
+    },
+    scale:Number,
+    id:{
+      type:String,default: null
     }
-  }
-  ],
-
+  },
   mounted() {
     this.draw();
   },
+  watch:{
+    showData:{
+      handler: function (){
+        this.draw();
+      }
+    }
+  },
   methods:{
     draw(){
-      let _this = this;
-      let chartDom = document.getElementById('ageStructure');
-      let myChart = echarts.init(chartDom);
+      let chartDom = document.getElementById(this.id);
+
+      chartDom.style.width = 400*this.scale+"px";
+      chartDom.style.height = 400*this.scale +"px";
+
+      let myChart = echarts.init(chartDom,"dark");
       let option;
       option = {
+        backgroundColor:"#00000000",
         tooltip: {
           trigger: 'item'
         },
@@ -37,8 +50,11 @@ export default {
           left: 'center'
         },
         textStyle:{
-          fontSize: 15
+          color: "#66ccff",
+          fontSize: 15,
+
         },
+        background:"#66ccff",
         series: [
           {
             name: '访问来源',
@@ -52,14 +68,14 @@ export default {
             emphasis: {
               label: {
                 show: true,
-                fontSize: '40',
-                fontWeight: 'bold'
+                fontSize: '30',
+                fontWeight: 'bold',
+                color: "#66ccff"
               }
             },
             labelLine: {
               show: false
             },
-
             color:[
               "#0079bd",
               "#005d84",
@@ -71,20 +87,21 @@ export default {
               "#032d39",
               "#436eaf",
             ],
-            textStyle:{
-              fontStyle: "##ffffff",
-              fontSize: "15px"
-            },
             data: [
-              {value: 1048, name: '搜索引擎'},
-              {value: 735, name: '直接访问'},
-              {value: 580, name: '邮件营销'},
-              {value: 484, name: '联盟广告'},
+
             ]
           }
         ]
       };
-      option.series.data = _this.showData;
+      if(option.textStyle.fontSize*this.scale<=12){
+        option.textStyle.fontSize = 0;
+      }else {
+        option.textStyle.fontSize = option.textStyle.fontSize * this.scale;
+      }
+      option.series[0].top=20;
+      option.series[0].data = this.showData;
+      option.series[0].emphasis.label.fontSize*=this.scale;
+
       option && myChart.setOption(option);
     }
   },
