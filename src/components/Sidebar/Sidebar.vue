@@ -15,53 +15,45 @@
         index="dashboard"
         isHeader
       />
-      <h5 class="navTitle">Data Statistics</h5>
-      <NavLink
-          :activeItem="activeItem"
-          header="月份"
-          link="/app/months"
-          iconName="flaticon-list-3"
-          index="months"
-          :childrenLinks="[
-          { header: 'Jan', link: '/app/month/1',},
-          { header: 'Feb', link: '/app/month/2' },
-          { header: 'Mar', link: '/app/month/3' },
-          { header: 'Apr', link: '/app/month/4' },
-          { header: 'May', link: '/app/month/5' },
-          { header: 'Jun', link: '/app/month/6' },
-          { header: 'Jul', link: '/app/month/7' },
-          { header: 'Aug', link: '/app/month/8' },
-          { header: 'Sep', link: '/app/month/9' },
-          { header: 'Oct', link: '/app/month/10' },
-          { header: 'Nov', link: '/app/month/11' },
-          { header: 'Dec', link: '/app/month/12' },
-        ]"
-      />
-      <NavLink
-          :activeItem="activeItem"
-          header="地铁线路"
-          link="/app/lines"
-          iconName="flaticon-equal-3"
-          index="lines"
-          :childrenLinks="[
-          { header: 'Line-1', link: '/app/Metro/1'},
-          { header: 'Line-2', link: '/app/Metro/2' },
-          { header: 'Line-3', link: '/app/Metro/3' },
-          { header: 'Line-4', link: '/app/Metro/4'},
-          { header: 'Line-5', link: '/app/Metro/5' },
-          { header: 'Line-10', link: '/app/Metro/10' },
-          { header: 'Line-11', link: '/app/Metro/11'},
-          { header: 'Line-12', link: '/app/Metro/12' },
-        ]"
-      />
       <h5 class="navTitle">Data Analysis</h5>
       <NavLink
           :activeItem="activeItem"
-          header="断面分析"
-          link="/app/section"
+          header="客流分析"
+          link="/app/dataAnalyse"
+          iconName="flaticon-list-3"
+          index="dataAnalyse"
+          :childrenLinks="[
+          { header: '单月客流分析', link: '/app/dataAnalyse/monthData',},
+          { header: '工作日/周末客流分析', link: '/app/dataAnalyse/weekData',},
+          { header: '站点出/入站客流分析', link: '/app/dataAnalyse/flowData',},
+          { header: '早/晚高峰客流分析', link: '/app/dataAnalyse/peakData',},
+          { header: '站点OD分析', link: '/app/dataAnalyse/ODData',},
+          { header: '线路断面客流分析', link: '/app/dataAnalyse/sectionData',},
+        ]"
+      />
+      <NavLink
+          :activeItem="activeItem"
+          header="用户分析"
+          link="/app/userInfo"
           iconName="flaticon-equal-3"
-          index="lines"
+          index="user"
+          :childrenLinks="[
+          { header: '用户年龄/性别分析', link: '/app/userInfo/ageAndSex'},
+          { header: '用户归属地统计', link: '/app/userInfo/hometown'},
+        ]"
+      />
+      <h5 class="navTitle">Data Forecast</h5>
+      <NavLink
+          :activeItem="activeItem"
+          header="客流预测"
+          link="/app/forecast"
+          iconName="flaticon-equal-3"
+          index="forecast"
           is-header
+          :childrenLinks="[
+          { header: '站点客流预测', link: '/app/forecast/station'},
+          { header: '线路客流预测', link: '/app/forecast/line'},
+          ]"
       />
     </ul>
   </nav>

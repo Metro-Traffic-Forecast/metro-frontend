@@ -1,72 +1,156 @@
 <template>
-<div>
-  <div id="OD" style="width:400px; height:400px"></div>
-</div>
+  <div :id="id" ></div>
 </template>
 
 <script>
 const echarts = require('echarts/lib/echarts');
-require('echarts/lib/component/dataset');
-require('echarts/lib/component/grid');
-require('echarts/lib/chart/bar');
+require('echarts/lib/chart/sankey');
 
 export default {
   name: "OD",
+  props:['id', 'links', 'width', 'height'],
   mounted() {
-    this.draw();
+
   },
-  updated() {
-    this.draw();
+  watch:{
+    links:{
+      handler(){
+        this.draw();
+      }
+    }
   },
   methods:{
     draw(){
-      let chartDom = document.getElementById('OD');
-      let myChart = echarts.init(chartDom);
+      let chartDom = document.getElementById(this.id);
+      chartDom.style.width = this.width;
+      chartDom.style.height = this.height;
+      let myChart = echarts.init(chartDom, 'dark');
       let option;
+
       option = {
-        dataset: [{
-          dimensions: ['name', 'age', 'profession', 'score', 'date'],
-          source: [
-            [' Hannah Krause ', 41, 'Engineer', 314, '2011-02-12'],
-            ['Zhao Qian ', 20, 'Teacher', 351, '2011-03-01'],
-            [' Jasmin Krause ', 52, 'Musician', 287, '2011-02-14'],
-            ['Li Lei', 37, 'Teacher', 219, '2011-02-18'],
-            [' Karle Neumann ', 25, 'Engineer', 253, '2011-04-02'],
-            [' Adrian Groß', 19, 'Teacher', null, '2011-01-16'],
-            ['Mia Neumann', 71, 'Engineer', 165, '2011-03-19'],
-            [' Böhm Fuchs', 36, 'Musician', 318, '2011-02-24'],
-            ['Han Meimei ', 67, 'Engineer', 366, '2011-03-12'],
-          ]
-        }, {
-          transform: {
-            type: 'sort',
-            config: { dimension: 'score', order: 'desc' }
-          }
-        }],
-        darkMode: true,
         color:[
-          "#0079bd",
-          "#005d84",
-          "#003f5a",
-          "#00222d",
-          "#008dff",
-          "#125b80",
-          "#14516a",
-          "#032d39",
-          "#436eaf",
+            '#66ccff'
         ],
-        xAxis: {
-          type: 'category',
-          axisLabel: { interval: 0, rotate: 30 },
-        },
-        yAxis: {},
+        backgroundColor: "#00000000",
         series: {
-          type: 'bar',
-          encode: { x: 'name', y: 'score' },
-          datasetIndex: 1
+          type: 'sankey',
+          layout: 'none',
+          lineStyle: {
+            color: 'gradient',
+            curveness: 0.5
+          },
+          emphasis: {
+            focus: 'adjacency'
+          },
+          data: [{
+            name: '1号线',
+            itemStyle: {
+              color: '#ffb484'
+            }
+          }, {
+            name: '2号线',
+            itemStyle: {
+              color: '#ff8686'
+            }
+          }, {
+            name: '3号线',
+            itemStyle: {
+              color: '#fff986'
+            }
+          }, {
+            name: '4号线',
+            itemStyle: {
+              color: '#beff86'
+            }
+          },{
+            name: '5号线',
+            itemStyle: {
+              color: '#76d0ff'
+            }
+          }, {
+            name: '10号线',
+            itemStyle: {
+              color: '#7698ff'
+            }
+          }, {
+            name: '11号线',
+            itemStyle: {
+              color: '#9b76ff'
+            }
+          },{
+            name: '12号线',
+            itemStyle: {
+              color: '#76ffbf'
+            }
+          },{
+            name: '1号线 ',
+            itemStyle: {
+              color: '#ff8686'
+            }
+          }, {
+            name: '2号线 ',
+            itemStyle: {
+              color: '#ffb484'
+            }
+          }, {
+            name: '3号线 ',
+            itemStyle: {
+              color: '#fff986'
+            }
+          }, {
+            name: '4号线 ',
+            itemStyle: {
+              color: '#beff86'
+            }
+          },{
+            name: '5号线 ',
+            itemStyle: {
+              color: '#76d0ff'
+            }
+          }, {
+            name: '10号线 ',
+            itemStyle: {
+              color: '#7698ff'
+            }
+          }, {
+            name: '11号线 ',
+            itemStyle: {
+              color: '#9b76ff'
+            }
+          },{
+            name: '12号线 ',
+            itemStyle: {
+              color: '#76ffbf'
+            }
+          }],
+          links: [{
+            source: 'a',
+            target: 'a1',
+            value: 5
+          }, {
+            source: 'a',
+            target: 'a2',
+            value: 3
+          }, {
+            source: 'b',
+            target: 'b1',
+            value: 8
+          }, {
+            source: 'a',
+            target: 'b1',
+            value: 3
+          }, {
+            source: 'b1',
+            target: 'a1',
+            value: 1
+          }, {
+            source: 'b1',
+            target: 'c',
+            value: 2
+          }]
         }
       };
-
+      option.series.links = this.links;
       option && myChart.setOption(option);
     }
   }

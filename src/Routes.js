@@ -8,7 +8,10 @@ import ErrorPage from '@/pages/Error/Error';
 
 import Month from "@/pages/Month/Month";
 import Metro from "@/pages/Metro/Metro";
-import Section from "@/pages/Section/Section";
+import MonthData from "@/pages/MonthData/MonthData";
+import ODTransport from "@/pages/OD/ODTransport";
+import InAndOutPassengerFlow from "@/pages/InAndOutPassengerFlow/InAndOutPassengerFlow";
+import PeakAnalyse from "@/pages/PeakAnalyse/PeakAnalyse";
 
 Vue.use(Router);
 
@@ -36,20 +39,55 @@ export default new Router({
           component: Dashboard,
         },
         {
-          path: 'month/:month',
-          name: 'Month',
-          component: Month,
+          path: 'dataAnalyse/monthData',
+          name: '每月信息统计',
+          component:MonthData,
         },
         {
-          path: 'metro/:line',
-          name: 'Metro',
-          component: Metro,
+          path: 'dataAnalyse/weekData',
+          name: '工作日/周末信息统计',
+          component:Month,
         },
         {
-          path: 'section',
-          name: 'Section',
-          component: Section
-        }
+          path: 'dataAnalyse/flowData',
+          name: '出入站客流信息统计',
+          component:InAndOutPassengerFlow,
+        },
+        {
+          path: 'dataAnalyse/peakData',
+          name: '早晚高峰信息统计',
+          component:PeakAnalyse,
+        },
+        {
+          path: 'dataAnalyse/ODData',
+          name: '站点OD信息统计',
+          component:ODTransport,
+        },
+        {
+          path: 'dataAnalyse/sectionData',
+          name: '断面信息统计',
+          component:Month,
+        },
+        {
+          path: 'userInfo/ageAndSex',
+          name: '用户年龄与性别统计',
+          component:Metro,
+        },
+        {
+          path: 'userInfo/hometown',
+          name: '用户归属地分析',
+          component:Metro,
+        },
+        {
+          path: 'forecast/station',
+          name: '站点客流预测',
+          component:Metro,
+        },
+        {
+          path: 'forecast/line',
+          name: '线路客流预测',
+          component:Metro,
+        },
       ],
     },
     {

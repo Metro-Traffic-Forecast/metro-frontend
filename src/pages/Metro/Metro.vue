@@ -38,13 +38,6 @@
             </div>
           </div>
         </Widget>
-        <Widget
-            class="bg-transparent"
-            title="年龄结构"
-            style="width: 250px;padding-right: 0"
-        >
-          <AgeStructure :show-data = "option" :scale="0.5" :id="MetroAge"></AgeStructure>
-        </Widget>
       </b-col>
     </b-row>
 
@@ -101,7 +94,6 @@
 
 <script>
 import PassengerFlow from "@/components/Charts/PassengerFlow/PassengerFlow";
-import AgeStructure from "@/components/Charts/AgeStructure/AgeStructure";
 import Widget from "@/components/Widget/Widget";
 import MovingBar from "@/components/MovingBar/MovingBar";
 
@@ -114,12 +106,6 @@ export default {
       MetroAge: "MetroAge",
       MovingBarMax : 31,
       xAxis : ['01', "02", '03', "04", '05', "06", '07', "08", '09', "10", '11', "12", '13', "14", '15', "16", '17', "18", '19', "20", '21', "22", '23', "24", '25', "26", '27', "28", '29', "30", "31"],
-      option:[
-        {value: 1048, name: '搜索引擎'},
-        {value: 735, name: '直接访问'},
-        {value: 584, name: '邮件营销'},
-        {value: 484, name: '联盟广告'},
-      ],
       allData:[
         [434, 121, 86, 776, 67, 67, 867, 234, 423, 353, 457, 567, 567, 567, 67, 6, 567, 567, 567, 567, 76, 657, 567, 567],
         [434, 121, 86, 776, 67, 67, 867, 234, 423, 33, 457, 567, 567, 567, 67, 6, 567, 567, 567, 567, 76, 657, 567, 600],
@@ -360,7 +346,6 @@ export default {
   },
   components:{
     PassengerFlow,
-    AgeStructure,
     Widget,
     MovingBar
   }
