@@ -1,25 +1,146 @@
 <template>
 <div>
-  <OD width="1000px" height="600px" id="ODTransportOD" :links="links"></OD>
+  <b-row>
+    <b-col lg="12">
+      <Widget style="width: 100%;height: auto">
+          <OD width="110%" height="500px" id="ODTransportOD" :links="links"></OD>
+      </Widget>
+    </b-col>
+
+  </b-row>
+  <b-row>
+    <b-col lg="12">
+      <Widget style="width: 100%;height: auto" title="信息说明">
+        <small>线路转乘信息</small>
+        <b-table striped hover :items="ODTableItems" :fields="ODFields" style="text-align: center"></b-table>
+      </Widget>
+    </b-col>
+  </b-row>
 </div>
 </template>
 
 <script>
 import OD from '../../components/Charts/OD/OD';
+import Widget from "@/components/Widget/Widget";
 import axios from "axios";
 
 export default {
   name: "ODTransport",
   components:{
-    OD
+    OD,Widget
   },
   data(){
     return{
-      links: null
+      links: null,
+      LineList:['1号线', '2号线', '3号线', '4号线', '5号线', '10号线', '11号线', '12号线'],
+      ODFields:[
+        {
+          key: '线路名',
+          sortable: false
+        },
+        {
+          key: '1号线',
+          sortable: false
+        },
+        {
+          key: '2号线',
+          sortable: false
+        },
+        {
+          key: '3号线',
+          sortable: false,
+        },
+        {
+          key: '4号线',
+          sortable: false,
+        },
+        {
+          key: '5号线',
+          sortable: false,
+        },
+        {
+          key: '10号线',
+          sortable: false,
+        },
+        {
+          key: '11号线',
+          sortable: false,
+        },
+        {
+          key: '12号线',
+          sortable: false,
+        },
+        {
+          key: '总计',
+          sortable: false,
+        }
+      ]
     }
   },
   mounted() {
     this.getODLinks();
+  },
+  computed:{
+    ODTableItems(){
+      if(this.links == null){
+        return null;
+      }
+      let data = [];
+      for(let i = 0;i<8;i++){
+        data[i] = {};
+        data[i].线路名 = this.LineList[i];
+        data[i][this.LineList[i]] = 0;
+      }
+      console.log(data);
+      for(let i = 0;i<56;i++){
+        let x = 0;
+        let y=0;
+        for(let k = 0;k<8;k++){
+          if(this.LineList[k]+" " == this.links[i].target){
+            y= k;
+            break;
+          }
+        }
+        for(let k = 0;k<8;k++){
+          if(this.LineList[k] == this.links[i].source){
+            x= k;
+            break;
+          }
+        }
+        switch(y){
+          case 0: data[x]['1号线'] = this.links[i].value; break;
+          case 1: data[x]['2号线'] = this.links[i].value; break;
+          case 2: data[x]['3号线'] = this.links[i].value; break;
+          case 3: data[x]['4号线'] = this.links[i].value; break;
+          case 4: data[x]['5号线'] = this.links[i].value; break;
+          case 5: data[x]['10号线'] = this.links[i].value; break;
+          case 6: data[x]['11号线'] = this.links[i].value; break;
+          case 7: data[x]['12号线'] = this.links[i].value; break;
+        }
+      }
+      data[8]={};
+      data[8].线路名 = '总计';
+      let allall = 0;
+      for(let k = 0;k<8;k++){
+        data[k].总计 = data[k]['1号线'] + data[k]['2号线']+ data[k]['3号线']+ data[k]['4号线']+ data[k]['5号线']+ data[k]['10号线']+ data[k]['11号线']+ data[k]['12号线'];
+        let all = 0;
+        for(let i = 0;i<8;i++){
+          all+=data[i][this.LineList[k]];
+        }
+        data[8][this.LineList[k]] = all;
+        allall +=all;
+      }
+      data[8].总计 = allall;
+
+      for(let k = 0;k<8;k++) {
+        for(let t = 0;t<8;t++){
+          data[k][this.LineList[t]] +=" (" +Math.floor(data[k][this.LineList[t]]*100/allall)+"%)";
+        }
+        data[k].总计+=" (" +Math.floor(data[k].总计*100/allall)+"%)";
+        data[8][this.LineList[k]]+=" (" +Math.floor(data[8][this.LineList[k]]*100/allall)+"%)";
+      }
+      return data;
+    }
   },
   methods:{
     getODLinks:function (){

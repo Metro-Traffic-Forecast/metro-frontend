@@ -1,15 +1,31 @@
 <template>
 <div>
-  <InAndOut id="InAndOutPassengerFlowInAndOut" height="600px" width="800px" :up-data="UpData" :down-data="DownData"  style="position: absolute"></InAndOut>
-  <b-form-select v-model="Line" :options="LineOption" style="width: 120px;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="getStationOption()"></b-form-select>&ensp;
-  <b-form-select v-model="Station" :options="StationOption" style="width: 120px;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="compute()"></b-form-select>
+  <b-row>
+    <b-col lg = '8'>
+      <Widget style="width: 100%;height: 630px">
+        <InAndOut id="InAndOutPassengerFlowInAndOut" height="600px" width="100%" :up-data="UpData" :down-data="DownData"  style="position: absolute"></InAndOut>
+        <b-form-select v-model="Line" :options="LineOption" style="width: 120px;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="getStationOption()"></b-form-select>&ensp;
+        <b-form-select v-model="Station" :options="StationOption" style="width: 120px;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="compute()"></b-form-select>
+      </Widget>
+    </b-col>
+    <b-col lg = '4'>
+      <Widget style="width: 100%;height: 630px" title="信息说明">
+         <small v-if="StationOption!=null">{{StationOption[Station-1].text}}进出站信息统计</small><br/>
 
+        <b-table striped hover :items="InTableItems" :fields="InFields" style="text-align: center"></b-table>
+
+        <b-table striped hover :items="OuTableItems" :fields="OutFields" style="text-align: center"></b-table>
+
+      </Widget>
+    </b-col>
+  </b-row>
 </div>
 </template>
 
 <script>
 import InAndOut from "@/components/Charts/InAndOut/InAndOut";
 import axios from "axios";
+import Widget from "@/components/Widget/Widget";
 
 export default {
   name: "InAndOutPassengerFlow",
@@ -19,18 +35,38 @@ export default {
   },
   data(){
     return{
-      UpData:{
-
-      },
-      DownData:{
-
-      },
-      Line:{
-        type:Number,default:1
-      },
-      Station:{
-        type:Number,default:1
-      },
+      UpData: null,
+      DownData:null,
+      InFields:[
+        {
+          key: '入站流量分段',
+          sortable: false
+        },
+        {
+          key: '总天数',
+          sortable: true
+        },
+        {
+          key: '所占比例',
+          sortable: true,
+        }
+      ],
+      OutFields:[
+        {
+          key: '出站流量分段',
+          sortable: false
+        },
+        {
+          key: '总天数',
+          sortable: true
+        },
+        {
+          key: '所占比例',
+          sortable: true,
+        }
+      ],
+      Line:1,
+      Station:1,
       LineOption:[ {
         value: 1,
         text: '1号线'
@@ -56,9 +92,7 @@ export default {
         value: 8,
         text: '12号线'
       }],
-      StationOption:{
-
-      },
+      StationOption:null,
       AllUpData:{
 
       },
@@ -68,7 +102,72 @@ export default {
     }
   },
   components:{
+    Widget,
     InAndOut
+  },
+  computed:{
+    InTableItems(){
+      if(this.UpData == null){
+        return [];
+      }
+      let level = 5;
+      let data = [];
+      let d = [];
+      for(let i = 0;i<level;i++) {
+        d[i]=0;
+      }
+      let max = 0;
+
+      for(let i = 0;i<this.UpData.length;i++) {
+        if (this.UpData[i] > max) {
+          max = this.UpData[i];
+        }
+      }
+      let height = max/level;
+      for(let i = 0;i<this.UpData.length;i++) {
+        d[Math.floor(this.UpData[i]/height)]++;
+      }
+      for(let i = 0;i<level;i++) {
+        data[i] = {};
+        let s = "";
+        s+=Math.floor(height*i)+"~"+Math.floor(height*(i+1));
+        data[i].入站流量分段 = s;
+        data[i].总天数 = d[i];
+        data[i].所占比例 = (d[i]/204*100).toFixed()+'%';
+      }
+      return data;
+    },
+    OuTableItems(){
+      if(this.DownData == null){
+        return [];
+      }
+      let level = 5;
+      let data = [];
+      let d = [];
+      for(let i = 0;i<level;i++) {
+        d[i]=0;
+      }
+      let max = 0;
+
+      for(let i = 0;i<this.DownData.length;i++) {
+        if (this.DownData[i] < max) {
+          max = this.DownData[i];
+        }
+      }
+      let height = max/level;
+      for(let i = 0;i<this.DownData.length;i++) {
+        d[Math.floor(this.DownData[i]/height)]++;
+      }
+      for(let i = 0;i<level;i++) {
+        data[i] = {};
+        let s = "";
+        s+=Math.floor(-1 * height*i)+"~"+Math.floor(-1 * height*(i+1));
+        data[i].出站流量分段 = s;
+        data[i].总天数 = d[i];
+        data[i].所占比例 = (d[i]/204*100).toFixed()+'%';
+      }
+      return data;
+    }
   },
   methods: {
     compute(){

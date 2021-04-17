@@ -17,28 +17,13 @@ export default {
   },
   data(){
     return{
-      tag:[0,0]
+
     }
   },
   watch:{
     data:{
       handler(){
-        if(this.tag[1]==1){
-          this.tag[1] =0;
-          this.draw();
-        }else{
-          this.tag[0]=1;
-        }
-      }
-    },
-    xAxis:{
-      handler() {
-        if(this.tag[0]==1){
-          this.tag[0] =0;
-          this.draw();
-        }else{
-          this.tag[1]=1;
-        }
+        this.draw();
       }
     }
   },
@@ -67,14 +52,35 @@ export default {
         },
         xAxis3D: {
           type: 'category',
-          data: hours
+          data: hours,
+          name:"时间",
+          axisLabel:{
+            color:"#ffffff"
+          },
+          nameTextStyle:{
+            color: "#ffffff"
+          }
         },
         yAxis3D: {
           type: 'category',
-          data: days
+          data: days,
+          name:"线路",
+          axisLabel:{
+            color:"#ffffff"
+          },
+          nameTextStyle:{
+            color: "#ffffff"
+          }
         },
         zAxis3D: {
-          type: 'value'
+          type: 'value',
+          name:"客流量",
+          axisLabel:{
+            color:"#ffffff"
+          },
+          nameTextStyle:{
+            color: "#ffffff"
+          }
         },
         grid3D: {
           boxWidth: 200,

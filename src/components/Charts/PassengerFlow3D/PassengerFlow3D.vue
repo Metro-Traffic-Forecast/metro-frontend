@@ -5,44 +5,48 @@
 </template>
 
 <script>
-var echarts = require('echarts');
+let echarts = require('echarts');
 require('echarts-gl');
 
 export default {
   name: "PassengerFlow3D",
-  props:['id','width','height', 'data'],
+  props:['id','width','height', 'dataX', 'data'],
   mounted() {
     this.draw();
+  },
+  data(){
+    return{
+      tag:[0,0]
+    }
   },
   watch:{
     data:{
       handler(){
-        this.draw();
+        if(this.tag[1]==1){
+          this.tag[1]=0
+          this.draw();
+        }else{
+          this.tag[0]=1;
+        }
+      }
+    },
+    dataX:{
+      handler() {
+        if(this.tag[0]==1){
+          this.tag[0]=0
+          this.draw();
+        }else{
+          this.tag[1]=1;
+        }
       }
     }
   },
   methods:{
     draw:function () {
 
-      let data = [
-        [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],  //从化区
-        [0, 1, 3, 3, 4, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8],  //南沙区
-        [5, 6, 9, 9, 9, 11, 11, 11, 13, 13, 14, 14, 14, 16, 16, 16, 16, 16, 18, 18, 18, 18],  //黄浦区
-        [1, 2, 2, 5, 5, 9, 11, 12, 12, 12, 14, 15, 15, 15, 15, 15, 16, 16, 17, 19, 19, 19],  //花都区
-        [1, 1, 1, 1, 2, 5, 6, 6, 8, 12, 15, 16, 16, 17, 17, 17, 17, 17, 17, 17, 17, 17],     //荔湾区
-        [0, 0, 1, 1, 5, 7, 9, 11, 12, 13, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17],    //增城区
-        [5, 5, 6, 11, 16, 17, 17, 26, 27, 29, 33, 34, 34, 34, 35, 35, 35, 35, 35, 35, 35, 35],   //越秀区
-        [5, 5, 7, 11, 14, 16, 18, 20, 25, 25, 31, 33, 34, 34, 34, 36, 38, 38, 40, 40, 40, 40],   //番禺区
-        [13, 17, 22, 22, 26, 33, 34, 36, 36, 37, 39, 40, 40, 42, 42, 42, 43, 43, 44, 44, 44, 44],  //天河区
-        [8, 10, 11, 15, 20, 24, 26, 32, 37, 44, 47, 54, 57, 60, 61, 63, 63, 64, 64, 65, 66, 66],   //海珠区
-        [13, 16, 17, 27, 35, 45, 49, 53, 58, 61, 65, 66, 68, 69, 71, 73, 73, 73, 74, 74, 74, 74]   //白云区
-      ]
-
-      let dataX = ['1/27', '1/28', '1/29', '1/30', '1/31', '2/1', '2/2', '2/3', '2/4',
-        '2/5', '2/6', '2/7', '2/8', '2/9', '2/10', '2/11', '2/12', '2/13',
-        '2/14', '2/15', '2/16', '2/17'];
-      let dataY = ['从化区', '南沙区', '黄浦区', '花都区', '荔湾区', '增城区',
-        '越秀区', '番禺区', '天河区', '海珠区', '白云区'];
+      let data = this.data;
+      let dataX = this.dataX;
+      let dataY = ['1号线', '2号线', '3号线', '4号线', '5号线', '10号线', '11号线', '12号线'];
 
       let vdata = [];
 
@@ -62,10 +66,11 @@ export default {
         }
       }
 
+
       let dom = document.getElementById(this.id);
       dom.style.height = this.height + 'px';
       dom.style.width = this.width + 'px';
-      var chart = echarts.init(dom, 'dark');
+      let chart = echarts.init(dom, 'dark');
 
       chart.setOption({
         backgroundColor:"#00000000",
@@ -113,7 +118,7 @@ export default {
         series: [
           {
             type: 'scatter3D',
-            name: '从化区',
+            name: '1号线',
             itemStyle: {
               color: 'rgb(165,  0, 38)'
             },
@@ -133,7 +138,7 @@ export default {
           },
           {
             type: 'scatter3D',
-            name: '南沙区',
+            name: '2号线',
             itemStyle: {
               color: 'rgb(215, 48, 39)'
             },
@@ -153,7 +158,7 @@ export default {
           },
           {
             type: 'scatter3D',
-            name: '黄浦区',
+            name: '3号线',
             itemStyle: {
               color: 'rgb(244,109, 67)'
             },
@@ -173,7 +178,7 @@ export default {
           },
           {
             type: 'scatter3D',
-            name: '花都区',
+            name: '4号线',
             itemStyle: {
               color: 'rgb(253,174, 97)'
             },
@@ -193,7 +198,7 @@ export default {
           },
           {
             type: 'scatter3D',
-            name: '荔湾区',
+            name: '5号线',
             itemStyle: {
               color: 'rgb(254,224,144)'
             },
@@ -213,7 +218,7 @@ export default {
           },
           {
             type: 'scatter3D',
-            name: '增城区',
+            name: '10号线',
             itemStyle: {
               color: 'rgb(255,255,191)'
             },
@@ -233,7 +238,7 @@ export default {
           },
           {
             type: 'scatter3D',
-            name: '越秀区',
+            name: '11号线',
             itemStyle: {
               color: 'rgb(224,243,248)'
             },
@@ -253,7 +258,7 @@ export default {
           },
           {
             type: 'scatter3D',
-            name: '番禺区',
+            name: '12号线',
             itemStyle: {
               color: 'rgb(171,217,233)'
             },
@@ -272,164 +277,76 @@ export default {
             data: vdata[7]
           },
           {
-            type: 'scatter3D',
-            name: '天河区',
-            itemStyle: {
-              color: 'rgb(116,173,209)'
-            },
-            label: {
-              show: true,
-              position: 'top',
-              distance: 0,
-              textStyle: {
-                color: '#ffffff',
-                fontSize: 12,
-                borderWidth: 0,
-                borderColor: '#c6c6c6',
-                backgroundColor: 'transparent'
-              }
-            },
-            data: vdata[8]
-          },
-          {
-            type: 'scatter3D',
-            name: '海珠区',
-            itemStyle: {
-              color: 'rgb( 69,117,180)'
-            },
-            label: {
-              show: true,
-              position: 'top',
-              distance: 0,
-              textStyle: {
-                color: '#ffffff',
-                fontSize: 12,
-                borderWidth: 0,
-                borderColor: '#c6c6c6',
-                backgroundColor: 'transparent'
-              }
-            },
-            data: vdata[9]
-          },
-          {
-            type: 'scatter3D',
-            name: '白云区',
-            itemStyle: {
-              color: 'rgb( 49, 54,149)'  //点的颜色
-
-            },
-            label: {
-              show: true,
-              position: 'top',
-              distance: 0,
-              textStyle: {
-                color: '#ffffff',
-                fontSize: 12,
-                borderWidth: 0,
-                borderColor: '#c6c6c6',
-                backgroundColor: 'transparent'
-              }
-            },
-            data: vdata[10]
-          },
-          {
             type: 'line3D', //当type为line3D时有label没有作用，官网没有label这个配置项
-            name: '从化区',
+            name: '1号线',
             lineStyle: {
-              width: 2,   //线的宽度
+              width: 6,   //线的宽度
               color: 'rgb(165,  0, 38)'   //线的颜色
             },
             data: vdata[0]   //线数据和点数据所需要的格式一样
           },
           {
             type: 'line3D',
-            name: '南沙区',
+            name: '2号线',
             lineStyle: {
               color: 'rgb(215, 48, 39)',  //线的颜色
-              width: 8     //线的宽度
+              width: 6     //线的宽度
             },
             data: vdata[1]
           },
           {
             type: 'line3D',
-            name: '黄浦区',
+            name: '3号线',
             lineStyle: {
               color: 'rgb(244,109, 67)',
-              width: 10
+              width: 6
             },
             data: vdata[2]
           },
           {
             type: 'line3D',
-            name: '花都区',
+            name: '4号线',
             lineStyle: {
               color: 'rgb(253,174, 97)',
-              width: 8
+              width: 6
             },
             data: vdata[3]
           },
           {
             type: 'line3D',
-            name: '荔湾区',
+            name: '5号线',
             lineStyle: {
               color: 'rgb(254,224,144)',
-              width: 8
+              width: 6
             },
             data: vdata[4]
           },
           {
             type: 'line3D',
-            name: '增城区',
+            name: '10号线',
             lineStyle: {
               color: 'rgb(255,255,191)',
-              width: 8
+              width: 6
             },
             data: vdata[5]
           },
           {
             type: 'line3D',
-            name: '越秀区',
+            name: '11号线',
             lineStyle: {
               color: 'rgb(224,243,248)',
-              width: 8
+              width: 6
             },
             data: vdata[6]
           },
           {
             type: 'line3D',
-            name: '番禺区',
+            name: '12号线',
             lineStyle: {
               color: 'rgb(171,217,233)',
-              width: 8
+              width: 6
             },
             data: vdata[7]
-          },
-          {
-            type: 'line3D',
-            name: '天河区',
-            lineStyle: {
-              color: 'rgb(116,173,209)',
-              width: 8
-            },
-            data: vdata[8]
-          },
-          {
-            type: 'line3D',
-            name: '海珠区',
-            lineStyle: {
-              color: 'rgb( 69,117,180)',
-              width: 8
-            },
-            data: vdata[9]
-          },
-          {
-            type: 'line3D',
-            name: '白云区',
-            lineStyle: {
-              color: 'rgb( 49, 54,149)',
-              width: 8
-            },
-            data: vdata[10]
           }
         ]
       });

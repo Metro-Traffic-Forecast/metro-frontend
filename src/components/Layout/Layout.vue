@@ -8,7 +8,7 @@
     </transition>
   </div>
   <footer class="contentFooter">
-    流量预测依靠2021年份的伪造数据
+    流量预测依靠2019-2020年份的伪造数据
   </footer>
 </div>
 </template>

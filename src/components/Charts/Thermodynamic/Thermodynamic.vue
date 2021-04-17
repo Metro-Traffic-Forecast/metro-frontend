@@ -31,8 +31,9 @@ export default {
       let option;
       let xData = [0,1,2,3,4,5,6,7,8,9,10,11,12];
       let data = this.data;
-      let yData = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
+      let yData = [0,1,2,3,4,5,6,7,8,9,10,11,12];
 
+      console.log(this.data);
       option = {
         backgroundColor:"#00000000",
         tooltip: {},

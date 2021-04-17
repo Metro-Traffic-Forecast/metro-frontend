@@ -6,12 +6,15 @@ import Dashboard from '@/pages/Visits/Visits';
 import Login from '@/pages/Login/Login';
 import ErrorPage from '@/pages/Error/Error';
 
-import Month from "@/pages/Month/Month";
 import Metro from "@/pages/Metro/Metro";
 import MonthData from "@/pages/MonthData/MonthData";
 import ODTransport from "@/pages/OD/ODTransport";
 import InAndOutPassengerFlow from "@/pages/InAndOutPassengerFlow/InAndOutPassengerFlow";
 import PeakAnalyse from "@/pages/PeakAnalyse/PeakAnalyse";
+import WeekData from "@/pages/WeekData/WeekData";
+import SectionAnalyse from "@/pages/SectionAnalyse/SectionAnalyse";
+import StationForecast from "./pages/StationForecast/StationForecast";
+import UserInfo from "@/pages/UserInfo/UserInfo";
 
 Vue.use(Router);
 
@@ -46,7 +49,7 @@ export default new Router({
         {
           path: 'dataAnalyse/weekData',
           name: '工作日/周末信息统计',
-          component:Month,
+          component:WeekData,
         },
         {
           path: 'dataAnalyse/flowData',
@@ -66,22 +69,17 @@ export default new Router({
         {
           path: 'dataAnalyse/sectionData',
           name: '断面信息统计',
-          component:Month,
+          component:SectionAnalyse,
         },
         {
-          path: 'userInfo/ageAndSex',
+          path: 'userInfo',
           name: '用户年龄与性别统计',
-          component:Metro,
-        },
-        {
-          path: 'userInfo/hometown',
-          name: '用户归属地分析',
-          component:Metro,
+          component:UserInfo,
         },
         {
           path: 'forecast/station',
           name: '站点客流预测',
-          component:Metro,
+          component:StationForecast,
         },
         {
           path: 'forecast/line',

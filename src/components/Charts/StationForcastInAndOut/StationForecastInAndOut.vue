@@ -1,7 +1,7 @@
 <template>
-<div :id="id">
+  <div :id="id">
 
-</div>
+  </div>
 </template>
 
 <script>
@@ -15,35 +15,67 @@ require('echarts/lib/chart/line');
 
 export default {
   name: "InAndOut",
-  props:['id', 'UpData', 'width', 'height','DownData','xAxis'],
+  props:['id', 'RelUpData', "ForUpData","ForDownData",'width', 'height','RelDownData','xAxis'],
   mounted() {
 
   },
   watch:{
-    UpData:{
+    RelUpData:{
       handler(){
-        if(this.tag[1] == 1){
+        if(this.tag[1] == 1 && this.tag[2] == 1&&this.tag[3] == 1){
           this.tag[1]=0;
+          this.tag[2]=0;
+          this.tag[3]=0;
           this.draw();
         }else{
           this.tag[0] = 1;
         }
       },
     },
-    DownData:{
+    RelDownData:{
       handler(){
-        if(this.tag[0] == 1){
+        if(this.tag[0] == 1 && this.tag[2] == 1&&this.tag[3] == 1){
           this.tag[0]=0;
+          this.tag[2]=0;
+          this.tag[3]=0;
           this.draw();
         }else{
           this.tag[1] = 1;
+        }
+      }
+    },
+    ForDownData:{
+      handler:{
+        handler(){
+          if(this.tag[0] == 1 && this.tag[1] == 1&&this.tag[3] == 1){
+            this.tag[0]=0;
+            this.tag[1]=0;
+            this.tag[3]=0;
+            this.draw();
+          }else{
+            this.tag[2] = 1;
+          }
+        }
+      }
+    },
+    ForUpData:{
+      handler:{
+        handler(){
+          if(this.tag[0] == 1 && this.tag[1] == 1&&this.tag[2] == 1){
+            this.tag[0]=0;
+            this.tag[1]=0;
+            this.tag[2]=0;
+            this.draw();
+          }else{
+            this.tag[3] = 1;
+          }
         }
       }
     }
   },
   data(){
     return{
-      tag:[0,0]
+      tag:[0,0,0,0]
     }
   },
   methods:{
@@ -53,21 +85,24 @@ export default {
       chartDom.style.height = this.height;
       let myChart = echarts.init(chartDom, 'dark');
 
-      var base = +new Date(2019, 11, 26,0,0,0,0);
-      var oneDay =   3600 * 1000 * 24;
+      var base = +new Date(2020, 6, 10,0,0,0,0);
+      var dely = 3600 * 1000 * 6;
       var date = [];
 
-      let data = this.UpData;
-      let data2 =  this.DownData;
+      let data = this.RelUpData;
+      let data2 =  this.RelDownData;
+      let data3 = this.ForUpData;
+      let data4 = this.ForDownData;
 
-      if(this.xAxis == null) {
-        for (var i = 1; i < 204; i++) {
-          var now = new Date(base);
-          date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/') + "\n");
-          base += oneDay;
-        }
-      }else{
-        date = this.xAxis;
+      console.log(data);
+      console.log(data2);
+      console.log(data3);
+      console.log(data4);
+
+      for(let i=0;i<40;i++){
+        var now = new Date(base);
+        date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/') + "\n" + (i*6)%24);
+        base += dely;
       }
 
       let option = {
@@ -80,10 +115,9 @@ export default {
         },
         title: {
           left: 'center',
-          text: '出入站信息统计',
+          text: '大数据量面积图',
         },
         toolbox: {
-          show:false,
           feature: {
             dataZoom: {
               yAxisIndex: 'none'
@@ -111,7 +145,7 @@ export default {
         }],
         series: [
           {
-            name: '入站',
+            name: '上行',
             type: 'line',
             symbol: 'none',
             sampling: 'lttb',
@@ -129,7 +163,7 @@ export default {
             },
             data: data
           },{
-            name: '出站',
+            name: '下行',
             type: 'line',
             symbol: 'none',
             sampling: 'lttb',
@@ -146,7 +180,45 @@ export default {
               }])
             },
             data: data2
-          }
+          },{
+            name: '上行预测',
+            type: 'line',
+            symbol: 'none',
+            sampling: 'lttb',
+            itemStyle: {
+              color: 'rgb(255, 70, 131)'
+            },
+            areaStyle: {
+              color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                offset: 0,
+                color: 'rgb(255,186,68)'
+              }, {
+                offset: 1,
+                color: 'rgb(255,70,172)'
+              }])
+            },
+            data: data3
+          },
+      {
+        name: '下行预测',
+            type: 'line',
+          symbol: 'none',
+          sampling: 'lttb',
+          itemStyle: {
+        color: 'rgb(255,70,131)'
+      },
+        areaStyle: {
+          color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+            offset: 0,
+            color: 'rgb(255,186,68)'
+          }, {
+            offset: 1,
+            color: 'rgb(255,70,172)'
+          }])
+        },
+        data: data4
+      }
+
         ]
       };
 

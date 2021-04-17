@@ -13,7 +13,7 @@
             <span class="avatar rounded-circle thumb-sm-1 float-left mr-2">
               <img class="rounded-circle" src="../../assets/people/a7.png" alt="..." />
             </span>
-            <span class="text-white">Metro - Team</span>
+            <span class="text-white">200OK</span>
           </template>
         </b-nav-item-dropdown>
         <b-nav-item class="divider d-md-down-none"></b-nav-item>

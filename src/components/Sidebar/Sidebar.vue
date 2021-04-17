@@ -4,7 +4,7 @@
     :class="{sidebar: true}"
   >
     <header class="logo">
-      <router-link to="/app"><img src="../../assets/logo.png" width="30px" height="30px" alt="logo"/> &nbsp;<span class="fw-bold">轨道交通智慧客流分析预测</span></router-link>
+      <router-link to="/app"><img src="../../assets/logo.png" width="30px" height="30px" alt="logo"/> &nbsp;<span class="fw-bold">基于Kafka和Spark的地铁客流实时分析预测平台</span></router-link>
     </header>
     <ul class="nav">
       <h5 class="navTitle">Map</h5>
@@ -37,10 +37,7 @@
           link="/app/userInfo"
           iconName="flaticon-equal-3"
           index="user"
-          :childrenLinks="[
-          { header: '用户年龄/性别分析', link: '/app/userInfo/ageAndSex'},
-          { header: '用户归属地统计', link: '/app/userInfo/hometown'},
-        ]"
+          isHeader
       />
       <h5 class="navTitle">Data Forecast</h5>
       <NavLink

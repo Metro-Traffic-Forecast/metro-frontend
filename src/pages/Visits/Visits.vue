@@ -7,8 +7,8 @@
     </h1>
     <b-row>
       <b-col lg="7">
-        <Widget class="bg-transparent" style="width: 900px">
-          <Map />
+        <Widget class="bg-transparent" >
+          <Map/>
         </Widget>
       </b-col>
 
@@ -44,18 +44,7 @@
         </Widget>
       </b-col>
     </b-row>
-    <b-row>
-      <b-col xl="4" xs="12">
-        <Widget title="区域OD">
-          <OD></OD>
-        </Widget>
-      </b-col>
-      <b-col xl="4" xs="12">
-        <Widget title="年龄结构">
-          <AgeStructure :show-data = "option" :id="VisitAge"></AgeStructure>
-        </Widget>
-      </b-col>
-    </b-row>
+
   </div>
 </template>
 
@@ -63,13 +52,11 @@
 import Vue from 'vue';
 import Widget from '@/components/Widget/Widget';
 import Map from './components/Map/Map';
-import AgeStructure from "@/components/Charts/AgeStructure/AgeStructure";
-import OD from "@/components/Charts/OD/OD";
 
 export default {
   name: 'Visits',
   components: {
-    OD, Widget, Map, AgeStructure
+     Widget, Map,
   },
   data() {
     return {
@@ -83,13 +70,6 @@ export default {
       },
       checkedArr: [false, false, false],
       dataCollection: null,
-      option:[
-        {value: 1048, name: '搜索引擎'},
-        {value: 735, name: '直接访问'},
-        {value: 580, name: '邮件营销'},
-        {value: 484, name: '联盟广告'},
-        {value: 222, name: 'ssss'},
-      ]
     };
   },
   methods: {
