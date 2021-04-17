@@ -13,7 +13,9 @@ import ElementUI from 'element-ui';
 import router from './Routes';
 import App from './App';
 import layoutMixin from './mixins/layout';
+import axios from "axios";
 
+Vue.prototype.axios = axios
 Vue.use(BootstrapVue);
 Vue.use(VCalendar, {
   firstDayOfWeek: 2

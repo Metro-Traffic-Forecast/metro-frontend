@@ -1,0 +1,1152 @@
+{
+  "RECORDS": [
+    {
+      "station_id": "Sta1",
+      "line_name": "1号线",
+      "district": "Dist1",
+      "sequence": "20",
+      "station_name": "七星岗"
+    },
+    {
+      "station_id": "Sta10",
+      "line_name": "5号线",
+      "district": "Dist5",
+      "sequence": "7",
+      "station_name": "丹鹤"
+    },
+    {
+      "station_id": "Sta100",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "25",
+      "station_name": "狮子坪"
+    },
+    {
+      "station_id": "Sta101",
+      "line_name": "12号线",
+      "district": "Dist8",
+      "sequence": "16",
+      "station_name": "玉带山"
+    },
+    {
+      "station_id": "Sta102",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "19",
+      "station_name": "王家庄"
+    },
+    {
+      "station_id": "Sta103",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "9",
+      "station_name": "环山公园"
+    },
+    {
+      "station_id": "Sta104",
+      "line_name": "1号线",
+      "district": "Dist1",
+      "sequence": "1",
+      "station_name": "璧山"
+    },
+    {
+      "station_id": "Sta105",
+      "line_name": "2号线",
+      "district": "Dist4",
+      "sequence": "2",
+      "station_name": "白居寺"
+    },
+    {
+      "station_id": "Sta106",
+      "line_name": "1号线",
+      "district": "Dist3",
+      "sequence": "8",
+      "station_name": "石井坡"
+    },
+    {
+      "station_id": "Sta107",
+      "line_name": "1号线",
+      "district": "Dist2",
+      "sequence": "16",
+      "station_name": "石桥铺"
+    },
+    {
+      "station_id": "Sta108",
+      "line_name": "1号线",
+      "district": "Dist1",
+      "sequence": "18",
+      "station_name": "石油路"
+    },
+    {
+      "station_id": "Sta109",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "36",
+      "station_name": "碧津"
+    },
+    {
+      "station_id": "Sta11",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "42",
+      "station_name": "举人坝"
+    },
+    {
+      "station_id": "Sta110",
+      "line_name": "1号线",
+      "district": "Dist3",
+      "sequence": "9",
+      "station_name": "磁器口"
+    },
+    {
+      "station_id": "Sta111",
+      "line_name": "11号线",
+      "district": "Dist5",
+      "sequence": "9",
+      "station_name": "礼嘉"
+    },
+    {
+      "station_id": "Sta112",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "38",
+      "station_name": "空港广场"
+    },
+    {
+      "station_id": "Sta113",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "27",
+      "station_name": "童家院子"
+    },
+    {
+      "station_id": "Sta114",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "2",
+      "station_name": "红土地"
+    },
+    {
+      "station_id": "Sta115",
+      "line_name": "11号线",
+      "district": "Dist5",
+      "sequence": "17",
+      "station_name": "红旗河沟"
+    },
+    {
+      "station_id": "Sta116",
+      "line_name": "12号线",
+      "district": "Dist6",
+      "sequence": "7",
+      "station_name": "罗家坝"
+    },
+    {
+      "station_id": "Sta117",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "32",
+      "station_name": "翠云"
+    },
+    {
+      "station_id": "Sta118",
+      "line_name": "11号线",
+      "district": "Dist5",
+      "sequence": "16",
+      "station_name": "花卉园"
+    },
+    {
+      "station_id": "Sta119",
+      "line_name": "3号线",
+      "district": "Dist7",
+      "sequence": "6",
+      "station_name": "花溪"
+    },
+    {
+      "station_id": "Sta12",
+      "line_name": "3号线",
+      "district": "Dist7",
+      "sequence": "8",
+      "station_name": "九公里"
+    },
+    {
+      "station_id": "Sta120",
+      "line_name": "11号线",
+      "district": "Dist6",
+      "sequence": "27",
+      "station_name": "茶园"
+    },
+    {
+      "station_id": "Sta121",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "41",
+      "station_name": "莲花"
+    },
+    {
+      "station_id": "Sta122",
+      "line_name": "11号线",
+      "district": "Dist10",
+      "sequence": "6",
+      "station_name": "蔡家"
+    },
+    {
+      "station_id": "Sta123",
+      "line_name": "2号线",
+      "district": "Dist2",
+      "sequence": "15",
+      "station_name": "袁家岗"
+    },
+    {
+      "station_id": "Sta124",
+      "line_name": "11号线",
+      "district": "Dist10",
+      "sequence": "2",
+      "station_name": "西南大学"
+    },
+    {
+      "station_id": "Sta125",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "40",
+      "station_name": "观月路"
+    },
+    {
+      "station_id": "Sta126",
+      "line_name": "3号线",
+      "district": "Dist1",
+      "sequence": "21",
+      "station_name": "观音桥"
+    },
+    {
+      "station_id": "Sta127",
+      "line_name": "2号线",
+      "district": "Dist2",
+      "sequence": "14",
+      "station_name": "谢家湾"
+    },
+    {
+      "station_id": "Sta128",
+      "line_name": "1号线",
+      "district": "Dist3",
+      "sequence": "6",
+      "station_name": "赖家桥"
+    },
+    {
+      "station_id": "Sta129",
+      "line_name": "2号线",
+      "district": "Dist1",
+      "sequence": "23",
+      "station_name": "较场口"
+    },
+    {
+      "station_id": "Sta13",
+      "line_name": "11号线",
+      "district": "Dist5",
+      "sequence": "10",
+      "station_name": "九曲河"
+    },
+    {
+      "station_id": "Sta130",
+      "line_name": "11号线",
+      "district": "Dist6",
+      "sequence": "26",
+      "station_name": "邱家湾"
+    },
+    {
+      "station_id": "Sta131",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "23",
+      "station_name": "郑家院子"
+    },
+    {
+      "station_id": "Sta132",
+      "line_name": "5号线",
+      "district": "Dist5",
+      "sequence": "5",
+      "station_name": "重光"
+    },
+    {
+      "station_id": "Sta133",
+      "line_name": "3号线",
+      "district": "Dist6",
+      "sequence": "11",
+      "station_name": "重庆交通大学"
+    },
+    {
+      "station_id": "Sta134",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "5",
+      "station_name": "重庆北站北广场"
+    },
+    {
+      "station_id": "Sta135",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "4",
+      "station_name": "重庆北站南广场"
+    },
+    {
+      "station_id": "Sta136",
+      "line_name": "12号线",
+      "district": "Dist3",
+      "sequence": "18",
+      "station_name": "天星桥"
+    },
+    {
+      "station_id": "Sta137",
+      "line_name": "12号线",
+      "district": "Dist3",
+      "sequence": "17",
+      "station_name": "重庆大学"
+    },
+    {
+      "station_id": "Sta138",
+      "line_name": "3号线",
+      "district": "Dist6",
+      "sequence": "13",
+      "station_name": "重庆工商大学"
+    },
+    {
+      "station_id": "Sta139",
+      "line_name": "2号线",
+      "district": "Dist5",
+      "sequence": "4",
+      "station_name": "金家湾"
+    },
+    {
+      "station_id": "Sta14",
+      "line_name": "12号线",
+      "district": "Dist2",
+      "sequence": "1",
+      "station_name": "二郎"
+    },
+    {
+      "station_id": "Sta140",
+      "line_name": "11号线",
+      "district": "Dist5",
+      "sequence": "8",
+      "station_name": "金山寺"
+    },
+    {
+      "station_id": "Sta141",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "28",
+      "station_name": "金渝"
+    },
+    {
+      "station_id": "Sta142",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "29",
+      "station_name": "金童路"
+    },
+    {
+      "station_id": "Sta143",
+      "line_name": "3号线",
+      "district": "Dist7",
+      "sequence": "2",
+      "station_name": "金竹"
+    },
+    {
+      "station_id": "Sta144",
+      "line_name": "3号线",
+      "district": "Dist6",
+      "sequence": "17",
+      "station_name": "铜元局"
+    },
+    {
+      "station_id": "Sta145",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "10",
+      "station_name": "长河"
+    },
+    {
+      "station_id": "Sta146",
+      "line_name": "11号线",
+      "district": "Dist6",
+      "sequence": "25",
+      "station_name": "长生桥"
+    },
+    {
+      "station_id": "Sta147",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "33",
+      "station_name": "长福路"
+    },
+    {
+      "station_id": "Sta148",
+      "line_name": "12号线",
+      "district": "Dist2",
+      "sequence": "3",
+      "station_name": "陈家坪"
+    },
+    {
+      "station_id": "Sta149",
+      "line_name": "1号线",
+      "district": "Dist3",
+      "sequence": "4",
+      "station_name": "陈家桥"
+    },
+    {
+      "station_id": "Sta15",
+      "line_name": "11号线",
+      "district": "Dist8",
+      "sequence": "19",
+      "station_name": "五里店"
+    },
+    {
+      "station_id": "Sta150",
+      "line_name": "1号线",
+      "district": "Dist3",
+      "sequence": "14",
+      "station_name": "马家岩"
+    },
+    {
+      "station_id": "Sta151",
+      "line_name": "2号线",
+      "district": "Dist2",
+      "sequence": "10",
+      "station_name": "马王场"
+    },
+    {
+      "station_id": "Sta153",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "39",
+      "station_name": "高堡湖"
+    },
+    {
+      "station_id": "Sta154",
+      "line_name": "1号线",
+      "district": "Dist3",
+      "sequence": "15",
+      "station_name": "高庙村"
+    },
+    {
+      "station_id": "Sta155",
+      "line_name": "3号线",
+      "district": "Dist7",
+      "sequence": "1",
+      "station_name": "鱼洞"
+    },
+    {
+      "station_id": "Sta156",
+      "line_name": "3号线",
+      "district": "Dist7",
+      "sequence": "3",
+      "station_name": "鱼胡路"
+    },
+    {
+      "station_id": "Sta157",
+      "line_name": "10号线",
+      "district": "Dist8",
+      "sequence": "1",
+      "station_name": "鲤鱼池"
+    },
+    {
+      "station_id": "Sta158",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "30",
+      "station_name": "鸳鸯"
+    },
+    {
+      "station_id": "Sta159",
+      "line_name": "1号线",
+      "district": "Dist1",
+      "sequence": "19",
+      "station_name": "鹅岭"
+    },
+    {
+      "station_id": "Sta16",
+      "line_name": "5号线",
+      "district": "Dist5",
+      "sequence": "3",
+      "station_name": "人和"
+    },
+    {
+      "station_id": "Sta160",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "14",
+      "station_name": "鹿山"
+    },
+    {
+      "station_id": "Sta161",
+      "line_name": "3号线",
+      "district": "Dist7",
+      "sequence": "9",
+      "station_name": "麒龙"
+    },
+    {
+      "station_id": "Sta162",
+      "line_name": "11号线",
+      "district": "Dist5",
+      "sequence": "18",
+      "station_name": "黄泥塝"
+    },
+    {
+      "station_id": "Sta163",
+      "line_name": "2号线",
+      "district": "Dist1",
+      "sequence": "21",
+      "station_name": "黄花园"
+    },
+    {
+      "station_id": "Sta165",
+      "line_name": "4号线",
+      "district": "Dist8",
+      "sequence": "5",
+      "station_name": "港城"
+    },
+    {
+      "station_id": "Sta166",
+      "line_name": "11号线",
+      "district": "Dist10",
+      "sequence": "4",
+      "station_name": "龙凤溪"
+    },
+    {
+      "station_id": "Sta167",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "26",
+      "station_name": "龙头寺"
+    },
+    {
+      "station_id": "Sta168",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "3",
+      "station_name": "龙头寺公园"
+    },
+    {
+      "station_id": "Sta17",
+      "line_name": "12号线",
+      "district": "Dist8",
+      "sequence": "14",
+      "station_name": "体育公园"
+    },
+    {
+      "station_id": "Sta18",
+      "line_name": "2号线",
+      "district": "Dist1",
+      "sequence": "17",
+      "station_name": "佛图关"
+    },
+    {
+      "station_id": "Sta19",
+      "line_name": "4号线",
+      "district": "Dist8",
+      "sequence": "3",
+      "station_name": "寸滩"
+    },
+    {
+      "station_id": "Sta2",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "7",
+      "station_name": "三亚湾"
+    },
+    {
+      "station_id": "Sta20",
+      "line_name": "11号线",
+      "district": "Dist5",
+      "sequence": "13",
+      "station_name": "光电园"
+    },
+    {
+      "station_id": "Sta21",
+      "line_name": "3号线",
+      "district": "Dist7",
+      "sequence": "10",
+      "station_name": "八公里"
+    },
+    {
+      "station_id": "Sta22",
+      "line_name": "3号线",
+      "district": "Dist6",
+      "sequence": "12",
+      "station_name": "六公里"
+    },
+    {
+      "station_id": "Sta23",
+      "line_name": "11号线",
+      "district": "Dist5",
+      "sequence": "14",
+      "station_name": "冉家坝"
+    },
+    {
+      "station_id": "Sta24",
+      "line_name": "2号线",
+      "district": "Dist6",
+      "sequence": "3",
+      "station_name": "刘家坝"
+    },
+    {
+      "station_id": "Sta25",
+      "line_name": "11号线",
+      "district": "Dist6",
+      "sequence": "24",
+      "station_name": "刘家坪"
+    },
+    {
+      "station_id": "Sta26",
+      "line_name": "12号线",
+      "district": "Dist5",
+      "sequence": "13",
+      "station_name": "动步公园"
+    },
+    {
+      "station_id": "Sta27",
+      "line_name": "2号线",
+      "district": "Dist2",
+      "sequence": "12",
+      "station_name": "动物园"
+    },
+    {
+      "station_id": "Sta28",
+      "line_name": "11号线",
+      "district": "Dist10",
+      "sequence": "1",
+      "station_name": "北碚"
+    },
+    {
+      "station_id": "Sta29",
+      "line_name": "3号线",
+      "district": "Dist8",
+      "sequence": "20",
+      "station_name": "华新街"
+    },
+    {
+      "station_id": "Sta3",
+      "line_name": "11号线",
+      "district": "Dist6",
+      "sequence": "23",
+      "station_name": "上新街"
+    },
+    {
+      "station_id": "Sta30",
+      "line_name": "3号线",
+      "district": "Dist6",
+      "sequence": "15",
+      "station_name": "南坪"
+    },
+    {
+      "station_id": "Sta31",
+      "line_name": "12号线",
+      "district": "Dist8",
+      "sequence": "15",
+      "station_name": "南桥寺"
+    },
+    {
+      "station_id": "Sta32",
+      "line_name": "12号线",
+      "district": "Dist6",
+      "sequence": "6",
+      "station_name": "南湖"
+    },
+    {
+      "station_id": "Sta33",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "37",
+      "station_name": "双凤桥"
+    },
+    {
+      "station_id": "Sta34",
+      "line_name": "1号线",
+      "district": "Dist3",
+      "sequence": "7",
+      "station_name": "双碑"
+    },
+    {
+      "station_id": "Sta35",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "35",
+      "station_name": "双龙"
+    },
+    {
+      "station_id": "Sta36",
+      "line_name": "11号线",
+      "district": "Dist10",
+      "sequence": "5",
+      "station_name": "向家岗"
+    },
+    {
+      "station_id": "Sta37",
+      "line_name": "5号线",
+      "district": "Dist5",
+      "sequence": "4",
+      "station_name": "和睦路"
+    },
+    {
+      "station_id": "Sta38",
+      "line_name": "4号线",
+      "district": "Dist8",
+      "sequence": "7",
+      "station_name": "唐家沱"
+    },
+    {
+      "station_id": "Sta39",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "24",
+      "station_name": "唐家院子"
+    },
+    {
+      "station_id": "Sta4",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "8",
+      "station_name": "上湾路"
+    },
+    {
+      "station_id": "Sta40",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "22",
+      "station_name": "嘉州路"
+    },
+    {
+      "station_id": "Sta41",
+      "line_name": "3号线",
+      "district": "Dist6",
+      "sequence": "14",
+      "station_name": "四公里"
+    },
+    {
+      "station_id": "Sta42",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "34",
+      "station_name": "回兴"
+    },
+    {
+      "station_id": "Sta43",
+      "line_name": "5号线",
+      "district": "Dist5",
+      "sequence": "8",
+      "station_name": "园博中心"
+    },
+    {
+      "station_id": "Sta44",
+      "line_name": "3号线",
+      "district": "Dist5",
+      "sequence": "31",
+      "station_name": "园博园"
+    },
+    {
+      "station_id": "Sta46",
+      "line_name": "11号线",
+      "district": "Dist8",
+      "sequence": "21",
+      "station_name": "大剧院"
+    },
+    {
+      "station_id": "Sta47",
+      "line_name": "2号线",
+      "district": "Dist1",
+      "sequence": "16",
+      "station_name": "大坪"
+    },
+    {
+      "station_id": "Sta48",
+      "line_name": "2号线",
+      "district": "Dist2",
+      "sequence": "11",
+      "station_name": "大堰村"
+    },
+    {
+      "station_id": "Sta49",
+      "line_name": "1号线",
+      "district": "Dist3",
+      "sequence": "3",
+      "station_name": "大学城"
+    },
+    {
+      "station_id": "Sta5",
+      "line_name": "3号线",
+      "district": "Dist8",
+      "sequence": "18",
+      "station_name": "两路口"
+    },
+    {
+      "station_id": "Sta50",
+      "line_name": "3号线",
+      "district": "Dist7",
+      "sequence": "5",
+      "station_name": "大山村"
+    },
+    {
+      "station_id": "Sta51",
+      "line_name": "2号线",
+      "district": "Dist7",
+      "sequence": "1",
+      "station_name": "大江"
+    },
+    {
+      "station_id": "Sta52",
+      "line_name": "2号线",
+      "district": "Dist4",
+      "sequence": "8",
+      "station_name": "大渡口"
+    },
+    {
+      "station_id": "Sta53",
+      "line_name": "2号线",
+      "district": "Dist1",
+      "sequence": "20",
+      "station_name": "大溪沟"
+    },
+    {
+      "station_id": "Sta54",
+      "line_name": "5号线",
+      "district": "Dist5",
+      "sequence": "1",
+      "station_name": "大石坝"
+    },
+    {
+      "station_id": "Sta55",
+      "line_name": "11号线",
+      "district": "Dist5",
+      "sequence": "12",
+      "station_name": "大竹林"
+    },
+    {
+      "station_id": "Sta56",
+      "line_name": "11号线",
+      "district": "Dist5",
+      "sequence": "15",
+      "station_name": "大龙山"
+    },
+    {
+      "station_id": "Sta57",
+      "line_name": "2号线",
+      "district": "Dist4",
+      "sequence": "6",
+      "station_name": "天堂堡"
+    },
+    {
+      "station_id": "Sta58",
+      "line_name": "4号线",
+      "district": "Dist8",
+      "sequence": "6",
+      "station_name": "太平冲"
+    },
+    {
+      "station_id": "Sta59",
+      "line_name": "4号线",
+      "district": "Dist8",
+      "sequence": "2",
+      "station_name": "保税港"
+    },
+    {
+      "station_id": "Sta6",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "16",
+      "station_name": "中央公园"
+    },
+    {
+      "station_id": "Sta60",
+      "line_name": "12号线",
+      "district": "Dist2",
+      "sequence": "4",
+      "station_name": "奥体中心"
+    },
+    {
+      "station_id": "Sta61",
+      "line_name": "3号线",
+      "district": "Dist7",
+      "sequence": "4",
+      "station_name": "学堂湾"
+    },
+    {
+      "station_id": "Sta62",
+      "line_name": "4号线",
+      "district": "Dist8",
+      "sequence": "4",
+      "station_name": "黑石子"
+    },
+    {
+      "station_id": "Sta63",
+      "line_name": "11号线",
+      "district": "Dist1",
+      "sequence": "22",
+      "station_name": "小什字"
+    },
+    {
+      "station_id": "Sta64",
+      "line_name": "1号线",
+      "district": "Dist3",
+      "sequence": "13",
+      "station_name": "小龙坎"
+    },
+    {
+      "station_id": "Sta65",
+      "line_name": "1号线",
+      "district": "Dist3",
+      "sequence": "2",
+      "station_name": "尖顶坡"
+    },
+    {
+      "station_id": "Sta66",
+      "line_name": "3号线",
+      "district": "Dist7",
+      "sequence": "7",
+      "station_name": "岔路口"
+    },
+    {
+      "station_id": "Sta67",
+      "line_name": "3号线",
+      "district": "Dist6",
+      "sequence": "16",
+      "station_name": "工贸"
+    },
+    {
+      "station_id": "Sta68",
+      "line_name": "2号线",
+      "district": "Dist4",
+      "sequence": "9",
+      "station_name": "平安"
+    },
+    {
+      "station_id": "Sta69",
+      "line_name": "5号线",
+      "district": "Dist5",
+      "sequence": "2",
+      "station_name": "幸福广场"
+    },
+    {
+      "station_id": "Sta7",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "15",
+      "station_name": "中央公园东"
+    },
+    {
+      "station_id": "Sta70",
+      "line_name": "11号线",
+      "district": "Dist5",
+      "sequence": "11",
+      "station_name": "康庄"
+    },
+    {
+      "station_id": "Sta71",
+      "line_name": "2号线",
+      "district": "Dist4",
+      "sequence": "5",
+      "station_name": "建桥"
+    },
+    {
+      "station_id": "Sta72",
+      "line_name": "12号线",
+      "district": "Dist6",
+      "sequence": "10",
+      "station_name": "弹子石"
+    },
+    {
+      "station_id": "Sta73",
+      "line_name": "12号线",
+      "district": "Dist2",
+      "sequence": "2",
+      "station_name": "彩云湖"
+    },
+    {
+      "station_id": "Sta74",
+      "line_name": "1号线",
+      "district": "Dist3",
+      "sequence": "5",
+      "station_name": "微电园"
+    },
+    {
+      "station_id": "Sta75",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "18",
+      "station_name": "悦来"
+    },
+    {
+      "station_id": "Sta76",
+      "line_name": "2号线",
+      "district": "Dist4",
+      "sequence": "7",
+      "station_name": "新山村"
+    },
+    {
+      "station_id": "Sta77",
+      "line_name": "11号线",
+      "district": "Dist10",
+      "sequence": "7",
+      "station_name": "曹家湾"
+    },
+    {
+      "station_id": "Sta78",
+      "line_name": "2号线",
+      "district": "Dist1",
+      "sequence": "19",
+      "station_name": "曾家岩"
+    },
+    {
+      "station_id": "Sta79",
+      "line_name": "2号线",
+      "district": "Dist1",
+      "sequence": "18",
+      "station_name": "李子坝"
+    },
+    {
+      "station_id": "Sta8",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "17",
+      "station_name": "中央公园西"
+    },
+    {
+      "station_id": "Sta80",
+      "line_name": "1号线",
+      "district": "Dist3",
+      "sequence": "11",
+      "station_name": "杨公桥"
+    },
+    {
+      "station_id": "Sta81",
+      "line_name": "2号线",
+      "district": "Dist2",
+      "sequence": "13",
+      "station_name": "杨家坪"
+    },
+    {
+      "station_id": "Sta83",
+      "line_name": "1号线",
+      "district": "Dist2",
+      "sequence": "17",
+      "station_name": "歇台子"
+    },
+    {
+      "station_id": "Sta84",
+      "line_name": "4号线",
+      "district": "Dist5",
+      "sequence": "1",
+      "station_name": "民安大道"
+    },
+    {
+      "station_id": "Sta85",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "6",
+      "station_name": "民心佳园"
+    },
+    {
+      "station_id": "Sta86",
+      "line_name": "11号线",
+      "district": "Dist8",
+      "sequence": "20",
+      "station_name": "江北城"
+    },
+    {
+      "station_id": "Sta87",
+      "line_name": "10号线",
+      "district": "Dist8",
+      "sequence": "12",
+      "station_name": "江北机场T2航站楼"
+    },
+    {
+      "station_id": "Sta88",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "11",
+      "station_name": "江北机场T3航站楼"
+    },
+    {
+      "station_id": "Sta89",
+      "line_name": "1号线",
+      "district": "Dist3",
+      "sequence": "12",
+      "station_name": "沙坪坝"
+    },
+    {
+      "station_id": "Sta9",
+      "line_name": "2号线",
+      "district": "Dist1",
+      "sequence": "22",
+      "station_name": "临江门"
+    },
+    {
+      "station_id": "Sta90",
+      "line_name": "12号线",
+      "district": "Dist5",
+      "sequence": "12",
+      "station_name": "洪湖东路"
+    },
+    {
+      "station_id": "Sta91",
+      "line_name": "12号线",
+      "district": "Dist6",
+      "sequence": "5",
+      "station_name": "海峡路"
+    },
+    {
+      "station_id": "Sta92",
+      "line_name": "12号线",
+      "district": "Dist6",
+      "sequence": "8",
+      "station_name": "海棠溪"
+    },
+    {
+      "station_id": "Sta93",
+      "line_name": "12号线",
+      "district": "Dist6",
+      "sequence": "9",
+      "station_name": "仁济"
+    },
+    {
+      "station_id": "Sta94",
+      "line_name": "10号线",
+      "district": "Dist5",
+      "sequence": "13",
+      "station_name": "渝北广场"
+    },
+    {
+      "station_id": "Sta95",
+      "line_name": "12号线",
+      "district": "Dist5",
+      "sequence": "11",
+      "station_name": "渝鲁"
+    },
+    {
+      "station_id": "Sta96",
+      "line_name": "5号线",
+      "district": "Dist5",
+      "sequence": "6",
+      "station_name": "湖霞街"
+    },
+    {
+      "station_id": "Sta97",
+      "line_name": "1号线",
+      "district": "Dist3",
+      "sequence": "10",
+      "station_name": "烈士墓"
+    },
+    {
+      "station_id": "Sta98",
+      "line_name": "3号线",
+      "district": "Dist8",
+      "sequence": "19",
+      "station_name": "牛角沱"
+    },
+    {
+      "station_id": "Sta99",
+      "line_name": "11号线",
+      "district": "Dist10",
+      "sequence": "3",
+      "station_name": "状元碑"
+    }
+  ]
+}
