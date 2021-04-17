@@ -73,8 +73,6 @@
                     step: step
                 }
             })
-            console.log(inflow)
-            console.log(outflow)
 
             let stationMap = new Map()
             station.RECORDS.forEach((elem) => {
@@ -87,7 +85,6 @@
                     inflowMap.set(elem.stationId, parseInt(elem.flow))
                 }
             })
-            console.log(inflowMap)
 
             let outflowMap = new Map()
             outflow.data.data[0].forEach(elem => {
@@ -95,9 +92,9 @@
                     outflowMap.set(elem.stationId, parseInt(elem.flow))
                 }
             })
-            console.log(outflowMap)
 
             let stationCoords = []
+            let pointCoords = []
             data.features.forEach(elem => {
                 if (stationMap.has(elem.properties.station)) {
                     let sta = stationMap.get(elem.properties.station)
@@ -109,9 +106,11 @@
                         inflow: i,
                         outflow: o
                     })
+                    if (!pointCoords.some(item => item[4] === sta)) {
+                        pointCoords.push([...this.wgs84tobd09(elem.geometry.coordinates), i, o, sta])
+                    }
                 }
             })
-            console.log(stationCoords)
 
             let lines = ["line1", "line2", "line3", "line4", "line5", "line6", "line10", "环线"]
             let lineData = []
@@ -133,7 +132,6 @@
                     })
                 }
             })
-            console.log(lineData)
 
             let showData = []
             lineData.forEach(elem => {
@@ -144,18 +142,22 @@
                             this.wgs84tobd09(elem.stations[i].coords),
                             this.wgs84tobd09(elem.stations[i + 1].coords)
                         ],
+                        prevInflow: elem.stations[i].inflow,
+                        prevOutflow: elem.stations[i].outflow,
+                        nextInflow: elem.stations[i + 1].inflow,
+                        nextOutflow: elem.stations[i + 1].outflow,
                         value: elem.stations[i].inflow + elem.stations[i].outflow +
                             elem.stations[i + 1].inflow + elem.stations[i + 1].outflow
                     })
                 }
             })
-            console.log(showData)
+            console.log(pointCoords)
 
-            let pointData = []
-
-
-            let option;
+            let option
             myChart.setOption(option = {
+                tooltip: {
+                    trigger: 'item'
+                },
                 bmap: {
                     center: [106.50, 29.60],
                     zoom: 11,
@@ -293,13 +295,43 @@
                         coordinateSystem: 'bmap',
                         polyline: false,
                         data: showData,
-                        silent: true,
                         lineStyle: {
                             opacity: 1,
                             width: 4
                         },
                         progressiveThreshold: 500,
                         progressive: 200
+                    },
+                    {
+                        type: 'effectScatter',
+                        coordinateSystem: 'bmap',
+                        data: pointCoords,
+                        encode: {
+                            i: 2,
+                            o: 3,
+                            sta: 4
+                        },
+                        symbolSize: value => {
+                            return 5 + Math.round((value[2] + value[3]) / 25)
+                        },
+                        showEffectOn: 'emphasis',
+                        rippleEffect: {
+                            brushType: 'stroke'
+                        },
+                        hoverAnimation: true,
+                        tooltip: {
+                            formatter: params => {
+                                return '车站：' + params.data[4] + '</br>进站人数：' + params.data[2] + '</br>出战人数：' + params.data[3]
+                            },
+
+                        },
+                        itemStyle: {
+                            color: '#f4e925',
+                            shadowBlur: 10,
+                            shadowColor: '#333',
+                            opacity: 0.5
+                        },
+                        zlevel: 1
                     }
                 ]
             })
