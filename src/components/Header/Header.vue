@@ -11,7 +11,7 @@
         <b-nav-item-dropdown right class="avatar-toggle" menu-class="py-0">
           <template slot="button-content">
             <span class="avatar rounded-circle thumb-sm-1 float-left mr-2">
-              <img class="rounded-circle" src="../../assets/people/a7.png" alt="..." />
+              <img class="rounded-circle" src="../../assets/logo.png" alt="..." />
             </span>
             <span class="text-white">200OK</span>
           </template>
