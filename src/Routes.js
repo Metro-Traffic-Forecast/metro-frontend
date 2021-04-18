@@ -73,12 +73,12 @@ export default new Router({
           component:SectionAnalyse,
         },
         {
-          path: 'dataAnalyse/turnoverData',
+          path: 'UserInfo/turnoverData',
           name: '营业额统计',
           component:TurnoverAnalyse,
         },
         {
-          path: 'userInfo',
+          path: 'userInfo/User',
           name: '用户年龄与性别统计',
           component:UserInfo,
         },

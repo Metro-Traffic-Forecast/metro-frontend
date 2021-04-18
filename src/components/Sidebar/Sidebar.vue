@@ -23,13 +23,13 @@
           iconName="flaticon-list-3"
           index="dataAnalyse"
           :childrenLinks="[
-          { header: '单月客流分析', link: '/app/dataAnalyse/monthData',},
-          { header: '工作日/周末客流分析', link: '/app/dataAnalyse/weekData',},
-          { header: '站点出/入站客流分析', link: '/app/dataAnalyse/flowData',},
-          { header: '早/晚高峰客流分析', link: '/app/dataAnalyse/peakData',},
-          { header: '站点OD分析', link: '/app/dataAnalyse/ODData',},
-          { header: '线路断面客流分析', link: '/app/dataAnalyse/sectionData',},
-          { header: '营业额分析', link: '/app/dataAnalyse/turnoverData',},
+          { header: '单月整体客流', link: '/app/dataAnalyse/monthData',},
+          { header: '工作日/周末客流', link: '/app/dataAnalyse/weekData',},
+          { header: '站点吞吐客流', link: '/app/dataAnalyse/flowData',},
+          { header: '早晚高峰客流', link: '/app/dataAnalyse/peakData',},
+          { header: '站点换乘客流', link: '/app/dataAnalyse/ODData',},
+          { header: '线路断面客流', link: '/app/dataAnalyse/sectionData',},
+
         ]"
       />
       <NavLink
@@ -38,7 +38,10 @@
           link="/app/userInfo"
           iconName="flaticon-equal-3"
           index="user"
-          isHeader
+          :childrenLinks="[
+              { header: '用户信息', link: '/app/UserInfo/user',},
+              { header: '营收分析', link: '/app/UserInfo/turnoverData',},
+          ]"
       />
       <h5 class="navTitle">Data Forecast</h5>
       <NavLink

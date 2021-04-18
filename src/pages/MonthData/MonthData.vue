@@ -39,6 +39,7 @@
             width="85%"
             height="420px"
             :data="ThermodynamicShowData"
+            :stations="StationList"
             style="position: absolute"
           ></Thermodynamic>
           <b-row>
@@ -152,6 +153,7 @@ export default {
       data3D:[],
       textData:[],
       textDataMax:0,
+      StationList:null,
     }
   },
   components :{
@@ -300,6 +302,21 @@ export default {
       if(response !=null) {
         this.AllThermodynamicShowData = response.data.data;
       }
+      console.log(this.AllThermodynamicShowData[0][0]);
+      console.log(this.AllThermodynamicShowData[0][0]['stationId']);
+      let list = [];
+      for(let i=0;i<this.AllThermodynamicShowData[0].length;i++){
+        for(let  k =0;k<this.AllThermodynamicShowData.length;k++){
+          if(this.AllThermodynamicShowData[k][i]!=null){
+            list.push(this.AllThermodynamicShowData[k][i]['stationId']);
+            break;
+          }
+        }
+      }
+      for(let i=0;i<5;i++){
+        list.push("");
+      }
+      this.StationList = list;
       let data = [];
       let max = 0;
       if(this.AllThermodynamicShowData != null && this.AllThermodynamicShowData[this.BarValue-1] != null){

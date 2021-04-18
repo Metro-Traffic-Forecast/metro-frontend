@@ -26,7 +26,7 @@ export default {
       let data={};
       data.id = this.id;
       data.title = "用户居住地";
-      data.name = "用户居住人数";
+      data.name = "用户户籍地";
       data.data = this.data;
       data.width  = this.width;
       data.height = this.height;
@@ -68,7 +68,7 @@ export default {
               if (!params.value) {
                 return '该地区暂无访问量';
               }
-              return params.seriesName + '<br />' + params.name + '：' + params.value + '人'
+              return params.seriesName + '<br />' + params.name
             },
             confine: true
           },

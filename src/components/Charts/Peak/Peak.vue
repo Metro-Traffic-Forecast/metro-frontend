@@ -43,7 +43,12 @@ export default {
       let data = this.data;
       option = {
         backgroundColor: '#00000000',
-        tooltip: {},
+        tooltip: {
+          formatter:function(params){ //标签内容
+            console.log(params);
+            return days[params['value'][1]];
+          },
+        },
         visualMap: {
           max: 20,
           inRange: {
@@ -53,31 +58,31 @@ export default {
         xAxis3D: {
           type: 'category',
           data: hours,
-          name:"时间",
           axisLabel:{
             color:"#ffffff"
           },
           nameTextStyle:{
             color: "#ffffff"
-          }
+          },
+          name:"",
         },
         yAxis3D: {
           type: 'category',
           data: days,
-          name:"线路",
           axisLabel:{
             color:"#ffffff"
           },
           nameTextStyle:{
             color: "#ffffff"
-          }
+          },
+          name:"",
         },
         zAxis3D: {
           type: 'value',
-          name:"客流量",
           axisLabel:{
             color:"#ffffff"
           },
+          name:"",
           nameTextStyle:{
             color: "#ffffff"
           }
@@ -102,20 +107,20 @@ export default {
           type: 'bar3D',
           data: data.map(function (item) {
             return {
-              value: [item[1], item[0], item[2]],
+              value: [item[1], item[0], item[2]]
             }
           }),
           shading: 'lambert',
 
           label: {
             fontSize: 16,
-            borderWidth: 1
+            borderWidth: 1,
           },
 
           emphasis: {
             label: {
               fontSize: 20,
-              color: '#900'
+              color: '#900',
             },
             itemStyle: {
               color: '#900'

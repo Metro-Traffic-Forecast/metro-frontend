@@ -2,7 +2,7 @@
 <div>
   <b-row>
     <b-col lg="6">
-      <Widget style="width: 100%;height: 400px">
+      <Widget style="width: 100%;height: 500px">
         <b-row >
           <b-col lg = "3">
             <b-form-select v-model="Line" :options="LineOption" style="width: 100%;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="getStationOption()"></b-form-select>
@@ -12,21 +12,21 @@
           </b-col>
         </b-row>
         <b-row >
-          <b-col lg="5">
+          <b-col lg="6">
             <AgeAndSex
             id="AgeStructure"
             width="100%"
-            height="400px"
+            height="500px"
             Title="用户年龄结构分析"
             name="1"
             :data="AgeOption"></AgeAndSex>
           </b-col>
-          <b-col lg="5">
+          <b-col lg="6">
             <AgeAndSex
               id="SexStructure"
               width="100%"
               name="2"
-              height="400px"
+              height="500px"
               Title="用户性别结构分析"
               :data="SexOption"></AgeAndSex>
           </b-col>

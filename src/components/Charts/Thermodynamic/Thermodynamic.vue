@@ -11,7 +11,7 @@ require('echarts/lib/chart/heatmap');
 
 export default {
   name: "Thermodynamic",
-  props:['id', 'data', 'width', 'height'],
+  props:['id', 'data', 'width', 'height', 'stations'],
   mounted() {
     this.draw();
   },
@@ -33,10 +33,15 @@ export default {
       let data = this.data;
       let yData = [0,1,2,3,4,5,6,7,8,9,10,11,12];
 
+      let stations = this.stations;
       console.log(this.data);
       option = {
         backgroundColor:"#00000000",
-        tooltip: {},
+        tooltip: {
+          formatter:function(params){
+            return stations[params.value[0] * 13 + params.value[1]];
+          }
+        },
         grid: {
           right: 140,
           left: 40

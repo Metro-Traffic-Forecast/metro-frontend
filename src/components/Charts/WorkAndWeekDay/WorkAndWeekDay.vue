@@ -36,10 +36,7 @@ export default {
         backgroundColor: "#00000000",
         color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
         title: {
-          text: '工作日/周末\n  客流分析',
-          textStyle:{
-            fontSize:'15px',
-          }
+
         },
         tooltip: {
           trigger: 'axis',
