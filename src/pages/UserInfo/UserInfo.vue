@@ -1,7 +1,7 @@
 <template>
 <div>
   <b-row>
-    <b-col lg="8">
+    <b-col lg="6">
       <Widget style="width: 100%;height: 400px">
         <b-row >
           <b-col lg = "3">
@@ -38,17 +38,27 @@
               <UserHome
                   width="100%"
                   height="700px"
-                  id="china"></UserHome>
+                  id="china"
+                  :data="MapData"></UserHome>
             </Widget>
           </b-col>
         </b-row>
 
     </b-col>
-    <b-col lg="4">
+    <b-col lg="6">
       <Widget style="width: 100%;" title="信息说明">
-        <small>{{Station}}站点用户年龄与性别</small>
+        <small>{{Station}}站点用户年龄与性别：</small>
         <b-table striped hover :items="AgeItems" :fields="AgeFields" style="text-align: center"></b-table>
         <b-table striped hover :items="SexItems" :fields="SexFields" style="text-align: center"></b-table>
+        <small>地铁交通用户归属地分析：</small>
+        <b-row>
+          <b-col lg = '6'>
+            <b-table striped hover :items="UserItems1" :fields="UserFields" style="text-align: center"></b-table>
+          </b-col>
+          <b-col lg = '6'>
+            <b-table striped hover :items="UserItems2" :fields="UserFields" style="text-align: center"></b-table>
+          </b-col>
+        </b-row>
       </Widget>
     </b-col>
   </b-row>
@@ -61,6 +71,7 @@ import AgeAndSex from "@/components/Charts/AgeAndSex/AgeAndSex";
 import UserHome from "@/components/Charts/UserHome/UserHome";
 import Widget from "@/components/Widget/Widget";
 import axios from "axios";
+import config from "@/config";
 export default {
   name: "UserInfo",
   components:{
@@ -68,6 +79,22 @@ export default {
   },
   data(){
     return{
+      UserFields:[
+        {
+          key: '归属地',
+          sortable: false
+        },
+        {
+          key: '总人数',
+          sortable: false
+        },
+        {
+          key: '比例',
+          sortable: false
+        },
+      ],
+      MapData:null,
+      AllUserNumber: 0,
       SexFields:[
         {
           key: '性别',
@@ -98,8 +125,8 @@ export default {
       ],
       SexOption:null,
       AgeOption:null,
-      Line:null,
-      Station:null,
+      Line:1,
+      Station: 'Sta1',
       StationOption:null,
       LineOption:[ {
         value: 1,
@@ -126,10 +153,12 @@ export default {
         value: 8,
         text: '12号线'
       }],
+      UserItems: null,
     }
   },
   mounted() {
-
+    this.getStationOption();
+    this.getUserHomeData();
   },
   computed:{
     AgeItems(){
@@ -169,12 +198,50 @@ export default {
         return data;
       }
       return null;
-    }
+    },
+    UserItems1(){
+      if(this.UserItems == null){
+        return null;
+      }
+      return this.UserItems.slice(0 ,Math.floor(this.UserItems.length/2));
+    },
+    UserItems2(){
+      if(this.UserItems == null){
+        return null;
+      }
+      return this.UserItems.slice(Math.floor(this.UserItems.length/2) ,this.UserItems.length);
+    },
   },
   methods:{
+    getUserHomeData(){
+      let _this = this;
+      axios.get(config.DNS+'user/province').then(function (response) {
+        let data = response.data.data;
+        let result=[];
+        for(let i=0;i<data.length;i++){
+          result[i]={};
+          result[i].name = data[i]['provinceName'];
+          result[i].value = data[i]['count'];
+        }
+        _this.MapData = result;
+
+        let all = 0;
+        let data2 = [];
+        for(let i=0;i<_this.MapData.length;i++){
+          data2[i] = {};
+          all+=parseInt(_this.MapData[i].value);
+          data2[i].归属地 = _this.MapData[i].name;
+          data2[i].总人数 = parseInt(_this.MapData[i].value);
+        }
+        for(let i=0;i<_this.MapData.length;i++) {
+          data2[i].比例 = (parseInt(_this.MapData[i].value) * 100 / all).toFixed(2) + "%";
+        }
+        _this.UserItems = data2;
+      })
+    },
     getData:function (){
       let _this = this;
-      axios.get('http://host.tanhuiri.cn:19527/metro/station/ageRatio',{params:{station:this.Station, type: true}}).then(function (response) {
+      axios.get(config.DNS+'station/ageRatio',{params:{station:this.Station, type: true}}).then(function (response) {
         let data = response.data.data;
         let result=[];
         let max = 0;
@@ -183,17 +250,17 @@ export default {
               max = Object.keys(data[i])[0];
           }
         }
-        for(let i=0;i<=Math.floor(max/10);i++){
+        for(let i=0;i<=Math.floor(max/12);i++){
           result[i] ={};
-          result[i].name = i*10+"~"+(i+1)*10;
+          result[i].name = i*12+"~"+(i+1)*12;
           result[i].value = 0;
         }
         for(let i=0;i<data.length;i++){
-          result[Math.floor(parseInt(Object.keys(data[i])[0])/10)].value += parseInt(data[i][Object.keys(data[i])[0]]);
+          result[Math.floor(parseInt(Object.keys(data[i])[0])/12)].value += parseInt(data[i][Object.keys(data[i])[0]]);
         }
         _this.AgeOption = result;
       })
-      axios.get('http://host.tanhuiri.cn:19527/metro/station/sexRatio',{params:{station:this.Station, type: true}}).then(function (response) {
+      axios.get(config.DNS+'station/sexRatio',{params:{station:this.Station, type: true}}).then(function (response) {
         let data = response.data.data;
         let result = [];
         result[0]={};
@@ -208,7 +275,7 @@ export default {
     getStationOption() {
       let line = this.LineOption[this.Line - 1].text;
       let _this = this;
-      axios.get('http://host.tanhuiri.cn:19527/metro/station').then(function (response) {
+      axios.get(config.DNS+'station').then(function (response) {
         let data = response.data.data;
         let result=[];
         for(let i=0;i<data.length;i++){
@@ -217,6 +284,7 @@ export default {
           }
         }
         _this.StationOption = result;
+        _this.getData();
       })
     }
   }

@@ -6,43 +6,12 @@
       </small>
     </h1>
     <b-row>
-      <b-col lg="7">
+      <b-col lg="10">
         <Widget class="bg-transparent" >
-          <Map/>
+          <Map></Map>
         </Widget>
       </b-col>
 
-      <b-col lg="4" offset-lg="1">
-        <Widget
-          class="bg-transparent"
-          title=""
-          style="width: 200px;"
-        >
-          <!-- 示意文字 -->
-          <p>
-            <span class="circle bg-primary text-white"><i class="la la-map-marker" /></span> &emsp;
-            202 &ensp; station
-          </p>
-          <div class="row progress-stats">
-            <div class="col-9">
-              <h6 class="name">年度客流总量</h6>
-              <p class="description deemphasize mb-xs">10.1亿次</p>
-            </div>
-          </div>
-          <div class="row progress-stats">
-            <div class="col-9">
-              <h6 class="name">地铁交通总里程</h6>
-              <p class="description deemphasize mb-xs">398.5万公里</p>
-            </div>
-          </div>
-          <div class="row progress-stats">
-            <div class="col-9">
-              <h6 class="name">总营业额</h6>
-              <p class="description deemphasize mb-xs">30亿元</p>
-            </div>
-          </div>
-        </Widget>
-      </b-col>
     </b-row>
 
   </div>

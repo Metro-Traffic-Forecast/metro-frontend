@@ -21,6 +21,7 @@
 import axios from "axios";
 import WorkAndWeekDay from "@/components/Charts/WorkAndWeekDay/WorkAndWeekDay";
 import Widget from "@/components/Widget/Widget";
+import config from "@/config";
 export default {
   name: "WeekData",
   components:{
@@ -138,7 +139,7 @@ export default {
         let date2 = new Date(+new Date(parseInt(p[0]),parseInt(p[1])-1,parseInt(p[2])) + (i+1)*1000*3600*24);
         start = date1.getFullYear() + "-" + ((date1.getMonth() + 1) < 10 ? "0" + (date1.getMonth() + 1):(date1.getMonth() + 1))+ "-" + (date1.getDate() < 10 ? "0" + date1.getDate():date1.getDate()) + " " + (date1.getHours()<10?"0"+date1.getHours():date1.getHours()) + ":" + (date1.getMinutes()<10?"0"+date1.getMinutes():date1.getMinutes()) + ":" + (date1.getSeconds()<10?"0"+date1.getSeconds():date1.getSeconds());
         end = date2.getFullYear() + "-" + ((date2.getMonth() + 1) < 10 ? "0" + (date2.getMonth() + 1):(date2.getMonth() + 1))+ "-" + (date2.getDate() < 10 ? "0" + date2.getDate():date2.getDate()) + " " + (date2.getHours()<10?"0"+date2.getHours():date2.getHours()) + ":" + (date2.getMinutes()<10?"0"+date2.getMinutes():date2.getMinutes()) + ":" + (date2.getSeconds()<10?"0"+date2.getSeconds():date2.getSeconds());
-        axios.get('http://host.tanhuiri.cn:19527/metro/line/flow', {
+        axios.get(config.DNS+'line/flow', {
           params: {
             start: start,
             end: end,

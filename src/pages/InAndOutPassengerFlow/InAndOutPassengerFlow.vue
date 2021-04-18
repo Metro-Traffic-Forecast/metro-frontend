@@ -26,15 +26,18 @@
 import InAndOut from "@/components/Charts/InAndOut/InAndOut";
 import axios from "axios";
 import Widget from "@/components/Widget/Widget";
+import config from '../../config';
 
 export default {
   name: "InAndOutPassengerFlow",
   mounted() {
+    this.getStationOption();
     this.getAllUpData();
     this.getAllDownData();
   },
   data(){
     return{
+      Tag: [0,0,0],
       UpData: null,
       DownData:null,
       InFields:[
@@ -171,7 +174,8 @@ export default {
   },
   methods: {
     compute(){
-      let stationId = this.StationOption[this.Station - 1].stationId;
+      let stationId = null;
+      stationId = this.StationOption[this.Station - 1].stationId;
       for(let i=0;i<=163;i++){
         if(this.AllUpData[i].station == stationId){
           this.UpData = this.AllUpData[i].data;
@@ -188,7 +192,7 @@ export default {
     getStationOption() {
       let line = this.LineOption[this.Line - 1].text;
       let _this = this;
-      axios.get('http://host.tanhuiri.cn:19527/metro/station').then(function (response) {
+      axios.get(config.DNS + 'station').then(function (response) {
         let data = response.data.data;
         let result=[];
         let counter =1;
@@ -203,11 +207,15 @@ export default {
           }
         }
         _this.StationOption = result;
+        _this.Tag[0] = 1;
+        if(_this.Tag[0]===1 &&_this.Tag[1]===1&&_this.Tag[2]===1){
+          _this.compute();
+        }
       })
     },
     getAllUpData:function (){
       let _this = this;
-       axios.get('http://host.tanhuiri.cn:19527/metro/station/inflow',{params:{start:'2019-12-26 00:00:00',end:'2020-07-17 00:00:00',step: 24}})
+       axios.get(config.DNS+'station/inflow',{params:{start:'2019-12-26 00:00:00',end:'2020-07-17 00:00:00',step: 24}})
       .then(function (response){
         let data = response.data.data;
         let result = [];
@@ -227,11 +235,15 @@ export default {
           }
         }
         _this.AllUpData = result;
+        _this.Tag[1] = 1;
+        if(_this.Tag[0]===1 &&_this.Tag[1]===1&&_this.Tag[2]===1){
+          _this.compute();
+        }
       })
     },
     getAllDownData:function (){
       let _this = this;
-      axios.get('http://host.tanhuiri.cn:19527/metro/station/outflow',{params:{start:'2019-12-26 00:00:00',end:'2020-07-17 00:00:00',step: 24}})
+      axios.get(config.DNS+'station/outflow',{params:{start:'2019-12-26 00:00:00',end:'2020-07-17 00:00:00',step: 24}})
           .then(function (response){
             let data = response.data.data;
             let result = [];
@@ -251,6 +263,10 @@ export default {
               }
             }
             _this.AllDownData = result;
+            _this.Tag[2] = 1;
+            if(_this.Tag[0]===1 &&_this.Tag[1]===1&&_this.Tag[2]===1){
+              _this.compute();
+            }
           })
     }
   }

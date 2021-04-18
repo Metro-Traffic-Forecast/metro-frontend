@@ -28,12 +28,14 @@
 import Peak from "@/components/Charts/Peak/Peak";
 import axios from "axios";
 import Widget from "@/components/Widget/Widget";
+import config from "@/config";
 export default {
   name: "PeakAnalyse",
   data(){
     return{
+      Tag:[0,0],
       SelectDate: '2020-01-01',
-      Line : null,
+      Line : 1,
       ShowData:{
 
       },
@@ -101,6 +103,7 @@ export default {
     Peak
   },
   mounted() {
+    this.getStationOption();
     this.getData();
   },
   watch:{
@@ -164,7 +167,6 @@ export default {
           data[i].次高峰时间 = time[Math.max(index1[i], index2[i])];
         }
       }
-      console.log(data);
       return data;
     }
   },
@@ -187,7 +189,7 @@ export default {
     getStationOption() {
       let line = this.LineOption[this.Line - 1].text;
       let _this = this;
-      axios.get('http://host.tanhuiri.cn:19527/metro/station').then(function (response) {
+      axios.get(config.DNS+'station').then(function (response) {
         let data = response.data.data;
         let result=[];
         for(let i=0;i<data.length;i++){
@@ -196,14 +198,17 @@ export default {
           }
         }
         _this.StationOption = result;
-        _this.compute();
+        _this.Tag[0]=1;
+        if(_this.Tag[0]===1 && _this.Tag[1]===1){
+          _this.compute();
+        }
       })
     },
     getData(){
       let _this = this;
       let start = this.SelectDate+' 00:00:00';
       let end = this.SelectDate+' 23:59:59';
-      axios.get('http://host.tanhuiri.cn:19527/metro/station/inflow',{params:{start:start,end:end,step: 1}})
+      axios.get(config.DNS+'station/inflow',{params:{start:start,end:end,step: 1}})
           .then(function (response) {
             let data = response.data.data;
             let result = [];
@@ -223,7 +228,10 @@ export default {
               }
             }
             _this.AllData = result;
-            _this.compute();
+            _this.Tag[1]=1;
+            if(_this.Tag[0]===1 && _this.Tag[1]===1){
+              _this.compute();
+            }
           })
     }
   }

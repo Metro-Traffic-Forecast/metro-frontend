@@ -94,11 +94,6 @@ export default {
       let data3 = this.ForUpData;
       let data4 = this.ForDownData;
 
-      console.log(data);
-      console.log(data2);
-      console.log(data3);
-      console.log(data4);
-
       for(let i=0;i<40;i++){
         var now = new Date(base);
         date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/') + "\n" + (i*6)%24);
@@ -115,9 +110,10 @@ export default {
         },
         title: {
           left: 'center',
-          text: '大数据量面积图',
+          text: '站点客流预测',
         },
         toolbox: {
+          show:false,
           feature: {
             dataZoom: {
               yAxisIndex: 'none'

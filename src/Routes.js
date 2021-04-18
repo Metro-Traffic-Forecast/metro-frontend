@@ -6,7 +6,6 @@ import Dashboard from '@/pages/Visits/Visits';
 import Login from '@/pages/Login/Login';
 import ErrorPage from '@/pages/Error/Error';
 
-import Metro from "@/pages/Metro/Metro";
 import MonthData from "@/pages/MonthData/MonthData";
 import ODTransport from "@/pages/OD/ODTransport";
 import InAndOutPassengerFlow from "@/pages/InAndOutPassengerFlow/InAndOutPassengerFlow";
@@ -15,6 +14,8 @@ import WeekData from "@/pages/WeekData/WeekData";
 import SectionAnalyse from "@/pages/SectionAnalyse/SectionAnalyse";
 import StationForecast from "./pages/StationForecast/StationForecast";
 import UserInfo from "@/pages/UserInfo/UserInfo";
+import TurnoverAnalyse from "@/pages/TurnoverAnalyse/TurnoverAnalyse";
+import LineForecastPage from "@/pages/LineForecastPage/LineForecastPage";
 
 Vue.use(Router);
 
@@ -72,6 +73,11 @@ export default new Router({
           component:SectionAnalyse,
         },
         {
+          path: 'dataAnalyse/turnoverData',
+          name: '营业额统计',
+          component:TurnoverAnalyse,
+        },
+        {
           path: 'userInfo',
           name: '用户年龄与性别统计',
           component:UserInfo,
@@ -84,7 +90,7 @@ export default new Router({
         {
           path: 'forecast/line',
           name: '线路客流预测',
-          component:Metro,
+          component:LineForecastPage,
         },
       ],
     },

@@ -58,8 +58,6 @@ export default {
       var data1 = this.UpFlow;
       var data4 = this.DownFlow;
 
-      console.log(data1);
-      console.log(data4);
       var emphasisStyle = {
         itemStyle: {
           shadowBlur: 10,

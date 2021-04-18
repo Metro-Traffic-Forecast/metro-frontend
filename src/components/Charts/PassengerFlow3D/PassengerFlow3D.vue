@@ -48,6 +48,8 @@ export default {
       let dataX = this.dataX;
       let dataY = ['1号线', '2号线', '3号线', '4号线', '5号线', '10号线', '11号线', '12号线'];
 
+      console.log(data);
+
       let vdata = [];
 
       for (let i = 0; i < dataY.length; i++) {
@@ -66,6 +68,7 @@ export default {
         }
       }
 
+      console.log(vdata);
 
       let dom = document.getElementById(this.id);
       dom.style.height = this.height + 'px';
@@ -96,7 +99,6 @@ export default {
           type: 'value',
           name: ''
         },
-
         tooltip: {
           show: true
         },
@@ -112,7 +114,7 @@ export default {
             }
           },
           viewControl: {
-            distance: 600
+            distance: 300
           }
         },
         series: [

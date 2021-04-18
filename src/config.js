@@ -13,10 +13,12 @@ const colors = {
   chartTextColor: '#6E8192',
   gridLineColor: '#040620'
 };
+const DNS = 'http://host.tanhuiri.cn:19527/metro/';
 
 export default {
   colors: {
     ...colors,
-    white: "#fff"
+    white: "#fff",
   },
+  DNS: DNS
 };

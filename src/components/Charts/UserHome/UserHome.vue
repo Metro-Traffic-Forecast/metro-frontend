@@ -10,99 +10,112 @@ import china from '../../../../public/china.json';
 echarts.registerMap('china', china);
 export default {
   name: "UserHome",
-  props:['id','width', 'height'],
+  props:['id','width', 'height', 'data'],
   mounted() {
-    this.draw();
+
+  },
+  watch:{
+    data:{
+      handler(){
+        this.draw();
+      }
+    }
   },
   methods:{
-    draw(){
-      let chartDom = document.getElementById(this.id);
-      chartDom.style.height = this.height;
-      chartDom.style.width = this.width;
-      let myChart = echarts.init(chartDom, 'dark');
-
-      function randomData () {
-        return Math.round(Math.random() * 800);
-      }
-      // 绘制图表
-      myChart.setOption(  {
-            backgroundColor:"#00000000",
-            tooltip: {},
-            legend: {
-              orient: 'vertical',
-              left: 'left',
-              data: ['']
-            },
-            selectedMode: 'single',
-            series: [
-              {
-                name: '',
-                type: 'map',
-                mapType: 'china',
-                center:[115.97, 29.71],
-                layoutCenter: ['80%', '100%'],
-                itemStyle: {
-                  normal: {
-                    borderColor: 'rgba(0, 0, 0, 0.2)'
-                  },
-                  emphasis: {
-                    shadowOffsetX: 0,
-                    shadowOffsetY: 0,
-                    shadowBlur: 20,
-                    borderWidth: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                  }
-                },
-                showLegendSymbol: true,
-                label: {
-                  normal: {
-                    show: false
-                  },
-                  emphasis: {
-                    show: false
-                  }
-                },
-                data: [
-                  { name: '北京', value: randomData() },
-                  { name: '天津', value: randomData() },
-                  { name: '上海', value: randomData() },
-                  { name: '重庆', value: randomData() },
-                  { name: '河北', value: randomData() },
-                  { name: '河南', value: randomData() },
-                  { name: '云南', value: randomData() },
-                  { name: '辽宁', value: randomData() },
-                  { name: '黑龙江', value: randomData() },
-                  { name: '湖南', value: randomData() },
-                  { name: '安徽', value: randomData() },
-                  { name: '山东', value: randomData() },
-                  { name: '新疆', value: randomData() },
-                  { name: '江苏', value: randomData() },
-                  { name: '浙江', value: randomData() },
-                  { name: '江西', value: randomData() },
-                  { name: '湖北', value: randomData() },
-                  { name: '广西', value: randomData() },
-                  { name: '甘肃', value: randomData() },
-                  { name: '山西', value: randomData() },
-                  { name: '内蒙古', value: randomData() },
-                  { name: '陕西', value: randomData() },
-                  { name: '吉林', value: randomData() },
-                  { name: '福建', value: randomData() },
-                  { name: '贵州', value: randomData() },
-                  { name: '广东', value: randomData() },
-                  { name: '青海', value: randomData() },
-                  { name: '西藏', value: randomData() },
-                  { name: '四川', value: randomData() },
-                  { name: '宁夏', value: randomData() },
-                  { name: '海南', value: randomData() },
-                  { name: '台湾', value: randomData() },
-                  { name: '香港', value: randomData() },
-                  { name: '澳门', value: randomData() }
-                ]
-              }
-            ]
+    draw() {
+      let data={};
+      data.id = this.id;
+      data.title = "用户居住地";
+      data.name = "用户居住人数";
+      data.data = this.data;
+      data.width  = this.width;
+      data.height = this.height;
+      let max = 0;
+      let max2 = 0;
+      let max3 = 0;
+      if(this.data!=null) {
+        for (let i = 0; i < this.data.length; i++) {
+          if (parseInt(this.data[i].value) > max) {
+              max3 = max2;
+              max2 =max;
+              max = parseInt(this.data[i].value);
+          }else if(parseInt(this.data[i].value)>max2){
+            max3 = max2;
+            max2 = parseInt(this.data[i].value);
+          }else if(parseInt(this.data[i].value)>max3){
+            max3 = parseInt(this.data[i].value);
           }
-      )
+        }
+      }
+      data.max = max3;
+      init(data);
 
+      function init(data)
+      {
+        let chart = document.getElementById(data.id);
+        chart.style.width = data.width;
+        chart.style.height = data.height;
+        let dataSourcePie = echarts.init(chart, 'dark');
+        let option = {
+          backgroundColor:"#00000000",
+          title: {
+            text: '',
+            left: 'center'
+          },
+          tooltip: {
+            trigger: 'item',
+            formatter: function (params) {
+              if (!params.value) {
+                return '该地区暂无访问量';
+              }
+              return params.seriesName + '<br />' + params.name + '：' + params.value + '人'
+            },
+            confine: true
+          },
+          visualMap: {
+            min: 0,
+            max: 0,
+            text: ['High', 'Low'],
+            realtime: false,
+            calculable: true,
+            itemWidth: 10,
+            itemHeight: 70,
+            inRange: {
+              color: ['#585ae8','#588de8','#58d2e8','#58E8BF','#e8d558','#e89658','#E85858'],
+            }
+          },
+          textStyle: {
+            fontSize: 12,
+            color: '#b4bfc2'
+          },
+          series: [
+            {
+              name: '',
+              type: 'map',
+              zoom: 1.4,
+              label: {
+                show: false
+              },
+              center: [104.97, 35.71],
+              mapType: 'china', // 自定义扩展图表类型
+              itemStyle: {
+                // normal: {label: {show: true}},
+                emphasis: {label: {show: true}}
+              },
+              data: [],
+            }
+          ]
+        };
+        option.title.text = data.title;
+        option.visualMap.max = data.max;
+        option.series[0].name = data.name;
+        option.series[0].data = data.data;
+
+        dataSourcePie.setOption(option);
+        window.addEventListener('resize', function () {
+          dataSourcePie.resize();
+        });
+      }
     }
   }
 }

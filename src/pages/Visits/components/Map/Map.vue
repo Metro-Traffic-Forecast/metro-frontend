@@ -18,7 +18,7 @@
 <script>
     import AnimatedNumber from "animated-number-vue";
     import * as echarts from 'echarts'
-    import bmap from 'echarts/extension/bmap/bmap'
+    import BMap from 'echarts/extension/bmap/bmap'
     import coordtransform from 'coordtransform'
 
     export default {

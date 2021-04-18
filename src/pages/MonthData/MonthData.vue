@@ -86,6 +86,7 @@ import PassengerFlow3D from "@/components/Charts/PassengerFlow3D/PassengerFlow3D
 import Thermodynamic from "@/components/Charts/Thermodynamic/Thermodynamic";
 import Widget from "@/components/Widget/Widget";
 import axios from "axios";
+import config from "../../config";
 
 export default {
   name: "MonthData",
@@ -222,7 +223,7 @@ export default {
           start = s + "-" + (i + 1) + " 00:00:00";
           end = s + "-" + (i + 1) + " 23:59:59";
         }
-        axios.get('http://host.tanhuiri.cn:19527/metro/line/flow', {
+        axios.get(config.DNS+'line/flow', {
           params: {
             start: start,
             end: end,
@@ -252,6 +253,8 @@ export default {
       }
     },
     getThermodynamicData(){
+      console.log(config.DNS+'station/outflow');
+
       if(parseInt(this.SelectMonth) === 1 || parseInt(this.SelectMonth) == 2 || parseInt(this.SelectMonth) == 4 || parseInt(this.SelectMonth) == 6 ||parseInt(this.SelectMonth) == 8){
         this.MonthMaxDay = 31;
       }else if(parseInt(this.SelectMonth) == 3){
@@ -273,7 +276,7 @@ export default {
         }
       }
       if(this.SelectMode == 1) {
-        axios.get('http://host.tanhuiri.cn:19527/metro/station/inflow', {
+        axios.get(config.DNS+'station/inflow', {
           params: {
             start: start,
             end: end,
@@ -282,7 +285,7 @@ export default {
         })
             .then(response => (this.compute(response)));
       }else{
-        axios.get('http://host.tanhuiri.cn:19527/metro/station/outflow', {
+        axios.get(config.DNS+'station/outflow', {
           params: {
             start: start,
             end: end,

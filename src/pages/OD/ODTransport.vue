@@ -23,6 +23,7 @@
 import OD from '../../components/Charts/OD/OD';
 import Widget from "@/components/Widget/Widget";
 import axios from "axios";
+import config from "@/config";
 
 export default {
   name: "ODTransport",
@@ -91,7 +92,6 @@ export default {
         data[i].线路名 = this.LineList[i];
         data[i][this.LineList[i]] = 0;
       }
-      console.log(data);
       for(let i = 0;i<56;i++){
         let x = 0;
         let y=0;
@@ -145,7 +145,7 @@ export default {
   methods:{
     getODLinks:function (){
       let _this = this;
-      axios.get('http://host.tanhuiri.cn:19527/metro/line/exchange', {
+      axios.get(config.DNS+'line/exchange', {
         params: {
           start: '2019-12-25 23:59:59',
           end: '2020-07-16 00:00:00'

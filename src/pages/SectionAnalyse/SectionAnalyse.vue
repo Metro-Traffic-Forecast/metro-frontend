@@ -49,6 +49,7 @@
 import PassengerFlowSection from "../../components/Charts/PassengerFlowSection/PassengerFlowSection";
 import axios from "axios";
 import Widget from "@/components/Widget/Widget";
+import config from "@/config";
 export default {
   name: "SectionAnalyse",
   components:{
@@ -57,15 +58,16 @@ export default {
   },
   data(){
     return{
+      Tag:[0,0],
       UpMax:0,
       DownMax:0,
       UpMaxTime:null,
       DownMaxTime:null,
       SelectDate: '2020-01-01',
-      Station:{},
-      DownFlow:{},
-      UpFlow:{},
-      Line:{},
+      Station: 1,
+      DownFlow:null,
+      UpFlow:null,
+      Line:1,
       LineOption:[ {
         value: 1,
         text: '1号线'
@@ -96,7 +98,8 @@ export default {
     }
   },
   mounted() {
-
+    this.getStationOption();
+    this.getLineData();
   },
   watch:{
     SelectDate:{
@@ -139,7 +142,7 @@ export default {
     getStationOption() {
       let line = this.LineOption[this.Line - 1].text;
       let _this = this;
-      axios.get('http://host.tanhuiri.cn:19527/metro/station').then(function (response) {
+      axios.get(config.DNS+'station').then(function (response) {
         let data = response.data.data;
         let result=[];
         let counter =1;
@@ -154,7 +157,10 @@ export default {
           }
         }
         _this.StationOption = result;
-        _this.getLineData();
+        _this.Tag[0]=1;
+        if(_this.Tag[0] === 1 && _this.Tag[1] === 1){
+          _this.compute();
+        }
       })
     },
     getLineData:function(){
@@ -181,7 +187,7 @@ export default {
         }else{
           end = date + " " + (i+1)+":00:00";
         }
-        axios.get('http://host.tanhuiri.cn:19527/metro/line/station/flow', {params:{start:start,end:end,step: line}}).then(function (response) {
+        axios.get(config.DNS+'line/station/flow', {params:{start:start,end:end,step: line}}).then(function (response) {
           let data = response.data.data;
           if(counter == 0) {
             for (let i = 0; i < data.length; i++) {
@@ -198,6 +204,10 @@ export default {
           counter++;
           if(counter==24) {
             _this.AllStationData = result;
+            _this.Tag[1]=1;
+            if(_this.Tag[0] === 1 && _this.Tag[1] === 1){
+              _this.compute();
+            }
           }
         })
       }
