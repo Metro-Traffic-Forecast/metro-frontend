@@ -6,8 +6,7 @@
         <div class="stats">
             <h6 class="mt-1">GEO-LOCATIONS</h6>
             <p class="h3 m-0">
-                <span class="mr-xs fw-normal"><AnimatedNumber value="1656843"
-                                                              v-bind="animateNumberOptions"></AnimatedNumber></span>
+                <span class="mr-xs fw-normal"><AnimatedNumber :from="0" :to="999"></AnimatedNumber></span>
                 <i class="fa fa-map-marker"/>
             </p>
         </div>
@@ -18,7 +17,7 @@
 <script>
     import AnimatedNumber from "animated-number-vue";
     import * as echarts from 'echarts'
-    import BMap from 'echarts/extension/bmap/bmap'
+    import bmap from 'echarts/extension/bmap/bmap'
     import coordtransform from 'coordtransform'
 
     export default {
@@ -237,7 +236,7 @@
                                 'featureType': 'building',
                                 'elementType': 'geometry',
                                 'stylers': {
-                                    "color": "#2b2b2b"
+                                    'visibility': 'off'
                                 }
                             },
                             {
@@ -258,7 +257,7 @@
                                 'featureType': 'manmade',
                                 'elementType': 'all',
                                 'stylers': {
-                                    "color": "#1b1b1b"
+                                    'visibility': 'off'
                                 }
                             },
                             {
