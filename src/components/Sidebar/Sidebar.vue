@@ -4,7 +4,7 @@
     :class="{sidebar: true}"
   >
     <header class="logo">
-      <router-link to="/app"><img src="../../assets/logo.png" width="30px" height="30px" alt="logo"/> &nbsp;<span class="fw-bold">基于Spark和图卷积网络的地铁客流实时分析预测平台</span></router-link>
+      <router-link to="/app"><img src="../../assets/logo.png" width="30px" height="30px" alt="logo"/> &nbsp;<span class="fw-bold" style="font-size: 28px">基于Spark和图卷积网络的地铁客流实时分析预测平台</span></router-link>
     </header>
     <ul class="nav">
       <h5 class="navTitle">Map</h5>
