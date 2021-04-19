@@ -37,7 +37,6 @@ export default {
 
       let source = [['score', 'amount', 'product']].concat(this.data);
 
-      console.log(source);
       option ={
         backgroundColor:'#00000000',
         dataset: {

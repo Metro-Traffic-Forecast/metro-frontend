@@ -4,7 +4,7 @@
 
       <b-nav-text class="mr-3">
         <b-alert class="header-alert animate__animated animate__bounceIn animate__delay-2s" dismissible v-model="showNavbarAlert">
-          <i class="fa fa-info-circle mr-1"></i> 欢迎来到轨道交通预测站点
+          <i class="fa fa-info-circle mr-1"></i> 欢迎来到轨道交通预测平台
         </b-alert>
       </b-nav-text>
 

@@ -255,7 +255,6 @@ export default {
       }
     },
     getThermodynamicData(){
-      console.log(config.DNS+'station/outflow');
 
       if(parseInt(this.SelectMonth) === 1 || parseInt(this.SelectMonth) == 2 || parseInt(this.SelectMonth) == 4 || parseInt(this.SelectMonth) == 6 ||parseInt(this.SelectMonth) == 8){
         this.MonthMaxDay = 31;
@@ -302,8 +301,6 @@ export default {
       if(response !=null) {
         this.AllThermodynamicShowData = response.data.data;
       }
-      console.log(this.AllThermodynamicShowData[0][0]);
-      console.log(this.AllThermodynamicShowData[0][0]['stationId']);
       let list = [];
       for(let i=0;i<this.AllThermodynamicShowData[0].length;i++){
         for(let  k =0;k<this.AllThermodynamicShowData.length;k++){

@@ -114,8 +114,6 @@ name: "TurnoverAnalyse",
                 result[0] = d;
               }
             }
-
-
             _this.MaxTurnover = max;
             _this.TurnoverData = result;
 

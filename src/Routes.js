@@ -26,11 +26,17 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login,
+      meta:{
+        title: '登录'
+      }
     },
     {
       path: '/error',
       name: 'Error',
       component: ErrorPage,
+      meta:{
+        title: '出错了'
+      }
     },
     {
       path: '/app',
@@ -41,56 +47,89 @@ export default new Router({
           path: 'dashboard',
           name: 'Dashboard',
           component: Dashboard,
+          meta:{
+            title: '首页'
+          }
         },
         {
           path: 'dataAnalyse/monthData',
           name: '每月信息统计',
           component:MonthData,
+          meta:{
+            title: '单月整体客流'
+          }
         },
         {
           path: 'dataAnalyse/weekData',
           name: '工作日/周末信息统计',
           component:WeekData,
+          meta:{
+            title: '工作日/周末客流'
+          }
         },
         {
           path: 'dataAnalyse/flowData',
           name: '出入站客流信息统计',
           component:InAndOutPassengerFlow,
+          meta:{
+            title: '站点吞吐客流'
+          }
         },
         {
           path: 'dataAnalyse/peakData',
           name: '早晚高峰信息统计',
           component:PeakAnalyse,
+          meta:{
+            title: '早晚高峰客流'
+          }
         },
         {
           path: 'dataAnalyse/ODData',
           name: '站点OD信息统计',
           component:ODTransport,
+          meta:{
+            title: '站点换乘客流'
+          }
         },
         {
           path: 'dataAnalyse/sectionData',
           name: '断面信息统计',
           component:SectionAnalyse,
+          meta:{
+            title: '线路断面客流'
+          }
         },
         {
           path: 'UserInfo/turnoverData',
           name: '营业额统计',
           component:TurnoverAnalyse,
+          meta:{
+            title: '营收分析'
+          }
         },
         {
           path: 'userInfo/User',
           name: '用户年龄与性别统计',
           component:UserInfo,
+          meta:{
+            title: '用户信息'
+          }
         },
         {
           path: 'forecast/station',
           name: '站点客流预测',
           component:StationForecast,
+          meta:{
+            title: '站点客流预测'
+          }
         },
         {
           path: 'forecast/line',
           name: '线路客流预测',
           component:LineForecastPage,
+          meta:{
+            title: '线路客流预测'
+          }
         },
       ],
     },
