@@ -59,7 +59,7 @@ export default {
           type: 'category',
           data: hours,
           axisLabel:{
-            color:"#ffffff"
+            color:"#ffffff00"
           },
           nameTextStyle:{
             color: "#ffffff"
@@ -70,17 +70,17 @@ export default {
           type: 'category',
           data: days,
           axisLabel:{
-            color:"#ffffff"
+            color:"#ffffff00"
           },
           nameTextStyle:{
-            color: "#ffffff"
+            color: "#ffffff00"
           },
           name:"",
         },
         zAxis3D: {
           type: 'value',
           axisLabel:{
-            color:"#ffffff"
+            color:"#ffffff00"
           },
           name:"",
           nameTextStyle:{
@@ -120,7 +120,7 @@ export default {
           emphasis: {
             label: {
               fontSize: 20,
-              color: '#900',
+              color: '#ffffff',
             },
             itemStyle: {
               color: '#900'

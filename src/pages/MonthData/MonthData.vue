@@ -40,6 +40,7 @@
             height="420px"
             :data="ThermodynamicShowData"
             :stations="StationList"
+            :max="textDataMax"
             style="position: absolute"
           ></Thermodynamic>
           <b-row>

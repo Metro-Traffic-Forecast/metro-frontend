@@ -11,7 +11,7 @@ require('echarts/lib/chart/heatmap');
 
 export default {
   name: "Thermodynamic",
-  props:['id', 'data', 'width', 'height', 'stations'],
+  props:['id', 'data', 'width', 'height', 'stations', 'max'],
   mounted() {
     this.draw();
   },
@@ -34,12 +34,15 @@ export default {
       let yData = [0,1,2,3,4,5,6,7,8,9,10,11,12];
 
       let stations = this.stations;
+      let max = Math.pow(this.max, 0.25);
 
       option = {
         backgroundColor:"#00000000",
         tooltip: {
           formatter:function(params){
-            return stations[params.value[0] * 13 + params.value[1]];
+            return stations[params.value[0] * 13 + params.value[1]] + ' 客流量' + '<br/>' +
+                '<span style="display: inline-block;width: 15px;height: 15px;border-radius: 50%;margin-top:10px;background-color: '+ params.color+'"></span> '
+                + Math.floor(Math.pow(params.data[2]*max, 4));
           }
         },
         grid: {
