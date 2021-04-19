@@ -4,9 +4,9 @@
 
         </div>
         <div class="stats">
-            <h6 class="mt-1">GEO-LOCATIONS</h6>
+            <h5 class="mt-1">总客流</h5>
             <p class="h3 m-0">
-                <span class="mr-xs fw-normal"><AnimatedNumber value="1656843" v-bind="animateNumberOptions"></AnimatedNumber></span>
+                <span class="mr-xs fw-normal"><AnimatedNumber :value="sumNum" v-bind="animateNumberOptions"></AnimatedNumber></span>
                 <i class="fa fa-map-marker"/>
             </p>
         </div>
@@ -17,7 +17,7 @@
 <script>
     import AnimatedNumber from "animated-number-vue";
     import * as echarts from 'echarts'
-    import BMap from 'echarts/extension/bmap/bmap'
+    import bmap from 'echarts/extension/bmap/bmap'
     import coordtransform from 'coordtransform'
 
     export default {
@@ -29,15 +29,10 @@
                     duration: 2000,
                     easing: 'easeInQuad',
                     formatValue(value) {
-                        let number = value.toFixed(0);
-                        let numberAsArrayWithSapces = [];
-                        while (number >= 1) {
-                            numberAsArrayWithSapces.unshift(number % 1000);
-                            number = (number / 1000).toFixed();
-                        }
-                        return numberAsArrayWithSapces.join(' ');
+                        return value.toFixed();
                     }
-                }
+                },
+                sumNum: 0,
             }
         },
         methods: {
@@ -106,6 +101,7 @@
                         outflow: o
                     })
                     if (!pointCoords.some(item => item[4] === sta)) {
+                        this.sumNum += (i + o)
                         pointCoords.push([...this.wgs84tobd09(elem.geometry.coordinates), i, o, sta])
                     }
                 }
@@ -150,7 +146,6 @@
                     })
                 }
             })
-            console.log(pointCoords)
 
             let option
             myChart.setOption(option = {

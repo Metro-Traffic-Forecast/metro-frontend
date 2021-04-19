@@ -1,8 +1,8 @@
 <template>
   <div class="visits-page">
-    <h1 class="page-title">线路拓扑 &nbsp;
+    <h1 class="page-title">线路拓扑热力图 &nbsp;
       <small>
-        <small><!-- 小标题 -->——重庆市地铁线路</small>
+        <small><!-- 小标题 -->——今日客流</small>
       </small>
     </h1>
     <b-row>
