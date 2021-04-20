@@ -60,7 +60,7 @@
           </Widget>
         </b-col>
       </b-row>
-      <Widget title="模型参数">
+      <Widget title="模型参数"><br/>
         <b-container fluid>
           <div v-if="Mode === 1">
             <br/>
@@ -81,25 +81,13 @@
           </div>
 
           <div v-if="Mode === 0">
-            <b-row style="color: rgba(131,246,0,0.5); font-weight: 500">
-              [Data] <br/>
-              adj_filename = data/metro/adj-matrix.csv<br/>
-              distance_filename = data/metro/dis-matrix.csv<br/>
-              graph_signal_matrix_filename = data/metro/trips-6-all.npz<br/>
-              id_filename = data/PEMS03/PEMS03.txt<br/>
-              num_of_vertices = 164<br/>
-              points_per_hour = 12<br/>
-              num_for_predict = 12<br/>
-              len_input = 12<br/>
-              dataset_name = metro-06<br/><br/>
-            </b-row>
             <b-row class="my-1" v-for="(Param,index) in Params2" :key="index">
               <b-col sm="5">
                 <label>{{Param}}:</label>
               </b-col>
               <b-col sm="7">
-                <b-form-input :value="ParamsHold2[index]" :id="Param" v-if="index !== 2" :placeholder="ParamsHold2[index]" type="number" ></b-form-input>
-                <b-form-input :value="ParamsHold2[index]" v-if="index === 2" :placeholder="ParamsHold2[index]" type="text" :disabled=true style="background-color: #00000030"></b-form-input>
+                <b-form-input :value="ParamsHold2[index]" :id="Param" v-if="index !== 0 && index !== 1 && index !== 2 && index !== 3 && index !== 8" :placeholder="ParamsHold2[index]" type="number" ></b-form-input>
+                <b-form-input :value="ParamsHold2[index]" v-if="index === 0 || index === 1 || index === 2 || index === 3 || index === 8" :placeholder="ParamsHold2[index]" type="text" ></b-form-input>
               </b-col>
             </b-row>
             <b-row>
@@ -164,6 +152,15 @@ export default {
         '500','32','4','3','1','1','28','112','31','20','2', '0.0002','4'
       ],
       Params2:[
+        'adj_filename',
+        'distance_filename',
+        'graph_signal_matrix_filename',
+        'id_filename',
+        'num_of_vertices',
+        'points_per_hour',
+        'num_for_predict',
+        'len_input',
+        'dataset_name',
         'use_nni',
         'batch_size',
         'model_name',
@@ -177,19 +174,19 @@ export default {
         'direction',
         'encoder_input_size',
         'decoder_input_size',
-          'dropout',
-          'kernel_size',
-          'num_layers ',
-          'd_model',
-          'nb_head',
-          'ScaledSAt',
-          'SE',
-          'smooth_layer_num',
-          'aware_temporal_context',
-          'TE',
+        'dropout',
+        'kernel_size',
+        'num_layers ',
+        'd_model',
+        'nb_head',
+        'ScaledSAt',
+        'SE',
+        'smooth_layer_num',
+        'aware_temporal_context',
+        'TE',
       ],
       ParamsHold2:[
-        '1','12', 'AST-GNN','0','0','1','0','300','50','0.001','2','2','1','0','0','3','3','64','16','1','1','1','1','1'
+        'data/metro.adj-matrix.csv','data/metro/dis-matrix.csv','data/metro/trips-6-all.npz','data/PEMS03/PEMS03.tex',164,12,12,12,'metro-06','1','12', 'AST-GNN','0','0','1','0','300','50','0.001','2','2','1','0','0','3','3','64','16','1','1','1','1','1'
       ],
       BaseTime:0,
       Mode : 0,
