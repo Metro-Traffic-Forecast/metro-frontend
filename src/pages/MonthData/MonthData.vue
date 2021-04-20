@@ -242,7 +242,7 @@ export default {
               }
             }
             data[p].lineName = d[k].lineName;
-            data[p].data.push(parseInt(d[k].outflow));
+            data[p].data.push(parseInt(d[k].outflow)+parseInt(d[k].inflow));
           }
           counter++;
           if(counter==_this.dataX.length){
@@ -251,6 +251,7 @@ export default {
               relData[r] = data[r].data;
             }
             _this.data3D = relData;
+            console.log(relData);
           }
         });
       }

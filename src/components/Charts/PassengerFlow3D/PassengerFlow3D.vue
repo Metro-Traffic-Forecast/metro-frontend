@@ -71,6 +71,7 @@ export default {
       dom.style.width = this.width + 'px';
       let chart = echarts.init(dom, 'dark');
 
+      console.log(vdata);
       chart.setOption({
         backgroundColor:"#00000000",
         xAxis3D: {

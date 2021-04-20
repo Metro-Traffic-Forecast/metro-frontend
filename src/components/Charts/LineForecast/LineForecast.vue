@@ -11,13 +11,21 @@ require('echarts-gl/lib/chart/line3D');
 
 export default {
   name: "LineForecast",
-  props:['id', 'width', 'height', 'dataX', 'data', 'splitIndex'],
+  props:['id', 'width', 'height', 'baseTime', 'data', 'splitIndex'],
   mounted() {
-    this.draw();
+
   },
   watch:{
-
-
+    data:{
+      handler(){
+        this.draw();
+      }
+    },
+    baseTime:{
+      handler(){
+        this.draw();
+      }
+    }
   },
   methods:{
     draw(){
@@ -26,16 +34,25 @@ export default {
       chartDom.style.height = this.height;
       let myChart = echarts.init(chartDom, 'dark');
       let option;
-      let dataX = this.dataX;
+
+      //计算dataX
+      let base = this.baseTime;
+      let dely = 3600 * 1000 * 6;
+      let date = [];
+      for(let i=0;i<40;i++){
+        let now = new Date(base);
+        date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('-') + " " + (i*6)%24);
+        base += dely;
+      }
+
+      let dataX = date;
       let dataY = ['1号线', '2号线', '3号线', '4号线', '5号线', '10号线', '11号线', '12号线'];
       let data = this.data;
 
       let vdata = [];
-
       for (let i = 0; i < dataY.length; i++) {
         vdata[i] = [];   //vdata里面存放的是二维数组
       }
-
       for (var tt = 0; tt < dataY.length; tt++) {
         var yy = dataY[tt];
         for (var k = 0; k < data[0].length; k++) {
@@ -56,7 +73,7 @@ export default {
           nameTextStyle:{
             color: '#fff'
           },
-          name: '时间',
+          name: '',
           axisLine:{
             lineStyle:{
               color:"#fff"
@@ -73,7 +90,7 @@ export default {
           nameTextStyle:{
             color: '#fff'
           },
-          name: '线路',
+          name: '',
           axisLine:{
             lineStyle:{
               color:"#fff"
@@ -90,7 +107,7 @@ export default {
           nameTextStyle:{
             color: '#fff'
           },
-          name: '流量',
+          name: '',
           axisLine:{
             lineStyle:{
               color:"#fff"
@@ -98,7 +115,7 @@ export default {
           }
         },
         grid3D: {
-          boxWidth: 350,
+          boxWidth: 450,
           boxHeight: 140,
           boxDepth: 233,
           axisLine: {
@@ -116,7 +133,7 @@ export default {
           type: 'scatter3D',
           name: '1号线',
           itemStyle: {
-            color: 'rgb(165,  0, 38)'
+            color: 'rgb(102,204,255)'
           },
           label: {  //当type为scatter3D时有label出现
             show: true,
@@ -136,7 +153,7 @@ export default {
             type: 'scatter3D',
             name: '2号线',
             itemStyle: {
-              color: 'rgb(215, 48, 39)'
+              color: 'rgb(102,204,255)'
             },
             label: {
               show: true,
@@ -156,7 +173,7 @@ export default {
             type: 'scatter3D',
             name: '3号线',
             itemStyle: {
-              color: 'rgb(244,109, 67)'
+              color: 'rgb(102,204,255)'
             },
             label: {
               show: true,
@@ -176,7 +193,7 @@ export default {
             type: 'scatter3D',
             name: '4号线',
             itemStyle: {
-              color: 'rgb(253,174, 97)'
+              color: 'rgb(102,204,255)'
             },
             label: {
               show: true,
@@ -196,7 +213,7 @@ export default {
             type: 'scatter3D',
             name: '5号线',
             itemStyle: {
-              color: 'rgb(254,224,144)'
+              color: 'rgb(102,204,255)'
             },
             label: {
               show: true,
@@ -216,7 +233,7 @@ export default {
             type: 'scatter3D',
             name: '10号线',
             itemStyle: {
-              color: 'rgb(255,255,191)'
+              color: 'rgb(102,204,255)'
             },
             label: {
               show: true,
@@ -236,7 +253,7 @@ export default {
             type: 'scatter3D',
             name: '11号线',
             itemStyle: {
-              color: 'rgb(224,243,248)'
+              color: 'rgb(102,204,255)'
             },
             label: {
               show: true,
@@ -256,7 +273,7 @@ export default {
             type: 'scatter3D',
             name: '12号线',
             itemStyle: {
-              color: 'rgb(171,217,233)'
+              color: 'rgb(102,204,255)'
             },
             label: {
               show: true,
@@ -277,7 +294,7 @@ export default {
             name: '1号线',
             lineStyle: {
               width: 6,   //线的宽度
-              color: 'rgb(165,  0, 38)'   //线的颜色
+              color: 'rgb(102,204,255)'   //线的颜色
             },
             data: vdata[0].slice(0,this.splitIndex+1)   //线数据和点数据所需要的格式一样
           },
@@ -285,7 +302,7 @@ export default {
             type: 'line3D',
             name: '2号线',
             lineStyle: {
-              color: 'rgb(215, 48, 39)',  //线的颜色
+              color: 'rgb(102,204,255)',  //线的颜色
               width: 6     //线的宽度
             },
             data: vdata[1].slice(0,this.splitIndex+1)
@@ -294,7 +311,7 @@ export default {
             type: 'line3D',
             name: '3号线',
             lineStyle: {
-              color: 'rgb(244,109, 67)',
+              color: 'rgb(102,204,255)',
               width: 6
             },
             data: vdata[2].slice(0,this.splitIndex+1)
@@ -303,7 +320,7 @@ export default {
             type: 'line3D',
             name: '4号线',
             lineStyle: {
-              color: 'rgb(253,174, 97)',
+              color: 'rgb(102,204,255)',
               width: 6
             },
             data: vdata[3].slice(0,this.splitIndex+1)
@@ -312,7 +329,7 @@ export default {
             type: 'line3D',
             name: '5号线',
             lineStyle: {
-              color: 'rgb(254,224,144)',
+              color: 'rgb(102,204,255)',
               width: 6
             },
             data: vdata[4].slice(0,this.splitIndex+1)
@@ -321,7 +338,7 @@ export default {
             type: 'line3D',
             name: '10号线',
             lineStyle: {
-              color: 'rgb(255,255,191)',
+              color: 'rgb(102,204,255)',
               width: 6
             },
             data: vdata[5].slice(0,this.splitIndex+1)
@@ -330,7 +347,7 @@ export default {
             type: 'line3D',
             name: '11号线',
             lineStyle: {
-              color: 'rgb(224,243,248)',
+              color: 'rgb(102,204,255)',
               width: 6
             },
             data: vdata[6].slice(0,this.splitIndex+1)
@@ -339,7 +356,7 @@ export default {
             type: 'line3D',
             name: '12号线',
             lineStyle: {
-              color: 'rgb(171,217,233)',
+              color: 'rgb(102,204,255)',
               width: 6
             },
             data: vdata[7].slice(0,this.splitIndex+1)
@@ -348,7 +365,7 @@ export default {
             type: 'scatter3D',
             name: '1号线',
             itemStyle: {
-              color: 'rgb(165,  0, 38)'
+              color: 'rgb(255,150,70)'
             },
             label: {  //当type为scatter3D时有label出现
               show: true,
@@ -362,13 +379,13 @@ export default {
                 backgroundColor: 'transparent'
               }
             },
-            data: vdata[0].slice(this.splitIndex, this.dataX.length)     //每个区的数据一一对应
+            data: vdata[0].slice(this.splitIndex, 40)     //每个区的数据一一对应
           },
           {
             type: 'scatter3D',
             name: '2号线',
             itemStyle: {
-              color: 'rgb(215, 48, 39)'
+              color: 'rgb(255,150,70)'
             },
             label: {
               show: true,
@@ -382,13 +399,13 @@ export default {
                 backgroundColor: 'transparent'
               }
             },
-            data: vdata[1].slice(this.splitIndex, this.dataX.length)
+            data: vdata[1].slice(this.splitIndex, 40)
           },
           {
             type: 'scatter3D',
             name: '3号线',
             itemStyle: {
-              color: 'rgb(244,109, 67)'
+              color: 'rgb(255,150,70)'
             },
             label: {
               show: true,
@@ -402,13 +419,13 @@ export default {
                 backgroundColor: 'transparent'
               }
             },
-            data: vdata[2].slice(this.splitIndex, this.dataX.length)
+            data: vdata[2].slice(this.splitIndex, 40)
           },
           {
             type: 'scatter3D',
             name: '4号线',
             itemStyle: {
-              color: 'rgb(253,174, 97)'
+              color: 'rgb(255,150,70)'
             },
             label: {
               show: true,
@@ -422,13 +439,13 @@ export default {
                 backgroundColor: 'transparent'
               }
             },
-            data: vdata[3].slice(this.splitIndex, this.dataX.length)
+            data: vdata[3].slice(this.splitIndex, 40)
           },
           {
             type: 'scatter3D',
             name: '5号线',
             itemStyle: {
-              color: 'rgb(254,224,144)'
+              color: 'rgb(255,150,70)'
             },
             label: {
               show: true,
@@ -442,13 +459,13 @@ export default {
                 backgroundColor: 'transparent'
               }
             },
-            data: vdata[4].slice(this.splitIndex, this.dataX.length)
+            data: vdata[4].slice(this.splitIndex, 40)
           },
           {
             type: 'scatter3D',
             name: '10号线',
             itemStyle: {
-              color: 'rgb(255,255,191)'
+              color: 'rgb(255,150,70)'
             },
             label: {
               show: true,
@@ -462,13 +479,13 @@ export default {
                 backgroundColor: 'transparent'
               }
             },
-            data: vdata[5].slice(this.splitIndex, this.dataX.length)
+            data: vdata[5].slice(this.splitIndex, 40)
           },
           {
             type: 'scatter3D',
             name: '11号线',
             itemStyle: {
-              color: 'rgb(224,243,248)'
+              color: 'rgb(255,150,70)'
             },
             label: {
               show: true,
@@ -482,13 +499,13 @@ export default {
                 backgroundColor: 'transparent'
               }
             },
-            data: vdata[6].slice(this.splitIndex, this.dataX.length)
+            data: vdata[6].slice(this.splitIndex, 40)
           },
           {
             type: 'scatter3D',
             name: '12号线',
             itemStyle: {
-              color: 'rgb(171,217,233)'
+              color: 'rgb(255,150,70)'
             },
             label: {
               show: true,
@@ -502,79 +519,79 @@ export default {
                 backgroundColor: 'transparent'
               }
             },
-            data: vdata[7].slice(this.splitIndex, this.dataX.length)
+            data: vdata[7].slice(this.splitIndex, 40)
           },
           {
             type: 'line3D', //当type为line3D时有label没有作用，官网没有label这个配置项
             name: '1号线',
             lineStyle: {
               width: 6,   //线的宽度
-              color: 'rgb(165,  0, 38)'   //线的颜色
+              color: 'rgb(255,150,70)'   //线的颜色
             },
-            data: vdata[0].slice(this.splitIndex, this.dataX.length)    //线数据和点数据所需要的格式一样
+            data: vdata[0].slice(this.splitIndex, 40)    //线数据和点数据所需要的格式一样
           },
           {
             type: 'line3D',
             name: '2号线',
             lineStyle: {
-              color: 'rgb(215, 48, 39)',  //线的颜色
+              color: 'rgb(255,150,70)',  //线的颜色
               width: 6     //线的宽度
             },
-            data: vdata[1].slice(this.splitIndex, this.dataX.length)
+            data: vdata[1].slice(this.splitIndex, 40)
           },
           {
             type: 'line3D',
             name: '3号线',
             lineStyle: {
-              color: 'rgb(244,109, 67)',
+              color: 'rgb(255,150,70)',
               width: 6
             },
-            data: vdata[2].slice(this.splitIndex, this.dataX.length)
+            data: vdata[2].slice(this.splitIndex, 40)
           },
           {
             type: 'line3D',
             name: '4号线',
             lineStyle: {
-              color: 'rgb(253,174, 97)',
+              color: 'rgb(255,150,70)',
               width: 6
             },
-            data: vdata[3].slice(this.splitIndex, this.dataX.length)
+            data: vdata[3].slice(this.splitIndex,40)
           },
           {
             type: 'line3D',
             name: '5号线',
             lineStyle: {
-              color: 'rgb(254,224,144)',
+              color: 'rgb(255,150,70)',
               width: 6
             },
-            data: vdata[4].slice(this.splitIndex, this.dataX.length)
+            data: vdata[4].slice(this.splitIndex, 40)
           },
           {
             type: 'line3D',
             name: '10号线',
             lineStyle: {
-              color: 'rgb(255,255,191)',
+              color: 'rgb(255,150,70)',
               width: 6
             },
-            data: vdata[5].slice(this.splitIndex, this.dataX.length)
+            data: vdata[5].slice(this.splitIndex, 40)
           },
           {
             type: 'line3D',
             name: '11号线',
             lineStyle: {
-              color: 'rgb(224,243,248)',
+              color: 'rgb(255,150,70)',
               width: 6
             },
-            data: vdata[6].slice(this.splitIndex, this.dataX.length)
+            data: vdata[6].slice(this.splitIndex, 40)
           },
           {
             type: 'line3D',
             name: '12号线',
             lineStyle: {
-              color: 'rgb(171,217,233)',
+              color: 'rgb(255,150,70)',
               width: 6
             },
-            data: vdata[7].slice(this.splitIndex, this.dataX.length)
+            data: vdata[7].slice(this.splitIndex, 40)
           },
         ]
       };
