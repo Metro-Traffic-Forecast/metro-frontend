@@ -11,9 +11,9 @@ require('echarts-gl/lib/chart/bar3D');
 
 export default {
   name: "Peak",
-  props:['id', 'data', 'width', 'height', 'xAxis'],
+  props:['id', 'data', 'width', 'height'],
   mounted() {
-
+    this.draw();
   },
   data(){
     return{
@@ -34,19 +34,17 @@ export default {
       chartDom.style.height = this.height;
       let myChart = echarts.init(chartDom, 'dark');
       let option;
-      let hours = ['12a', '1a', '2a', '3a', '4a', '5a', '6a',
-        '7a', '8a', '9a','10a','11a',
-        '12p', '1p', '2p', '3p', '4p', '5p',
-        '6p', '7p', '8p', '9p', '10p', '11p'];
-      let days = this.xAxis;
+      let hours = [0,1,2,3,4,5,6,7,8,9,10,11,12];
+      let days = [0,1,2,3,4,5,6,7,8,9,10,11,12];
 
       let data = this.data;
       option = {
         backgroundColor: '#00000000',
         tooltip: {
+          show:true,
           formatter:function(params){ //标签内容
-            console.log(params);
-            return days[params['value'][1]];
+            console.log('Sta' + (params.value[0]*13 +params.value[1]));
+            return 'Sta' + (params.value[0]*13 +params.value[1]);
           },
         },
         visualMap: {
@@ -89,7 +87,7 @@ export default {
         },
         grid3D: {
           boxWidth: 200,
-          boxDepth: 80,
+          boxDepth: 200,
           viewControl: {
             // projection: 'orthographic'
           },

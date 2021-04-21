@@ -3,21 +3,22 @@
   <b-row>
     <b-col lg="8">
       <Widget style="width: 100%;height: 630px">
-        <PassengerFlowSection
+        <PassengerFlowSection v-if="Data!=null"
         height="600px"
         width="100%"
         id="SectionAnalysePassengerFlow"
-        :down-flow="DownFlow"
-        :up-flow="UpFlow"
+        :down-flow="Data.outflow"
+        :up-flow="Data.inflow"
+        :x-axis="Data.stationList"
         style="position: absolute; top: 70px"
         ></PassengerFlowSection>
 
         <b-row style="margin-bottom: 20px">
           <b-col lg = "3">
-            <b-form-select v-model="Line" :options="LineOption" style="width: 100%;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="getStationOption()"></b-form-select>
+            <b-form-select v-model="Line" :options="LineOption" style="width: 100%;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="getLineData()"></b-form-select>
           </b-col>
           <b-col lg = "3">
-            <b-form-select v-model="Station" :options="StationOption" style="width: 100%;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="compute()"></b-form-select>
+            <b-form-select v-model="Time" :options="TimeOption" style="width: 100%;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="getLineData()"></b-form-select>
           </b-col>
           <b-col lg="6">
             <b-form-datepicker :min="new Date(2019, 11, 25)" :max="new Date(2020, 6,26)" selected-variant="info" id="example-datepicker"  style="opacity: 0.5" v-model="SelectDate" class="mb-lg-n3"></b-form-datepicker>
@@ -27,18 +28,8 @@
     </b-col>
     <b-col lg="4">
       <Widget style="width: 100%;height: auto" title="信息说明">
-        <small v-if="StationOption[Station-1]!=null">{{StationOption[Station-1].text}}{{SelectDate}}日 客流断面信息</small><br/><br/>
-        <div v-if="StationOption[Station-1]!=null">
-          <h6 class="name">上行断面峰值</h6>
-          <p class="description deemphasize mb-xs">{{UpMax}}</p>
-          <small>峰值时间</small>
-          <p class="description deemphasize mb-xs">{{UpMaxTime}}</p>
-          <br/>
-          <h6 class="name">下行断面峰值</h6>
-          <p class="description deemphasize mb-xs">{{DownMax}}</p>
-          <small>峰值时间</small>
-          <p class="description deemphasize mb-xs">{{DownMaxTime}}</p>
-        </div>
+        <small >{{LineOption[Line-1].text}} {{SelectDate}}日 {{TimeOption[Time].text}}客流断面信息</small><br/><br/>
+        <b-table striped hover :items="SectionItems" :fields="SectionFields" style="text-align: center"></b-table>
       </Widget>
     </b-col>
   </b-row>
@@ -58,15 +49,36 @@ export default {
   },
   data(){
     return{
-      Tag:[0,0],
-      UpMax:0,
-      DownMax:0,
-      UpMaxTime:null,
-      DownMaxTime:null,
-      SelectDate: '2020-01-01',
-      Station: 1,
-      DownFlow:null,
-      UpFlow:null,
+      SectionFields:[
+        {
+          key: '站点',
+          sortable: false
+        },
+        {
+          key: '上行流量',
+          sortable: true
+        },
+        {
+          key: '下行流量',
+          sortable: true
+        }
+      ],
+      Time:0,
+      TimeOption:[
+        {
+          value: 0,
+          text: '06:00:00~12:00:00'
+        },
+        {
+          value: 1,
+          text: '12:00:00~18:00:00'
+        },
+        {
+          value: 2,
+          text: '18:00:00~24:00:00'
+        }
+      ],
+      SelectDate: '2020-06-19',
       Line:1,
       LineOption:[ {
         value: 1,
@@ -93,76 +105,35 @@ export default {
         value: 8,
         text: '12号线'
       }],
-      StationOption:[],
-      AllStationData:[],
+      Data:null,
     }
   },
   mounted() {
-    this.getStationOption();
     this.getLineData();
   },
   watch:{
     SelectDate:{
       handler(){
         this.getLineData();
-        this.compute();
       }
     }
   },
+  computed:{
+    SectionItems(){
+      let result = [];
+      if(this.Data!=null){
+        for(let i=0;i< this.Data.inflow.length;i++){
+          let x ={};
+          x.站点 = this.Data.stationList[i];
+          x.上行流量 = this.Data.inflow[i];
+          x.下行流量 = -1 * this.Data.outflow[i];
+          result.push(x);
+        }
+      }
+      return result;
+    }
+  },
   methods:{
-    compute(){
-        let station = this.StationOption[this.Station - 1].stationId;
-        for(let i=0;i<this.AllStationData.length;i++){
-          if(this.AllStationData[i].stationId == station){
-            this.UpFlow = this.AllStationData[i].inflow;
-            this.DownFlow = this.AllStationData[i].outflow;
-            break;
-          }
-        }
-
-        let time = ['00:00','01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00',
-          '12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00',];
-        let max1=0,max2=0,index1=0,index2=0;
-        for(let i = 0;i<24;i++){
-          if(this.UpFlow[i]>max1){
-            max1 = this.UpFlow[i];
-            index1 = i;
-          }
-          if(this.DownFlow[i]<max2){
-            max2 = this.DownFlow[i];
-            index2 = i;
-          }
-        }
-
-        this.UpMax = max1;
-        this.DownMax = -1*max2;
-        this.UpMaxTime = time[index1];
-        this.DownMaxTime = time[index2];
-    },
-    getStationOption() {
-      let line = this.LineOption[this.Line - 1].text;
-      let _this = this;
-      axios.get(config.DNS+'station').then(function (response) {
-        let data = response.data.data;
-        let result=[];
-        let counter =1;
-        for(let i=0;i<data.length;i++){
-          if(data[i].lineName == line){
-            let x= {};
-            x.value = counter;
-            x.stationId = data[i].stationId;
-            x.text = data[i].stationName;
-            result.push(x);
-            counter++;
-          }
-        }
-        _this.StationOption = result;
-        _this.Tag[0]=1;
-        if(_this.Tag[0] === 1 && _this.Tag[1] === 1){
-          _this.compute();
-        }
-      })
-    },
     getLineData:function(){
       let date = this.SelectDate;
 
@@ -170,47 +141,30 @@ export default {
       p[1] = (parseInt(p[1])-1)+"";
       let line = this.LineOption[this.Line - 1].text;
       let _this = this;
-      let counter = 0;
-      let result = [];
-      for(let i=0;i<24;i++) {
-        let start = "";
-        let end = "";
-        if(i<=9){
-          start = date + " 0" + i+":00:00";
-        }else{
-          start = date + " " + i+":00:00";
-        }
-        if(i<9){
-          end = date + " 0" + (i+1)+":00:00";
-        }else if(i==23){
-          end = date + " " + 23+":59:59";
-        }else{
-          end = date + " " + (i+1)+":00:00";
-        }
+      let result = {};
+      result.stationList  =[];
+      result.inflow = [];
+      result.outflow = [];
+      let start =  this.SelectDate+" "+this.TimeOption[this.Time].text.substring(0,8);
+      let end =  null;
+      if(this.Time !== 2){
+        end = this.SelectDate+" "+this.TimeOption[this.Time].text.substring(9);
+      }else{
+        end = this.SelectDate+" "+"23:59:59";
+      }
+
         axios.get(config.DNS+'line/station/flow', {params:{start:start,end:end,step: line}}).then(function (response) {
           let data = response.data.data;
-          if(counter == 0) {
-            for (let i = 0; i < data.length; i++) {
-              result[i] = {};
-              result[i].inflow = [];
-              result[i].outflow = [];
-            }
-          }
+
           for (let i = 0; i < data.length; i++) {
-            result[i].stationId = data[i].stationId;
-            result[i].inflow.push(data[i].inflow);
-            result[i].outflow.push(-1 * data[i].outflow);
+            result.stationList.push(data[i].stationId);
+            result.inflow.push(data[i].inflow);
+            result.outflow.push(-1 * data[i].outflow);
           }
-          counter++;
-          if(counter==24) {
-            _this.AllStationData = result;
-            _this.Tag[1]=1;
-            if(_this.Tag[0] === 1 && _this.Tag[1] === 1){
-              _this.compute();
-            }
-          }
+            _this.Data = result;
+
         })
-      }
+
     }
   }
 }
