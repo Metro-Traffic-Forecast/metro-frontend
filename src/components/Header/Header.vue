@@ -1,7 +1,13 @@
 <template>
+  <b-row>
+    <b-col lg="5">
+    <header class="logo">
+      <router-link to="/app/dashboard"><img src="../../assets/logo.png" width="30px" height="30px" alt="logo"/> &nbsp;<span class="fw-bold" style="font-size: 28px">基于Spark和图卷积网络的地铁客流实时分析预测平台</span></router-link>
+    </header>
+    </b-col>
+    <b-col lg="7">
   <b-navbar toggleable="md" class="app-header d-print-none">
     <b-navbar-nav class="navbar-nav-mobile ml-auto">
-
       <b-nav-text class="mr-3">
         <b-alert class="header-alert animate__animated animate__bounceIn animate__delay-2s" dismissible v-model="showNavbarAlert">
           <i class="fa fa-info-circle mr-1"></i> 欢迎来到轨道交通预测平台
@@ -68,6 +74,8 @@
         </b-nav-item>
       </b-navbar-nav>
   </b-navbar>
+    </b-col>
+  </b-row>
 </template>
 
 <script>

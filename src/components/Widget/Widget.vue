@@ -9,7 +9,7 @@
     <h5 v-if="title && typeof title === 'string' && !customHeader" class="title">{{title}}</h5>
     <header v-if="title && customHeader" class="title" v-html="title"></header>
     <div v-if="!customControls && mainControls"
-      class="widgetControls widget-controls">
+      class="widgetControls widget-controls" style="padding-left: 20px;padding-bottom: 5px">
       <a v-if="settings" href="#"><i class="la la-cog" /></a>
       <a v-if="settingsInverse" href="#" class="bg-default mx-2">
         <i class="la la-cog text-white"/>
@@ -21,7 +21,7 @@
             v-if="showTooltip"
             :placement="tooltipPlacement"
             :target="`reloadId-${randomId}`"
-          >Reload
+          >重载
           </b-tooltip>
       </a>
       <a @click="changeState($event, 'fullscreen')" v-if="fullscreen && state !== 'fullscreen'" href="#" :id="`fullscreenId-${randomId}`">
@@ -30,7 +30,7 @@
           v-if="showTooltip"
           :placement="tooltipPlacement"
           :target="`fullscreenId-${randomId}`"
-        >Fullscreen
+        >全屏
         </b-tooltip>
       </a>
       <a @click="changeState($event, 'default')" v-if="fullscreen && state === 'fullscreen'" href="#" :id="`restoreId-${randomId}`">
@@ -49,7 +49,7 @@
             v-if="showTooltip"
             :placement="tooltipPlacement"
             :target="`collapseId-${randomId}`"
-          >Collapse
+          >折叠
           </b-tooltip>
         </a>
       </span>
@@ -60,7 +60,7 @@
             v-if="showTooltip"
             :placement="tooltipPlacement"
             :target="`expandId-${randomId}`"
-          >Expand
+          >展开
           </b-tooltip>
         </a>
       </span>
@@ -71,7 +71,7 @@
           v-if="showTooltip"
           :placement="tooltipPlacement"
           :target="`closeId-${randomId}`"
-        >Close
+        >关闭
         </b-tooltip>
       </a>
     </div>
@@ -96,23 +96,58 @@ export default {
     }
   },
   props: {
+    //是否使用最原初的标题头
     customHeader: { type: Boolean, default: false },
+
+    //提示框位置
     tooltipPlacement: { default: 'top' },
+
+    //是否应用提示框
     showTooltip: { type: Boolean, default: false },
+
+    //关闭当前组件
     close: { type: [Boolean, String], default: false },
+
+    //全屏
     fullscreen: { type: [Boolean, String], default: false },
+
+    //折叠内容
     collapse: { type: [Boolean, String], default: false },
+
+    //设置(没有实际作用)
     settings: { type: [Boolean, String], default: false },
+
+    //没有效果
     settingsInverse: { type: Boolean, default: false },
+
+    //重新加载
     refresh: { type: [Boolean, String], default: false },
+
+    //修该样式
     className: { default: '' },
+
+    //标题
     title: { default: '' },
+
+    //开启控制
     customControls: { default: null },
+
+    //内容样式
     bodyClass: { default: '' },
+
+    //???
     options: { default: () => ({}) },
+
+    //是否正在准备数据（和正在加载一项联合使用）
     fetchingData: {type: Boolean, default: false},
+
+    //正在加载
     showLoader: {type: Boolean, default: true},
+
+    //起始折叠
     collapsed: {type: Boolean, default: false},
+
+    //自动加载
     autoload: {type: [Boolean, Number], default: false}
   },
   components: { Loader },

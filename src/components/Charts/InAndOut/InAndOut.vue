@@ -79,7 +79,7 @@ export default {
           }
         },
         title: {
-          left: 'center',
+          left: '50%',
           text: '出入站信息统计',
         },
         toolbox: {

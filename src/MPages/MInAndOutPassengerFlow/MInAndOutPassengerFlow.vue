@@ -1,21 +1,24 @@
 <template>
 <div>
   <b-row>
-    <b-col lg = '8'>
-      <Widget style="width: 100%;height: 630px">
-        <InAndOut id="InAndOutPassengerFlowInAndOut" height="600px" width="100%" :up-data="UpData" :down-data="DownData"  style="position: absolute"></InAndOut>
-        <b-form-select v-model="Line" :options="LineOption" style="width: 120px;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="getStationOption()"></b-form-select>&ensp;
-        <b-form-select v-model="Station" :options="StationOption" style="width: 120px;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="compute()"></b-form-select>
+    <b-col lg = '11'>
+      <Widget style="background-image: linear-gradient(to bottom right, #232628, #141b23);width: 100%;height: 350px;margin-left: 3%">
+        <InAndOut id="InAndOutPassengerFlowInAndOut" height="90%" width="100%" :up-data="UpData" :down-data="DownData"  style="margin-top:3%;position: absolute"></InAndOut>
+        <b-form-select v-model="Line" :options="LineOption" style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;width: 120px;height:40px;color: rgba(255,255,255,100)" @change="getStationOption()"></b-form-select>&ensp;
+        <b-form-select v-model="Station" :options="StationOption" style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;width: 120px;height:40px;color: rgba(255,255,255,100)" @change="compute()"></b-form-select>
       </Widget>
     </b-col>
-    <b-col lg = '4'>
-      <Widget style="width: 100%;height: 630px" title="信息说明">
-         <small v-if="StationOption!=null">{{StationOption[Station-1].text}}进出站信息统计</small><br/>
+  </b-row>
 
+  <b-row style="margin-top: 10px">
+    <b-col lg = '5' style="margin-right: 0;padding-right: 0;margin-left: 4%">
+      <Widget style="background-image: linear-gradient(to bottom right, #232628, #141b23);width: 100%;height: 100%">
         <b-table striped hover :items="InTableItems" :fields="InFields" style="text-align: center"></b-table>
-
+      </Widget>
+    </b-col>
+    <b-col lg = '5' style="margin-left: 4%;padding-left: 0">
+      <Widget style="background-image: linear-gradient(to bottom right, #232628, #141b23);width: 100%;height: 100%">
         <b-table striped hover :items="OuTableItems" :fields="OutFields" style="text-align: center"></b-table>
-
       </Widget>
     </b-col>
   </b-row>

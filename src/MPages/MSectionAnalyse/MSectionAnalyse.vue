@@ -1,10 +1,10 @@
 <template>
 <div>
   <b-row>
-    <b-col lg="8">
-      <Widget style="width: 100%;height: 630px">
+    <b-col lg="11">
+      <Widget style="width: 100%;height: 360px;margin-left: 3%;background-image: linear-gradient(to bottom right, #232628, #141b23);">
         <PassengerFlowSection v-if="Data!=null"
-        height="600px"
+        height="100%"
         width="100%"
         id="SectionAnalysePassengerFlow"
         :down-flow="Data.outflow"
@@ -15,24 +15,32 @@
 
         <b-row style="margin-bottom: 20px">
           <b-col lg = "3">
-            <b-form-select v-model="Line" :options="LineOption" style="width: 100%;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="getLineData()"></b-form-select>
+            <b-form-select v-model="Line" :options="LineOption" style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;width: 100%;height:40px;color: rgba(255,255,255,100)" @change="getLineData()"></b-form-select>
           </b-col>
           <b-col lg = "3">
-            <b-form-select v-model="Time" :options="TimeOption" style="width: 100%;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="getLineData()"></b-form-select>
+            <b-form-select v-model="Time" :options="TimeOption" style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;width: 100%;height:40px;color: rgba(255,255,255,100)" @change="getLineData()"></b-form-select>
           </b-col>
           <b-col lg="6">
-            <b-form-datepicker :min="new Date(2019, 11, 25)" :max="new Date(2020, 6,26)" selected-variant="info" id="example-datepicker"  style="opacity: 0.5" v-model="SelectDate" class="mb-lg-n3"></b-form-datepicker>
+            <b-form-datepicker :min="new Date(2019, 11, 25)" :max="new Date(2020, 6,26)" selected-variant="info" id="example-datepicker"  style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;" v-model="SelectDate" class="mb-lg-n3"></b-form-datepicker>
           </b-col>
         </b-row>
       </Widget>
     </b-col>
-    <b-col lg="4">
-      <Widget style="width: 100%;height: auto" title="信息说明">
-        <small >{{LineOption[Line-1].text}} {{SelectDate}}日 {{TimeOption[Time].text}}客流断面信息</small><br/><br/>
-        <b-table striped hover :items="SectionItems" :fields="SectionFields" style="text-align: center"></b-table>
-      </Widget>
-    </b-col>
   </b-row>
+
+
+  <div style="margin-top: 10px">
+    <div class="Double" style="margin-left: 20px">
+      <Widget style="width: 100%;height: auto;background-image: linear-gradient(to bottom right, #232628, #141b23);">
+        <b-table striped hover :items="SectionItems.slice(0,SectionItems.length/2)" :fields="SectionFields" style="text-align: center"></b-table>
+      </Widget>
+    </div>
+    <div class="Double">
+      <Widget style="width: 100%;height: auto;background-image: linear-gradient(to bottom right, #232628, #141b23);">
+        <b-table striped hover :items="SectionItems.slice(SectionItems.length/2, SectionItems.length)" :fields="SectionFields" style="text-align: center"></b-table>
+      </Widget>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -170,6 +178,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped src="./Double.scss" lang="scss">
 
 </style>

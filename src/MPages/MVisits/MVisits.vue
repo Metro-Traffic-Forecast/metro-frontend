@@ -1,17 +1,9 @@
 <template>
   <div class="visits-page">
-    <h1 class="page-title">线路拓扑热力图 &nbsp;
-      <small>
-        <small><!-- 小标题 -->——今日客流</small>
-      </small>
-    </h1>
     <b-row>
-      <b-col lg="10">
-        <Widget class="bg-transparent" >
-          <Map></Map>
-        </Widget>
+      <b-col lg="12">
+          <Map  style="padding-left: 20px"></Map>
       </b-col>
-
     </b-row>
 
   </div>
@@ -19,13 +11,12 @@
 
 <script>
 import Vue from 'vue';
-import Widget from '@/components/Widget/Widget';
 import Map from './components/Map/Map';
 
 export default {
   name: 'Visits',
   components: {
-     Widget, Map,
+     Map,
   },
   data() {
     return {
@@ -94,4 +85,4 @@ export default {
 };
 </script>
 
-<style src="./Visits.scss" lang="scss" />
+<style src="./MVisits.scss" lang="scss" />

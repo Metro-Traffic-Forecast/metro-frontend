@@ -1,5 +1,26 @@
 @import '../../styles/app';
 
+.logo {
+  margin: 15px 0;
+  font-size: 18px;
+  width: 100%;
+  font-weight: $font-weight-normal;
+  text-transform: uppercase;
+  text-align: center;
+  transition: width $sidebar-transition-time ease-in-out;
+
+  a {
+    color: #3979F6;
+    padding: 0 5px;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  @include media-breakpoint-down('sm') {
+    display: none;
+  }
+}
+
 .app-header.navbar {
   z-index: 100;
   padding: 0 1.85rem 0;

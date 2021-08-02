@@ -1,8 +1,8 @@
 <template>
 <div>
   <b-row>
-    <b-col lg="6">
-      <Widget style="width: 100%;height: 640px">
+    <b-col lg="11" style="margin-left: 10px">
+      <Widget style="width: 100%;height: 640px;background-image: linear-gradient(to bottom right, #232628, #141b23);">
         <div v-if="Mode===1">
         <StationForecastInAndOut
           height="540px"
@@ -30,37 +30,45 @@
         </div>
         <b-row>
           <b-col lg="3">
-            <b-form-select v-model="Line" :options="LineOption" style="width: 100%;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="getStationOption()"></b-form-select>
+            <b-form-select v-model="Line" :options="LineOption" style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;width: 100%;height:40px;color: rgba(255,255,255,100)" @change="getStationOption()"></b-form-select>
           </b-col>
           <b-col lg ="3">
-            <b-form-select v-model="Station" :options="StationOption" style="width: 100%;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="compute()"></b-form-select>
+            <b-form-select v-model="Station" :options="StationOption" style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;width: 100%;height:40px;color: rgba(255,255,255,100)" @change="compute()"></b-form-select>
           </b-col>
           <b-col lg ="6">
-            <b-form-datepicker :min="new Date(2019, 11, 25)" :max="new Date(2020, 6,26)" selected-variant="info" id="example-datepicker2"  style="opacity: 0.5" v-model="SelectDate" class="mb-lg-n3"></b-form-datepicker>
+            <b-form-datepicker :min="new Date(2019, 11, 25)" :max="new Date(2020, 6,26)" selected-variant="info" id="example-datepicker2"  style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;" v-model="SelectDate" class="mb-lg-n3"></b-form-datepicker>
           </b-col>
         </b-row>
         <b-row style="top: 60px;width:100%;position: absolute">
           <b-col lg ="3">
-            <b-form-select v-model="Mode" @change="ReFor()" :options="ModeOption" style="width: 100%;height:40px;opacity: 0.5;color: rgba(255,255,255,100)"></b-form-select>
+            <b-form-select v-model="Mode" @change="ReFor()" :options="ModeOption" style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;width: 100%;height:40px;color: rgba(255,255,255,100)"></b-form-select>
           </b-col>
         </b-row>
       </Widget>
-      <Widget title="信息说明">
-        <small v-if="StationOption[Station - 1]!=null">{{StationOption[Station - 1].text}} 未来3日客流预测</small><br>
-        <small style="color: rgba(255,126,3,0.86)" v-if="Mode==0 && ModeOption != null">{{ModeOption[Mode].text}} 模型仅预测上行客流量</small>
+    </b-col>
+  </b-row>
+
+  <b-row style="margin-top: 10px">
+    <b-col lg="11" style="margin-left: 10px">
+      <Widget title="站点预测信息" style="margin-top: 10px;height: 100%;background-image: linear-gradient(to bottom right, #232628, #141b23);" :collapsed="true" :collapse="true">
+        <small v-if="StationOption[Station - 1]!=null" style="padding-left: 10px">{{StationOption[Station - 1].text}} 未来3日客流预测</small><br>
+        <small style="color: rgba(255,126,3,0.86);padding-left: 10px" v-if="Mode==0 && ModeOption != null">{{ModeOption[Mode].text}} 模型仅预测上行客流量</small>
         <b-table striped hover :items="StationForecastTableItems" :fields="StationForecastFields"></b-table>
       </Widget>
     </b-col>
-    <b-col lg="6">
-      <b-row v-if="WarningList!==null">
+  </b-row>
+
+  <b-row style="margin-top: 10px">
+    <b-col lg="11" style="margin-left: 10px">
+      <b-row v-if="WarningList!==null && false" style="margin-top: 10px;margin-bottom: 10px">
         <b-col lg="12">
-          <Widget>
+          <Widget style="padding-left: 20px;background-image: linear-gradient(to bottom right, #232628, #141b23);">
             <p style="font-size: 40px;font-weight:bold;color: rgba(201,100,0,0.86)">Warning：</p>
             <p :key="item.number" v-for="item in WarningList" style="font-size: 16px;font-weight:400;color: rgba(201,100,0,0.86)"><span style="margin-right: 20px">客流方向:{{item.mode}}</span>  <span style="margin-right: 20px">发生时间:{{item.time}}</span> <span>客流人数:{{item.number}}</span></p>
           </Widget>
         </b-col>
       </b-row>
-      <Widget title="模型参数"><br/>
+      <Widget title="模型参数" :collapsed="true" :collapse="true" style="margin-top:10px;height: 100%;background-image: linear-gradient(to bottom right, #232628, #141b23);"><br/>
         <b-container fluid>
           <div v-if="Mode === 1">
             <br/>
@@ -76,7 +84,7 @@
             <b-row>
               <b-col lg="4">
                 <b-button style="background-color: #000000;opacity: 0.5;border-color: #000000" >Submit</b-button>
-             </b-col>
+              </b-col>
             </b-row>
           </div>
 

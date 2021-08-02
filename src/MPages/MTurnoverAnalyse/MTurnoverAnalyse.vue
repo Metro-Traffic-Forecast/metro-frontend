@@ -1,17 +1,18 @@
 <template>
 <div>
   <b-row>
-    <b-col lg="7">
-      <Widget style="width: 100%;height: auto">
-        <b-form-select v-model="SelectMonth" :options="SelectOption" style="float:left;width: 120px;height:40px;opacity: 0.5;margin-bottom:20px;color: rgba(255,255,255,100)" @change="getTurnoverData()"></b-form-select>
+    <b-col lg="11" style="margin-left: 10px">
+      <Widget style="width: 100%;height: 4020px">
+        <b-form-select v-model="SelectMonth" :options="SelectOption" style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;float:left;width: 120px;height:40px;margin-bottom:20px;color: rgba(255,255,255,100)" @change="getTurnoverData()"></b-form-select>
         <b-button style="margin-left:30px;background-color: #000000;color: #ffffff;height: 40px; border-color: #000000;opacity: 0.3;" @click="getAllTurnoverData()">总营业额</b-button>
-        <Turnover height="3650px" width="100%" id="TurnoverAnalyseTurnover" :data="TurnoverData"></Turnover>
+        <Turnover height="3950px" width="100%" id="TurnoverAnalyseTurnover" :data="TurnoverData"></Turnover>
       </Widget>
     </b-col>
+  </b-row>
 
-    <b-col lg="5">
-      <Widget style="width: 100%;height: auto" title="信息说明">
-        <small>所有站点营业额信息（表中’占比‘为相对于最大营业额的占比）</small><br>
+  <b-row style="margin-top: 10px">
+    <b-col lg="11" style="margin-left: 10px">
+      <Widget style="width: 100%;height: auto" :collapsed="true" :collapse="true" title="营收信息">
         <small>最大营业额：{{MaxTurnover}} 总营业额：{{AllTurnover}}</small>
         <b-row>
           <b-col lg="6">

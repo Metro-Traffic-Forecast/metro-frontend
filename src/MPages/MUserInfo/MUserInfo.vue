@@ -1,67 +1,106 @@
 <template>
 <div>
-  <b-row>
-    <b-col lg="6">
-      <Widget style="width: 100%;height: 500px">
+  <div style="width: 99%">
+    <Widget style="height: 100%;width: 100%;padding-left: 11px;margin-bottom: 0;padding-bottom: 10px;padding-top: 10px;background-image: linear-gradient(to bottom right, #232628, #141b23);">
+        <span class="s-title">用户年龄与性别分析</span>
+    </Widget>
+  </div>
+
+  <b-row style="margin-top: 10px">
+    <!--两个饼图-->
+    <b-col lg="6" style="padding: 0; ">
+      <b-row style="margin-left: 20px;">
+      <Widget style="width: 100%;height:100%;padding: 0;margin: 0;background-image: linear-gradient(to bottom right, #232628, #141b23);">
         <b-row >
-          <b-col lg = "3">
-            <b-form-select v-model="Line" :options="LineOption" style="width: 100%;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="getStationOption()"></b-form-select>
-          </b-col>
-          <b-col lg = "3">
-            <b-form-select v-model="Station" :options="StationOption" style="width: 100%;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="getData()"></b-form-select>
+          <b-col lg="12">
+            <AgeAndSex
+                id="AgeStructure"
+                width="100%"
+                height="370px"
+                Title="用户年龄结构分析"
+                name="1"
+                :data="AgeOption"></AgeAndSex>
           </b-col>
         </b-row>
-        <b-row >
-          <b-col lg="6">
-            <AgeAndSex
-            id="AgeStructure"
-            width="100%"
-            height="500px"
-            Title="用户年龄结构分析"
-            name="1"
-            :data="AgeOption"></AgeAndSex>
-          </b-col>
-          <b-col lg="6">
-            <AgeAndSex
+      </Widget>
+      </b-row>
+
+      <b-row style="margin-left: 20px;margin-top: 10px">
+      <Widget style="width: 100%;height:100%;padding: 0;background-image: linear-gradient(to bottom right, #232628, #141b23);">
+      <b-row>
+        <b-col lg="12">
+          <AgeAndSex
               id="SexStructure"
               width="100%"
               name="2"
-              height="500px"
+              height="370px"
               Title="用户性别结构分析"
               :data="SexOption"></AgeAndSex>
-          </b-col>
-        </b-row>
+        </b-col>
+      </b-row>
       </Widget>
-        <b-row>
-          <b-col lg="12">
-            <Widget style="width: 100%;height: auto">
-              <UserHome
-                  width="100%"
-                  height="700px"
-                  id="china"
-                  :data="MapData"></UserHome>
-            </Widget>
-          </b-col>
-        </b-row>
-
+  </b-row>
     </b-col>
-    <b-col lg="6">
-      <Widget style="width: 100%;" title="信息说明">
-        <small>{{Station}}站点用户年龄与性别：</small>
-        <b-table striped hover :items="AgeItems" :fields="AgeFields" style="text-align: center"></b-table>
-        <b-table striped hover :items="SexItems" :fields="SexFields" style="text-align: center"></b-table>
-        <small>地铁交通用户归属地分析：</small>
-        <b-row>
-          <b-col lg = '6'>
-            <b-table striped hover :items="UserItems1" :fields="UserFields" style="text-align: center"></b-table>
-          </b-col>
-          <b-col lg = '6'>
-            <b-table striped hover :items="UserItems2" :fields="UserFields" style="text-align: center"></b-table>
-          </b-col>
-        </b-row>
+
+    <!--信息-->
+    <b-col lg="5" style="padding: 0">
+
+      <b-row style="width: 100%;margin-left: 30px">
+        <Widget style="height: 100%;width: 100%;padding-left: 11px;margin-bottom: 0;padding-bottom: 10px;padding-top: 10px;background-image: linear-gradient(to bottom right, #232628, #141b23);">
+          <b-row>
+            <b-col lg = "5" style="padding: 0;margin-left: 5%">
+              <b-form-select v-model="Line" :options="LineOption" style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;width: 100%;height:40px;color: rgba(255,255,255,100)" @change="getStationOption()"></b-form-select>
+            </b-col>
+            <b-col lg = "5" style="padding: 0;margin-left: 2%">
+              <b-form-select v-model="Station" :options="StationOption" style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;width: 100%;height:40px;color: rgba(255,255,255,100)" @change="getData()"></b-form-select>
+            </b-col>
+          </b-row>
+        </Widget>
+      </b-row>
+
+      <b-row style="width: 100%;margin-left: 30px;margin-top: 10px">
+          <Widget style="width: 100%;background-image: linear-gradient(to bottom right, #232628, #141b23);">
+            <b-table striped hover :items="AgeItems" :fields="AgeFields" style="text-align: center"></b-table>
+          </Widget>
+      </b-row>
+      <b-row style="width: 100%;margin-left: 30px;margin-top: 10px">
+        <Widget style="width: 100%;background-image: linear-gradient(to bottom right, #232628, #141b23);">
+          <b-table striped hover :items="SexItems" :fields="SexFields" style="text-align: center"></b-table>
+        </Widget>
+      </b-row>
+    </b-col>
+  </b-row>
+
+  <div style="width: 99%;margin-top: 10px">
+    <Widget style="height: 100%;width: 100%;padding-left: 11px;margin-bottom: 0;padding-bottom: 10px;padding-top: 10px;background-image: linear-gradient(to bottom right, #232628, #141b23);">
+      <span class="s-title">用户归属地分析</span>
+    </Widget>
+  </div>
+
+  <!--归属地图-->
+  <div style="height: 400px;width:95%;margin-top: 10px">
+      <Widget style="width: 100%;height: 100%; padding: 0;background-image: linear-gradient(to bottom right, #232628, #141b23);">
+        <UserHome
+            width="100%"
+            height="380px"
+            id="china"
+            :data="MapData"></UserHome>
+      </Widget>
+  </div>
+
+  <b-row style="margin-top: 10px">
+    <b-col lg = '5' style="padding: 0;margin-left: 5%">
+      <Widget style=" padding:0;background-image: linear-gradient(to bottom right, #232628, #141b23);">
+        <b-table striped hover :items="UserItems1" :fields="UserFields" style="text-align: center"></b-table>
+      </Widget>
+    </b-col>
+    <b-col lg = '5' style="padding: 0;margin-left: 10px">
+      <Widget style="background-image: linear-gradient(to bottom right, #232628, #141b23);">
+        <b-table striped hover :items="UserItems2" :fields="UserFields" style="text-align: center"></b-table>
       </Widget>
     </b-col>
   </b-row>
+
 
 </div>
 </template>
@@ -291,6 +330,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped src="./MUserInfo.scss" lang="scss">
 
 </style>

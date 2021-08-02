@@ -67,8 +67,8 @@ export default {
       }
 
       let dom = document.getElementById(this.id);
-      dom.style.height = this.height + 'px';
-      dom.style.width = this.width + 'px';
+      dom.style.height = this.height;
+      dom.style.width = this.width ;
       let chart = echarts.init(dom, 'dark');
 
       console.log(vdata);

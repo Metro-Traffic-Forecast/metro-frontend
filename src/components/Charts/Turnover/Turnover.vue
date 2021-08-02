@@ -60,6 +60,7 @@ export default {
         series: [
           {
             type: 'bar',
+            barWidth:8,
             encode: {
               // Map the "amount" column to X axis.
               x: 'amount',

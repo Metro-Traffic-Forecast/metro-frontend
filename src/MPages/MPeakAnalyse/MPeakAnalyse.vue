@@ -1,49 +1,41 @@
 <template>
 <div>
   <b-row>
-    <b-col lg="6">
-      <Widget style="width: 100%;height: 700px">
-        <Peak width="90%" height="670px" id="PeakAnalysePeak" :data="ShowData" style="position: absolute"></Peak>
+    <b-col lg="11">
+      <Widget style="width: 100%;height: 400px;margin-left: 3%;background-image: linear-gradient(to bottom right, #232628, #141b23);">
+        <Peak width="94%" height="95%" id="PeakAnalysePeak" :data="ShowData" style="position: absolute;margin-left: 3%"></Peak>
         <b-row>
           <b-col lg="4">
-            <b-form-select v-model="Mode" :options="ModeOption" style="width: 120px;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="getData()"></b-form-select>
+            <b-form-select v-model="Mode" :options="ModeOption" style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;width: 120px;height:40px;color: rgba(255,255,255,100)" @change="getData()"></b-form-select>
           </b-col>
           <b-col lg="6">
-            <b-form-datepicker :min="new Date(2019, 11, 25)" :max="new Date(2020, 6,26)" selected-variant="info" id="example-datepicker"  style="opacity: 0.5" v-model="SelectDate" class="mb-lg-n3"></b-form-datepicker>
-          </b-col>
-        </b-row>
-      </Widget>
-    </b-col>
-    <b-col lg="6">
-      <Widget style="width: 100%;" title="信息说明">
-        <small> {{this.SelectDate}}日{{ModeOption[Mode].text}}客流信息</small>
-        <b-row>
-          <b-col lg="6">
-            <b-table striped hover :items="PeakTableItems1" :fields="PeakFields" style="text-align: center"></b-table>
-          </b-col>
-          <b-col lg ='6'>
-            <b-table striped hover :items="PeakTableItems2" :fields="PeakFields" style="text-align: center"></b-table>
+            <b-form-datepicker :min="new Date(2019, 11, 25)" :max="new Date(2020, 6,26)" selected-variant="info" id="example-datepicker"  style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f" v-model="SelectDate" class="mb-lg-n3"></b-form-datepicker>
           </b-col>
         </b-row>
       </Widget>
     </b-col>
   </b-row>
-  <Widget>
-  <b-row>
-    <b-col lg="3">
-      <b-table striped hover :items="PeakTableItems3" :fields="PeakFields" style="text-align: center"></b-table>
-    </b-col>
-    <b-col lg ='3'>
-      <b-table striped hover :items="PeakTableItems4" :fields="PeakFields" style="text-align: center"></b-table>
-    </b-col>
-    <b-col lg="3">
-      <b-table striped hover :items="PeakTableItems5" :fields="PeakFields" style="text-align: center"></b-table>
-    </b-col>
-    <b-col lg ='3'>
-      <b-table striped hover :items="PeakTableItems6" :fields="PeakFields" style="text-align: center"></b-table>
-    </b-col>
-  </b-row>
-    </Widget>
+
+  <!--
+  <div style="margin-top: 10px">
+    <div class="Info">
+      <Widget style="background-image: linear-gradient(to bottom right, #232628, #141b23);width: 100%;">
+            <b-table striped hover :items="PeakTableItems.slice(0,8)" :fields="PeakFields.slice(0,8)" style="text-align: center"></b-table>
+      </Widget>
+    </div>
+    <div class="Info">
+      <Widget style="background-image: linear-gradient(to bottom right, #232628, #141b23);width: 100%;">
+        <b-table striped hover :items="PeakTableItems.slice(8,16)" :fields="PeakFields.slice(8.16)" style="text-align: center"></b-table>
+      </Widget>
+    </div>
+    <div class="Info">
+      <Widget style="background-image: linear-gradient(to bottom right, #232628, #141b23);width: 100%;">
+        <b-table striped hover :items="PeakTableItems.slice(16,24)" :fields="PeakFields.slice(16,24)" style="text-align: center"></b-table>
+      </Widget>
+    </div>
+  </div>
+  -->
+
 </div>
 </template>
 
@@ -81,7 +73,7 @@ export default {
           sortable: true
         }
       ],
-      PeakTableItems:null,
+      PeakTableItems:[],
     }
   },
   components:{
@@ -184,7 +176,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped src="./MPeakAnalyse.scss" lang="scss">
 .menu{
   font-size: 10px;
 }

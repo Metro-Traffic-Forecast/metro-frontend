@@ -1,18 +1,18 @@
 <template>
 <div>
   <b-row>
-    <b-col lg="12">
-      <Widget style="width: 100%;height: auto">
-          <OD width="110%" height="500px" id="ODTransportOD" :links="links"></OD>
+    <b-col lg="11">
+      <Widget style="background-image: linear-gradient(to bottom right, #232628, #141b23);width: 100%;height: 350px;margin-left: 3%">
+          <OD width="110%" height="350px" id="ODTransportOD" :links="links"></OD>
       </Widget>
     </b-col>
 
   </b-row>
-  <b-row>
-    <b-col lg="12">
-      <Widget style="width: 100%;height: auto" title="信息说明">
-        <small>线路转乘信息</small>
-        <b-table striped hover :items="ODTableItems" :fields="ODFields" style="text-align: center"></b-table>
+  <b-row style="margin-top: 10px">
+    <b-col lg="11">
+      <Widget :collapsed="true" :collapse="true" title="换乘信息"
+          style="width: 104%;height: auto;margin-left: 1%;background-image: linear-gradient(to bottom right, #232628, #141b23);padding-bottom: 0;margin-bottom: 0" >
+        <b-table striped hover :items="ODTableItems" :fields="ODFields" style="line-height:15px;font-size:13px;text-align: center"></b-table>
       </Widget>
     </b-col>
   </b-row>
@@ -36,7 +36,7 @@ export default {
       LineList:['1号线', '2号线', '3号线', '4号线', '5号线', '10号线', '11号线', '12号线'],
       ODFields:[
         {
-          key: '线路名',
+          key: '线路',
           sortable: false
         },
         {
@@ -89,7 +89,7 @@ export default {
       let data = [];
       for(let i = 0;i<8;i++){
         data[i] = {};
-        data[i].线路名 = this.LineList[i];
+        data[i].线路 = this.LineList[i];
         data[i][this.LineList[i]] = 0;
       }
       for(let i = 0;i<56;i++){
@@ -119,7 +119,7 @@ export default {
         }
       }
       data[8]={};
-      data[8].线路名 = '总计';
+      data[8].线路 = '总计';
       let allall = 0;
       for(let k = 0;k<8;k++){
         data[k].总计 = data[k]['1号线'] + data[k]['2号线']+ data[k]['3号线']+ data[k]['4号线']+ data[k]['5号线']+ data[k]['10号线']+ data[k]['11号线']+ data[k]['12号线'];

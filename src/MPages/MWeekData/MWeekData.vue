@@ -1,16 +1,32 @@
 <template>
   <div>
-    <b-row >
-      <b-col lg="8">
-        <Widget id="Widget">
-          <b-form-select v-model="SelectWeek" :options="SelectOption" style="width: 120px;height:40px;opacity: 0.5;margin-bottom:20px;color: rgba(255,255,255,100)" @change="getData()"></b-form-select>
-          <WorkAndWeekDay height="600px" width="100%" id="WeekDataWorkAndWeekDay" :data="WorkAndWeekDayData"></WorkAndWeekDay>
+    <b-row>
+      <b-col lg="11" >
+        <Widget id="Widget" style="background-image: linear-gradient(to bottom right, #232628, #141b23);padding-bottom:0;margin-bottom: 0;margin-left: 3%">
+          <b-form-select v-model="SelectWeek" :options="SelectOption" style="box-shadow: 1px 1px 0 1px #1d1d1f;background-color: #232628;width: 120px;height:40px;margin-bottom:20px;color: rgba(255,255,255,100)" @change="getData()"></b-form-select>
+          <WorkAndWeekDay height="300px" width="100%" id="WeekDataWorkAndWeekDay" :data="WorkAndWeekDayData"></WorkAndWeekDay>
         </Widget>
       </b-col>
-      <b-col lg="4" >
-        <Widget style="width:100%;height: 665px" id="info" title="信息说明">
-          <small>各线路自{{this.SelectOption[this.SelectWeek].text}}一周内客流量统计</small>
-          <b-table striped hover :items="WeekAndWorkTableItems" :fields="WeekAndWorkFields" style="text-align: center"></b-table>
+    </b-row>
+
+    <b-row style="margin-top: 10px;padding-left: 10px">
+      <b-col lg="5" style="padding-right: 0">
+        <Widget style="background-image: linear-gradient(to bottom right, #232628, #141b23);padding-bottom:0;margin-bottom: 0;margin-left: 3%" id="info">
+          <b-table striped hover :items="WeekAndWorkTableItems.slice(0,4)" :fields="WeekAndWorkFields.slice(0,4)" style="text-align: center"></b-table>
+        </Widget>
+      </b-col>
+      <b-col lg="6" style="padding-left: 10px">
+        <Widget style="background-image: linear-gradient(to bottom right, #232628, #141b23);padding-bottom:0;margin-bottom: 0;margin-left: 3%" id="info2">
+          <b-table striped hover :items="WeekAndWorkTableItems.slice(4, 8)" :fields="WeekAndWorkFields.slice(4, 8)" style="text-align: center"></b-table>
+        </Widget>
+      </b-col>
+    </b-row>
+
+    <b-row style="margin-top: 10px">
+      <b-col lg="11">
+        <Widget style="font-size:16px;font-weight:500;text-align: center;background-image: linear-gradient(to bottom right, #232628, #141b23);padding-bottom:10px;padding-top:10px;margin-bottom:0;margin-left: 3%" id="info3">
+          <span>总线路-工作日平均客流：{{WeekAndWorkTableItems[8].工作日平均客流}}</span>
+          <span style="margin-left: 10%"> 总线路-休息日平均客流：{{WeekAndWorkTableItems[8].休息日平均客流}}</span>
         </Widget>
       </b-col>
     </b-row>
@@ -23,7 +39,7 @@ import WorkAndWeekDay from "@/components/Charts/WorkAndWeekDay/WorkAndWeekDay";
 import Widget from "@/components/Widget/Widget";
 import config from "@/config";
 export default {
-  name: "WeekData",
+  name: "MWeekData",
   components:{
     Widget,
     WorkAndWeekDay

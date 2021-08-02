@@ -1,37 +1,40 @@
 <template>
 <div>
   <b-row>
-    <b-col lg ='12'>
-      <Widget style="width: 100%;height: 730px">
+    <b-col lg ='11' style="margin-left: 10px">
+      <Widget style="width: 100%;height: 350px;background-image: linear-gradient(to bottom right, #232628, #141b23);">
         <LineForecast
             width="95%"
-            height="700px"
+            height="100%"
             id="LineForecast"
             style="position: absolute"
             :baseTime="BaseTime"
             :data="LineForecastData"
             :split-index="SplitIndex"></LineForecast>
-
         <b-row>
           <b-col lg ="6">
-            <b-form-datepicker :min="new Date(2019, 11, 25)" :max="new Date(2020, 6,26)" selected-variant="info" id="example-datepicker2"  style="opacity: 0.5" v-model="SelectDate" class="mb-lg-n3"></b-form-datepicker>
+            <b-form-datepicker  :min="new Date(2019, 11, 25)" :max="new Date(2020, 6,26)" selected-variant="info" id="example-datepicker3"  style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;" v-model="SelectDate" class="mb-lg-n3"></b-form-datepicker>
           </b-col>
           <b-col lg ="3">
-            <b-form-select v-model="Mode" @change="ReFor()" :options="ModeOption" style="width: 100%;height:40px;opacity: 0.5;color: rgba(255,255,255,100)"></b-form-select>
+            <b-form-select v-model="Mode" @change="ReFor()" :options="ModeOption" style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;width: 100%;height:40px;color: rgba(255,255,255,100)"></b-form-select>
           </b-col>
         </b-row>
       </Widget>
     </b-col>
   </b-row>
-  <b-row>
-    <b-col lg ='6'>
-      <Widget title="信息说明" style="width: 100%;height: auto">
+
+  <b-row style="margin-top: 10px">
+    <b-col lg ='11' style="margin-left: 10px">
+      <Widget title="线路预测信息" :collapsed="true" :collapse="true" style="background-image: linear-gradient(to bottom right, #232628, #141b23);width: 100%;height: auto">
         <small>{{SelectDate}}起未来三天全线路客流量预测</small>
         <b-table striped hover :items="LineForecastTableItems" :fields="LineForecastFields"></b-table>
       </Widget>
     </b-col>
-    <b-col lg="6">
-      <Widget title="模型参数"><br/>
+  </b-row>
+
+  <b-row style="margin-top: 10px">
+    <b-col lg="11" style="margin-left: 10px">
+      <Widget title="模型参数" :collapsed="true" :collapse="true" style="background-image: linear-gradient(to bottom right, #232628, #141b23);"><br/>
         <b-container fluid>
           <div v-if="Mode === 1">
             <br/>
@@ -258,7 +261,7 @@ export default {
         now = date;
         date = new Date(+new Date(parseInt(d[0]), parseInt(d[1]) -1 , parseInt(d[2])) + (i+1) * 6*1000*3600);
         let resulted = "";
-        resulted += now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+now.getHours()+":"+now.getMinutes()+":"+now.getSeconds()+"~";
+        resulted += now.getFullYear()+"-"+(now.getMonth()+1)+"-"+now.getDate()+" "+now.getHours()+":"+now.getMinutes()+":"+now.getSeconds()+ "~";
         resulted += date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
         result[i].预测时间段 = resulted;
       }

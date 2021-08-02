@@ -3,7 +3,10 @@
 .title {
   margin-top: 0;
   color: $widget-title-color;
-
+  background-image: linear-gradient(to bottom right, #24292c, #1d2225);
+  padding: $widget-padding-top $widget-padding-horizontal $widget-padding-bottom $widget-padding-horizontal;
+  border-bottom: #3c3c3c;
+  border-bottom-style: groove;
   @include clearfix();
 }
 
@@ -11,9 +14,12 @@
   display: block;
   position: relative;
   margin-bottom: $grid-gutter-width;
+  /*
   padding: $widget-padding-vertical $widget-padding-horizontal;
+   */
   background: $widget-bg;
-  border-radius: $widget-border-radius;
+  border-top-right-radius: $widget-border-radius;
+  border-top-left-radius: $widget-border-radius;
   box-shadow: $widget-shadow;
 
   &.loading {
@@ -128,6 +134,7 @@
 
 .widgetControls + .widgetBody {
   margin-top: $widget-padding-vertical;
+  padding-left: 20px;
 }
 
 .widgetControls,
@@ -137,6 +144,7 @@
   top: 0;
   right: 0;
   padding: 14px;
+  padding-left: $widget-padding-horizontal;
   font-size: $font-size-sm;
 
   a {

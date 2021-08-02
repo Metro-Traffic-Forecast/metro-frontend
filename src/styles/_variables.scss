@@ -129,9 +129,11 @@ $widget-bg: rgba(0,0,0,.15);
 $widget-title-color: #fff;
 $widget-shadow: 0 23px 20px -20px rgba(darken($body-bg, 25%),0.1), 0 0 15px rgba(darken($body-bg, 25%),0.06);
 $widget-shadow-designated: -1px 0 8px rgba(0,0,0,.2);
-$widget-border-radius: 10px;
-$widget-padding-vertical: 1rem !default;
+$widget-border-radius: 8px;
+$widget-padding-top: 0.7rem !default;
+$widget-padding-bottom: 0.5rem !default;
 $widget-padding-horizontal: 1.5rem !default;
+$widget-padding-vertical: 1rem !default;
 
 $text-transparent: opacify($widget-bg, .07);
 
@@ -269,3 +271,7 @@ $location-selector-bit-bg: rgba(255, 255, 255, 0.2) !default;
 // -------------------------
 
 $screen-lg-height: 670px !default;
+
+$shadow-color: #1d1d1f;
+$first-color: #232628;
+$second-color: #141b23;

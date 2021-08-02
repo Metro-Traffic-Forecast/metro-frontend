@@ -1,26 +1,27 @@
 <template>
   <div>
-    <b-row style="height: 550px">
-      <b-col lg="9" style="position: absolute;">
-        <Widget style="width: 740px;height: 530px">
-        <div style="height: 420px;width: auto">
+    <b-row style="height: 100%">
+      <b-col lg="12" style="position: absolute;">
+        <Widget class="widget2" style="background-image: linear-gradient(to bottom right, #232628, #141b23);">
+        <div style="height: 400px;width: 100%">
         <PassengerFlow3D
             id="MonthPassengerFlow3D"
-            width="700"
-            height="500"
-            style="position:absolute;"
+            width="90%"
+            height="85%"
+            style="position:absolute;margin-left: 5%;margin-top: 10%;margin-bottom: 5%"
             :data-x="dataX"
             :data="data3D"
             ></PassengerFlow3D>
-           <b-form-select v-model="SelectMonth" :options="SelectOption" style="width: 120px;height:40px;opacity: 0.5;color: rgba(255,255,255,100)" @change="getThermodynamicData();get3DData()"></b-form-select>
+           <b-form-select v-model="SelectMonth" :options="SelectOption" style="background-color: #232628;box-shadow: 1px 1px 0 1px #1d1d1f;width: 120px;height:40px;color: rgba(255,255,255,100)" @change="getThermodynamicData();get3DData()"></b-form-select>
         </div>
         </Widget>
       </b-col>
-      <b-col style="left: 750px">
-        <Widget
-            title="信息说明"
-            style="width: 350px;height: 530px">
-          <small>{{this.SelectOption[this.SelectMonth-1].text}}月线路流量信息</small>
+    </b-row>
+
+    <b-row style="margin-top: 430px">
+      <b-col lg="5" style="padding-right: 0px;margin-left: 20px">
+        <b-row>
+        <Widget style="background-image: linear-gradient(to bottom right, #232628, #141b23);padding-bottom:0;margin-bottom: 0">
           <div class="row progress-stats">
             <div class="col-12">
               <b-table striped hover :items="PassengerFlow3DTableItems" :fields="PassengerFlow3DFields"></b-table>
@@ -28,56 +29,35 @@
           </div>
           <br>
         </Widget>
+        </b-row>
       </b-col>
-    </b-row>
+      <b-col lg="6" style="padding-left: 20px">
+        <b-row style="margin-left: 10px">
+          <Widget style="background-image: linear-gradient(to bottom right, #232628, #141b23);padding-bottom:0;margin-bottom: 0">
+            <b-col lg="12">
+              <el-slider :min="1" :max="MonthMaxDay" v-model="BarValue" style="opacity: 0.4;" @change="compute(null)"></el-slider>
+            </b-col>
+          </Widget>
+        </b-row>
 
-    <b-row>
-      <b-col lg="7" style="position: absolute">
-        <Widget style="width: 590px;height: 430px">
+        <b-row style="margin-left: 10px;margin-top: 10px;height: 100%">
+        <Widget style="width: 100%;height: 89%">
           <Thermodynamic
             id="MonthDtaThermodynamic"
-            width="85%"
-            height="420px"
+            width="140%"
+            height="400px"
             :data="ThermodynamicShowData"
             :stations="StationList"
             :max="textDataMax"
             style="position: absolute"
           ></Thermodynamic>
           <b-row>
-            <b-col lg="3">
-              <b-form-select v-model="SelectMode" :options="InOutOption" style="width: 100%;height:40px;opacity: 0.5;color: rgba(255,255,255,100);" @change="getThermodynamicData()"></b-form-select>
-            </b-col>
-            <b-col lg="9">
-              <el-slider :min="1" :max="MonthMaxDay" v-model="BarValue" style="opacity: 0.4;" @change="compute(null)"></el-slider>
+            <b-col lg="6">
+              <b-form-select v-model="SelectMode" :options="InOutOption" style="box-shadow: 1px 1px 0 1px #1d1d1f;background-color: #232628;width: 100%;height:40px;color: rgba(255,255,255,100);" @change="getThermodynamicData()"></b-form-select>
             </b-col>
           </b-row>
         </Widget>
-      </b-col>
-
-      <b-col style="left: 600px">
-        <Widget
-            title="信息说明"
-            style="width: 500px;height: 430px">
-          <small>{{this.SelectOption[this.SelectMonth-1].text}}月{{BarValue}}日{{InOutOption[SelectMode-1].text}}信息——站点使用热力图</small>
-          <div class="row progress-stats">
-            <div class="col-12">
-              <small>热力值显示采用 当前值^0.25/本日最大值^0.25 计算</small>
-            </div>
-          </div>
-          <br/>
-          <div class="row progress-stats">
-            <div class="col-12">
-              当日最大{{InOutOption[SelectMode-1].text}}流量：{{textDataMax}} &emsp;真实数据：
-            </div>
-
-            <div :key="i" v-for="i in [0,1,2,3,4,5,6,7,8,9,10,11,12]">
-              <div :key="j" style="width: 38px;text-align: center;border-width: 1px;border-style: groove;border-color: #00000050" v-for="j in [0,1,2,3,4,5,6,7,8,9,10,11,12]">
-                {{Math.floor(Math.pow(textData[i*13+12-j][2]*Math.pow(textDataMax,0.25), 4))}}
-              </div>
-              <br/>
-            </div>
-          </div>
-        </Widget>
+        </b-row>
       </b-col>
     </b-row>
   </div>
@@ -91,7 +71,7 @@ import axios from "axios";
 import config from "../../config";
 
 export default {
-  name: "MonthData",
+  name: "MMonthData",
   data(){
     return{
       PassengerFlow3DFields: [
@@ -350,4 +330,4 @@ export default {
 }
 </script>
 
-<link href="MonthData.scss" lang="scss"/>
+<style src="./MMonthData.scss" lang="scss"/>

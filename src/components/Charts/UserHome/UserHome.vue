@@ -25,7 +25,7 @@ export default {
     draw() {
       let data={};
       data.id = this.id;
-      data.title = "用户居住地";
+      data.title = "";
       data.name = "用户户籍地";
       data.data = this.data;
       data.width  = this.width;
